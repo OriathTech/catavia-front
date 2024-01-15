@@ -1,5 +1,5 @@
 import Welcome from "@/components/Home/Welcome/Welcome"
-import Fitured from "@/components/Home/Fitured/Fitured"
+import Fitured from "@/components/Home/Fitured/Featured"
 
 
 

@@ -1,0 +1,102 @@
+.container {
+max-width: 124rem;
+padding: 4rem 1rem;
+margin: 0 auto;
+}
+    
+.heading {
+padding: 1rem 0;
+font-size: 3.5rem;
+text-align: center;
+}
+
+.swiper_container {
+height: 37rem;
+padding: 2rem 0;
+position: relative;
+}
+
+.swiper_slide {
+width: 22rem;
+height: 22rem;
+position: relative;
+}
+
+.img {
+width: 22rem;
+height: 22rem;
+object-fit: cover;
+}
+
+.slider_controler {
+position: relative;
+bottom: 2rem;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+
+.cardFooter{
+    display: flex;
+    flex-direction:column;
+}
+
+.cardTitlePrice{
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardTitle{
+    margin-right: 2rem;
+    align-self: flex-start;
+    justify-content: right;
+    font-size: 1.5rem;
+}
+
+.cardPrice{
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.cardBtn{
+    width: auto;
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+    font-size: 1.3rem;  
+}
+
+.btn1{
+    width: 9rem;
+    margin-right: .5rem;
+    background-color: rgb(100, 225, 253);
+    color: black;
+    font-size: 1.3rem;
+    font-weight:500;
+}
+
+.btn2{
+    width: 9rem;
+    margin-left: .5rem;
+    background-color: rgb(245, 232, 94);
+    color: black;
+    font-size: 1.3rem;
+    font-weight:500;
+}
+.slider_arrow {
+background: red;
+width: 3.5rem;
+height: 3.5rem;
+border-radius: 100%;
+}
+
+.swiper_button_prev {
+left: 58%;
+
+}
+
+.swiper_button_next {
+left: 58%;
+}
