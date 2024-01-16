@@ -18,33 +18,33 @@ import styles from "./Featured.module.css"
 export default function Carousel() {
   const list = [
       {
-      title: "Cupcake",
-      img: "img_1.jpg",
+      title: "tortafrutilla",
+      img: "tortafrutilla1.jpeg",
       price: "$500",
       },
       {
-      title: "Lemonpie",
-      img: "img_2.jpg",
+      title: "tortafrutilla2",
+      img: "tortafrutilla2.jpeg",
       price: "$3500",
       },
       {
-      title: "Postres en tasa",
-      img: "img_3.jpg",
+      title: "cupcake",
+      img: "cupcake.jpeg",
       price: "$900",
       },
       {
-      title: "Torta frutilla",
-      img: "img_4.jpg",
+      title: "lemonpie",
+      img: "lemonpie.jpeg",
       price: "$3500",
       },
       {
-      title: "Torta frutilla",
-      img: "img_5.jpg",
+      title: "postres",
+      img: "postres.jpeg",
       price: "$3500",
       },
       {
-      title: "Torta Frutilla",
-      img: "img_6.jpg",
+      title: "cataviaLogo",
+      img: "cataviaLogo2.png",
       price: "$3500",
       },
   ];
@@ -93,7 +93,7 @@ export default function Carousel() {
                   </CardBody>
                   <CardFooter className={styles.cardFooter}>
                       <div className={styles.cardTitlePrice}>
-                          <b className={styles.cardTitle}>{item.title}</b>
+                          <p className={styles.cardTitle}>{item.title}</p>
                           <p className={styles.cardPrice}>{item.price}</p>
                       </div>
                       <div className={styles.cardBtn}>
@@ -113,7 +113,7 @@ export default function Carousel() {
 
       <div className={styles.slider_controler}>
           <div className={`${styles.swiper_button_prev} ${styles.slider_arrow}`}>
-              <img className='w-28' src="/izqueida.svg" alt="" />
+              <img src="/dereita.svg" alt="" />
           </div>
 
           <Button color="primary" size="lg" radius="full">
@@ -121,7 +121,7 @@ export default function Carousel() {
           </Button>
 
           <div className={`${styles.swiper_button_next} ${styles.slider_arrow}`}>
-              <img className='w-28' src="/dereita.svg" alt="" />
+              <img src="/izqueida.svg" alt="" />
           </div>
       </div>
       
