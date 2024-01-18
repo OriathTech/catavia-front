@@ -1,0 +1,44 @@
+.body{
+    background-color: rgb(251, 155, 146);
+    height: 25rem;
+}
+
+.stiker1{
+    position: absolute;
+    right: 2rem;
+    width: 14rem;
+    transform: rotate(-0.5deg);
+}
+
+.container{
+    position: absolute;
+    margin: 5rem 5rem 5rem 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: "/about.jpg";
+}
+
+.title{
+    font-size: 2rem;
+    padding-top: 1rem;
+    z-index: 3;
+}
+
+
+.containerText{
+    display: flex;
+    align-items: center;
+    z-index: 3;
+}
+
+.text1{
+    padding: 1rem;
+    text-align: justify;
+    z-index: 3;
+}
+.text2{
+    padding: 1rem;
+    text-align: justify;
+    z-index: 3;
+}

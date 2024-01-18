@@ -1,6 +1,5 @@
 .container {
     max-width: 124rem;
-    padding: 4rem 1rem;
     margin: 0 auto;
 }
     
@@ -35,7 +34,7 @@
 }
 
 .cardTitlePrice{
-    width: 20rem;
+    width: 18rem;
     display: flex;
     justify-content: space-between;
 }
@@ -53,26 +52,16 @@
 }
 
 .cardBtn{
-    width: auto;
-    margin-top: 1rem;
-    margin-bottom: .5rem;
-    font-size: 1.3rem;  
+    width: 18rem;
+    display: flex;
+    justify-content: center;
 }
 
-.btn1{
+.btn{
     width: 9rem;
-    margin-right: .5rem;
-    background-color: rgb(100, 225, 253);
-    color: black;
-    font-size: 1.3rem;
-    font-weight:500;
-}
-
-.btn2{
-    width: 9rem;
-    margin-left: .5rem;
     background-color: rgb(245, 232, 94);
     color: black;
+    margin-top: .5rem;
     font-size: 1.3rem;
     font-weight:500;
 }
@@ -84,6 +73,7 @@
     align-items: center;
     justify-content: space-around;
     z-index: 2;
+    
 }
 
 .slider_arrow {
