@@ -1,30 +1,92 @@
 "use client"
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState({ products: [] });
     const [quantityTotalProducts, setQuantityTotalProducts] = useState(0);
 
-    const addProductCart = async (productId, quantity) => {
-        //POST: en front
+    const addProductCart = (product, quantity) => {
+        const indexProductCart = cart.products.findIndex((p) => p._id === product._id);
+
+        if (indexProductCart !== -1) {
+            const updatedCart = { ...cart };
+            updatedCart.products[indexProductCart].quantity = quantity;
+
+            setCart(updatedCart);
+        } else {
+            const productToAdd = {
+                _id: product._id,
+                name: product.name,
+                price: product.price,
+                quantity: quantity
+            };
+
+            setCart((prevCart) => ({
+                ...prevCart,
+                products: [...prevCart.products, productToAdd]
+            }));
+        }
+
+        const totalQuantity = cart.products.reduce((total, p) => total + p.quantity, 0);
+        setQuantityTotalProducts(totalQuantity);
     };
 
-    const deleteProductCart = async (productId) => {
-        //POST: en front
+    const deleteProductCart = (productId) => {
+        const updatedCart = {
+            ...cart,
+            products: cart.products.filter((product) => product._id !== productId),
+        };
+
+        setCart(updatedCart);
+        const totalQuantity = updatedCart.products.reduce((total, p) => total + p.quantity, 0);
+        setQuantityTotalProducts(totalQuantity);
     };
 
-    const deleteAllProductsCart = async () => {
-        //POST: en front
+    const deleteAllProductsCart = () => {
+        setCart({ products: [] });
+        setQuantityTotalProducts(0);
     };
 
-    const updateQuantityProduct = async (productId, quantity) => {
-        //POST: en front
+    const updateQuantityProduct = (productId, newQuantity) => {
+        const updatedCart = {
+            ...cart,
+            products: cart.products.map((product) =>
+                product._id === productId ? { ...product, quantity: newQuantity } : product
+            )
+        };
+
+        setCart(updatedCart);
+        const totalQuantity = updatedCart.products.reduce((total, p) => total + p.quantity, 0);
+        setQuantityTotalProducts(totalQuantity);
     };
 
-    const checkout = async (deliveryDate) => {
-        //POST: en front
+    const checkout = async () => {
+        try {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/products/chekout`, { cart }, {
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (response.status === 200) {
+                setCart({ products: [] });
+                setQuantityTotalProducts(0);
+                return response;
+            }
+
+            return response;
+
+        } catch (error) {
+            console.error('Error en el Context:', error);
+            return {
+                status: "error",
+                message: "Error en el Context",
+                error: error
+            };
+        }
     };
 
     return (

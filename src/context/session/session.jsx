@@ -1,26 +1,89 @@
 "use client"
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 
 const SessionContext = createContext();
 
 const SessionProvider = ({ children }) => {
-  const [session, setSession] = useState([]);
+  const [session, setSession] = useState({});
 
-  const login = async (data) => {
-    //LOGIN: en back y front
+  const loginJWT = async (info) => {
+    try {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/session/login/jwt`, { info }, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      if (response.status === 200) {
+        setSession(response.data.payload);
+        return response;
+      }
+
+      return response;
+
+    } catch (error) {
+      console.error('Error en el Context:', error);
+      return {
+        status: "error",
+        message: "Error en el Context",
+        error: error
+      };
+    }
   };
 
-  const register = async (data) => {
-    //REGISTER: en back y front
+  const register = async (info) => {
+    try {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/register`, { info }, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      if (response.status === 200) {
+        setSession(response.data.payload);
+        return response;
+      }
+
+      return response;
+
+    } catch (error) {
+      console.error('Error en el Context:', error);
+      return {
+        status: "error",
+        message: "Error en el Context",
+        error: error
+      };
+    }
   };
 
   const logout = async () => {
-    //LOGOUT: en back y front
+    try {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/logout`, { info }, {
+        withCredentials: true
+      });
+
+      if (response.status === 200) {
+        setSession({});
+        return response;
+      }
+
+      return response;
+
+    } catch (error) {
+      console.error('Error en el Context:', error);
+      return {
+        status: "error",
+        message: "Error en el Context",
+        error: error
+      };
+    }
   };
 
 
   return (
-    <SessionContext.Provider value={{ session, login, register, logout }}>
+    <SessionContext.Provider value={{ session, loginJWT, register, logout }}>
       {children}
     </SessionContext.Provider>
   );
