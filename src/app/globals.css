@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 /*Fuentes */
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@500&family=Libre+Baskerville:ital@1&family=Libre+Franklin:ital,wght@1,500&display=swap');
 
 :root {
   /*-- colores --*/
@@ -11,7 +10,7 @@
   --blackTrasparency: #7f5d2aed;
 
   --primary: #fcbb59;
-  --primaryTrasparency: red;
+  --primaryTrasparency: #fcbb5998;
   --primaryOpacity: red;
   
   --secondary: red;
@@ -38,17 +37,17 @@
 
   /*-- texto fonts--*/
 
-  --textFont: 'Josefin Slab', serif;
-  --textFontTitle: red;
-  --textFontSubTitle: red;
+  --textFontTitle: 'Libre Baskerville', serif;
+  --textFontSubTitle: 'Libre Franklin', sans-serif;
+  --textFont: 'Hind', sans-serif;
   --textFontLink: red;
 
    /*-- texto tamaño--*/
 
-   --textSize: red;
+   --textSizeTitle:2.7rem;
+   --textSizeSubTitle:1.7rem;
+   --textSize:1.2rem;
    --textSizeNav: red;
-   --textSizeTitle: red;
-   --textSizeSubTitle: red;
    --textSizeLink: red;
 }
 

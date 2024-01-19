@@ -18,14 +18,12 @@ export default function RootLayout({ children }) {
   return (
     <html className="html" lang="en">
 
-      <body className="allPage">
+      <body className='allPage '>
         <Providers>
-          <div>
-            <Logo/>
-            <Navbar/>
-            {children}
-          </div>
 
+          <Logo/>
+          <Navbar/>
+          {children}
           <Footer/>
 
         </Providers>

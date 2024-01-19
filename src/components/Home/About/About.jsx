@@ -3,22 +3,31 @@
 export default function About() {
 return (
     <div className={styles.body}>
-        
-        <span className={styles.stiker1}>
-            <img src="/stiker1.png" alt="" />
-        </span>
+        <div className={`${styles.containerCirculo} container mx-auto`}>
+            <div className={styles.container}>
+                <div className={styles.title}>
+                    <h1>Bienvenidos a Catavia!</h1>
+                </div>
 
-        <div className={styles.container}>
-            <div className={styles.title}>
-                <h1>LOREM IPSUM</h1>
-            </div>
-            <div className={styles.containerText}>
-                <p className={styles.text1}>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Minus veritatis distinctio, dolorum sed dolor culpa, perspiciatis officiis modi error 
-                a similique harum ipsam nesciunt enim laborum, ipsum quisquam voluptas et.</p>
-                <p className={styles.text2}>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Omnis beatae pariatur quod impedit similique dolorem repellendus consequatur quo 
-                dignissimos porro suscipit ex, tempore quibusdam. Exercitationem.</p>
+                <div className={styles.containerText}>
+                    <p className={styles.text} > 
+                    Me gustaría contarte cómo todo esto surgió.
+                    </p>
+                    <p className={styles.text}>
+                    Hace más de tres años que surgió el sueño de transmitir, 
+                    esa sensación familiar y hogar que tanto nos llena, desde ese momento, 
+                    decidí endulzar tus momentos con mis creaciones. 
+                    En Catavia Artesanal, cada postre es más que una delicia; 
+                    es una expresión auténtica de mi dedicación. 
+                    </p>
+                    <p className={styles.subtitle}>
+                    Descubre la magia de Catavia Artesanal. 
+                    </p>
+                </div>
+
+                <div>
+                    <img className={styles.logo} src="/cataviaLogo3.png" alt="cataviaLogo" />
+                </div>
             </div>
         </div>
 

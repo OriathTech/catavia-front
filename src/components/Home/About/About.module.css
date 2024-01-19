@@ -1,44 +1,130 @@
 .body{
-    background-color: rgb(251, 155, 146);
-    height: 25rem;
+    /* background: url("/about.jpg") top center;
+    background-size: cover; */
+    background-color: rgb(249, 157, 168);
+    display: grid;
+    place-items: center;
 }
 
-.stiker1{
-    position: absolute;
-    right: 2rem;
-    width: 14rem;
-    transform: rotate(-0.5deg);
+
+.containerCirculo{
+    display: grid;
+    place-items: center;
+    width: 37rem;
+    height: 37rem;
+    margin: 2rem 0rem;
+    background-color: rgba(248, 179, 50, 0.628);
+    border-radius: 100%;
+    
 }
 
 .container{
-    position: absolute;
-    margin: 5rem 5rem 5rem 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: "/about.jpg";
 }
 
 .title{
-    font-size: 2rem;
-    padding-top: 1rem;
+    margin-top: 2rem;
+    font-size: var(--textSizeTitle);
     z-index: 3;
+    font-family: var(--textFontTitle);
+    font-variant:normal;
+    font-style: italic;
+    font-weight:400;
+    text-align:center;
 }
 
 
 .containerText{
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 0rem 2rem;
+}
+.subtitle{
+    margin-top: 1rem;
+    font-size: var(--textSizeSubTitle);
     z-index: 3;
+    font-family: var(--textFontSubTitle);
+    font-variant: medium;
+    font-style: italic;
+    font-weight:500;
+    text-align:center;
+}
+.text{
+    margin-top: .2rem;
+    text-align:center;
+    font-size: var(--textSize);
+    font-family: var(--textFont);
+    font-variant: medium;
+    font-weight:500;
 }
 
-.text1{
-    padding: 1rem;
-    text-align: justify;
-    z-index: 3;
+.logo{
+    width: 7rem;
 }
-.text2{
-    padding: 1rem;
-    text-align: justify;
-    z-index: 3;
+
+
+@media (max-width: 600px) {
+    .containerCirculo{
+        display: grid;
+        place-items: center;
+        width: 25rem;
+        height: 25rem;
+        margin: 2rem 0rem;        
+    }
+    
+    .title{
+        font-size: 1.5rem;
+    }
+    
+    .containerText{
+        
+        padding: 0rem 2rem;
+    }
+    .subtitle{
+        margin-top: 1rem;
+        font-size: 1rem;
+    }
+    .text{
+        margin-top: .2rem;
+        font-size: .8rem;
+    }
+    
+    .logo{
+        margin-top: .7rem;
+        width: 5rem;
+    }
+}
+
+@media (max-width: 415px) {
+    .containerCirculo{
+        width: 19rem;
+        height: 19rem;
+        margin: 2rem 0rem;        
+    }
+    
+    .title{
+        font-size: 1rem;
+    }
+    
+    .containerText{
+        
+        padding: 0rem 1rem;
+    }
+    .subtitle{
+        margin-top: 0.4rem;
+        font-size: 0.8rem;
+    }
+    .text{
+        margin-top: .2rem;
+        font-size: .7rem;
+    }
+    
+    .logo{
+        margin-top: .4rem;
+        width: 3rem;
+    }
 }

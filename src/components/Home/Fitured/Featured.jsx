@@ -62,8 +62,8 @@ export default function Featured() {
   }, []);
 
   return (
-      <div className={styles.container}>
-      <h1 className={styles.heading}>Featured Nury</h1>
+      <div className={`${styles.container} container mx-auto`}>
+      <h1 className={styles.heading}>Productos de Temporada</h1>
       <>
       {domLoaded && (
       <Swiper
