@@ -1,39 +1,19 @@
 .body{
-    width: 100%;
-    height: 50vh;
-    margin: 0;
-    background: #222;
-    perspective: 10px;
-    transform-style: preserve-3d;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    background: url("/paralax.jpg") top center;
+    background-size:cover;
 }
 
 .section {
-    width: 100%;
-    min-height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-}
+    display: flex;
+    align-items:center;
+    display: grid;
+    place-items: center;
 
-.section::before{
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background: url("/cupcake.jpeg") top center;
-    background-size: cover;
-    transform: translateZ(-4px) scale(2.2);
-    filter: blur(2px)
 }
 
 .text {
-    top: 30%;
-    left: 50%;
-    position: absolute;
     font-family: var(--textFont);
-    font-size: 15vw;
-    color: aliceblue;
-    text-shadow:2px 2px 5px rgba(0, 0, 0, 0.3), 5px 5px 70px rgba(255, 255, 255, 0.5);
-    transform: scale(1, 1.1) translate(-50%, 10%); 
+    font-size: 20rem;
+    color: var(--primary);
+    text-shadow:2px 2px 5px rgba(0, 0, 0, 0.917), 5px 5px 70px rgba(255, 255, 255, 0.5);
 }
