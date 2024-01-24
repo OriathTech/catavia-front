@@ -14,16 +14,16 @@ export default function Navbar() {
                     <Link href="/">Home</Link>
                 </span>
                 <span className={styles.menulink}>
-                    <Link href="/Menu">Menu</Link>
+                    <Link href="/products">Menu</Link>
                 </span>
                 <span>
-                    <Link href="/Contactame">Contactame</Link>
+                    <Link href="/contactame">Contactame</Link>
                 </span>
             </div>
 
             <div className={styles.conteinerbutons}>
 
-                <Link rel="stylesheet" href="/Card" className={styles.conteinercard}>
+                <Link rel="stylesheet" href="/card" className={styles.conteinercard}>
                     <Badge content="5" size="md" color="primary">
                     <Avatar
                         size="md"
