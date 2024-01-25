@@ -9,12 +9,13 @@
   /*-- colores --*/
 
   --blackTrasparency: #7f5d2aed;
+  --white: #e4e4e4 ;
 
   --primary: #fcbb59;
   --primaryTrasparency: #fcbb5998;
   --primaryOpacity: red;
   
-  --secondary: red;
+  --secondary: #8a2311;
   --secondaryTrasparency: red;
   --secondaryOpacity: red;
 
