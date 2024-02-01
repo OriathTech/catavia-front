@@ -1,4 +1,7 @@
+"use client"
+
 import Link from 'next/link';
+import {Dropdown, DropdownTrigger, DropdownMenu, DropdownSection, DropdownItem} from "@nextui-org/dropdown";
 import {Button} from "@nextui-org/button";
 import {Badge} from "@nextui-org/badge";
 import {Avatar} from "@nextui-org/avatar";
@@ -14,16 +17,16 @@ export default function Navbar() {
                     <Link href="/">Home</Link>
                 </span>
                 <span className={styles.menulink}>
-                    <Link href="/Menu">Menu</Link>
+                    <Link href="/products">Menu</Link>
                 </span>
                 <span>
-                    <Link href="/Contactame">Contactame</Link>
+                    <Link href="/contact">Contactame</Link>
                 </span>
             </div>
 
             <div className={styles.conteinerbutons}>
 
-                <Link rel="stylesheet" href="/Card" className={styles.conteinercard}>
+                <Link rel="stylesheet" href="/card" className={styles.conteinercard}>
                     <Badge content="5" size="md" color="primary">
                     <Avatar
                         size="md"
@@ -38,15 +41,26 @@ export default function Navbar() {
 
 
         <div className={styles.conteineruser}>
-            <Link href="/Login" className="">
+            <Dropdown>
+            <DropdownTrigger>
                 <Avatar
-                    size="md"
-                    radius="lg"
-                    src="catuser.svg"
-                />
-            </Link>
+                        size="md"
+                        radius="lg"
+                        src="catuser.svg"
+                    />
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Link Actions">
+                <DropdownItem key="login" href="/login">
+                login
+                </DropdownItem>
+                <DropdownItem key="register" href="/register">
+                register
+                </DropdownItem>
+            </DropdownMenu>
+            </Dropdown>
 
         </div>
+
         </section>
     );
   }

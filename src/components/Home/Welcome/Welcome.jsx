@@ -5,7 +5,7 @@ export default function Welcome() {
     return (
         <div className={styles.body}>
             <div className={styles.section}>
-                <div className={styles.text}>Catavia</div>
+                <p className={styles.text}>Catavia</p>
             </div>
         </div>
     );
