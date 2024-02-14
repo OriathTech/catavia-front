@@ -1,0 +1,69 @@
+.header {
+    background: #ffa200;
+    height: 20dvh;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar {
+    background-color: #ffa20090;
+    height: 10dvh;
+    border-bottom: solid 1px rgba(0, 0, 0, .3);
+}
+
+.logo {
+    width: auto;
+}
+
+.dropdown {
+    background-color: orange;
+}
+
+.menuBase {
+    background: rgba(0, 0, 0, .1);
+    border-radius: 10px;
+}
+
+
+.menuLink span {
+    text-align: center;
+    color: azure;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.link {
+    text-align: center;
+    color: rgba(0, 0, 0, .8);
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    filter: grayscale(80%) opacity(.7);
+    transition: ease-in 150ms;
+}
+
+.link:hover {
+    color: azure;
+    filter: grayscale(0%) opacity(1);
+    text-shadow: rgba(0, 0, 0, .8) 1px 0 10px;
+}
+
+@media only screen and (min-width:1px) {
+    .link {
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (min-width:1024px) {
+    .link {
+        font-size: 1.5rem;
+    }
+}
+
+
+@media only screen and (min-width:2560px) {
+    .link {
+        font-size: 2rem;
+    }
+}

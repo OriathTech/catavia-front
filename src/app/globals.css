@@ -11,7 +11,7 @@
   --blackTrasparency: rgba(0,0,0,.5);
   --white: #e4e4e4 ;
 
-  --primary: #fcbb59;
+  --primary: #e4e4e4;
   --primaryTrasparency: #fcbb5998;
   
   --secondary: #ea899b99 ;
@@ -52,6 +52,13 @@
 }
 
 .allPage {
-  background-color: var(--primary);
+  background-color: #FFA3F030;
+  min-height: 0;
 }
+
+.catBG {
+  background-image: url("/images/backgrounds/bgCat.png");
+}
+
+/* #fcbb5998 */
 
