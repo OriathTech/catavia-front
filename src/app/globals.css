@@ -2,19 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-/*Fuentes */
-@import url('https://fonts.googleapis.com/css2?family=Hind:wght@500&family=Libre+Baskerville:ital@1&family=Libre+Franklin:ital,wght@1,500&display=swap');
+ 
+/*
+CSS rules to specify families 
+font-family: 'Dancing Script', cursive;
+font-family: 'Heebo', sans-serif;
+font-family: 'Merriweather', serif;
+*/
+
 
 :root {
+  min-width: 0;
+  height: 0;
   /*-- colores --*/
 
-  --blackTrasparency: rgba(0,0,0,.5);
+  --blackTrasparency: rgba(0,0,0,.35);
   --white: #e4e4e4 ;
 
   --primary: #fcbb59;
   --primaryTrasparency: #fcbb5998;
   
-  --secondary: #ea899b99 ;
+  --secondary: #fe758ebf ;
   --secondaryTrasparency: red;
 
   --tertiary: red;
@@ -36,9 +44,9 @@
 
   /*-- texto fonts--*/
 
-  --textFontTitle: 'Libre Baskerville', serif;
-  --textFontSubTitle: 'Libre Franklin', sans-serif;
-  --textFont: 'Hind', sans-serif;
+  --textFontTitle:'Dancing Script', cursive;
+  --textFontSubTitle:'Heebo', sans-serif;
+  --textFont:'Merriweather', serif;
   --textFontLink: red;
 
   /*-- texto tamaño--*/
@@ -51,7 +59,8 @@
    --textSizeLink: red;
 }
 
-.allPage {
+body {
   background-color: var(--primary);
+  min-height: 100dvh;
 }
 

@@ -5,7 +5,8 @@
     
 .heading {
     padding: 1rem 0;
-    font-size: 3.5rem;
+    font-size: var(--textSizeTitle);
+    font-family: var(--textFontTitle);
     text-align: center;
 }
 

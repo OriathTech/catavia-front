@@ -26,7 +26,7 @@ export default function Navbar() {
 
             <div className={styles.conteinerbutons}>
 
-                <Link rel="stylesheet" href="/card" className={styles.conteinercard}>
+                <Link rel="stylesheet" href="/cart" className={styles.conteinercard}>
                     <Badge content="5" size="md" color="primary">
                     <Avatar
                         size="md"
