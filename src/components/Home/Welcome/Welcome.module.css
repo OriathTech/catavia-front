@@ -1,19 +1,129 @@
-.body{
-    background: url("/paralax.jpg") top center;
-    background-size:cover;
+.background {
+    background: #ffdac6 ;
+    display: block;
+    height: 70dvh;
+    overflow: hidden;
+    position: relative;
+    border-bottom: solid 1rem #e6e6e6 ;
+    z-index: 2;
 }
 
-.section {
+.bannerTop {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    width: 100%;
+    margin: 0;
+    z-index: 0;
+}
+
+.bannerBottom {
+    position: absolute;
+    background-repeat: no-repeat;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    width: 100%;
+    z-index: 0;
+}
+
+.textContainer {
+    width: 300px;
+    height:100%;
     display: flex;
-    align-items:center;
-    display: grid;
-    place-items: center;
-
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 20dvh auto;
 }
 
-.text {
-    font-family: var(--textFont);
-    font-size: 20rem;
-    color: var(--primary);
-    text-shadow:2px 2px 5px rgba(0, 0, 0, 0.917), 5px 5px 70px rgba(255, 255, 255, 0.5);
+.title {
+    z-index: 3;
+}
+
+.sub {
+    z-index: 3;
+}
+
+
+@media only screen and (min-width:1px) {
+    .bannerTop {
+        min-height: 150px;
+        background-image: url('/images/banner/bannerTopMD.png');
+    }
+
+    .bannerBottom {
+        min-height: 225px;
+        background-image: url('/images/banner/bannerBottomMD.png');
+    }
+
+    .background {
+        max-width: 1024px;
+    }
+
+    .title {
+        font-size: 4rem;
+        font-weight: 600;
+    }
+
+    .sub {
+        font-size: 2rem;
+        font-weight: 600;
+    }
+}
+
+@media only screen and (min-width:1024px) {
+    .bannerTop {
+        min-height: 150px;
+        background-image: url('/images/banner/bannerTopL.png');
+    }
+
+    .bannerBottom {
+        min-height: 225px;
+        background-image: url('/images/banner/bannerBottomL.png');
+    }
+
+    .background {
+        max-width: 2560px;
+    }
+
+    .title {
+        font-size: 6rem;
+        font-weight: 600;
+    }
+
+    .sub {
+        font-size: 3rem;
+        font-weight: 600;
+    }
+}
+
+
+@media only screen and (min-width:2560px) {
+    .bannerTop {
+        min-height: 150px;
+        background-image: url('/images/banner/bannerTopXL.png');
+    }
+
+    .bannerBottom {
+        min-height: 225px;
+        background-image: url('/images/banner/bannerBottomXL.png');
+    }
+
+    .background {
+        max-width: 7680px;
+    }
+
+    .title {
+        font-size: 12rem;
+        font-weight: 600;
+    }
+
+    .sub {
+        font-size: 6rem;
+        font-weight: 600;
+    }
 }

@@ -19,7 +19,7 @@ font-family: 'Merriweather', serif;
   --blackTrasparency: rgba(0,0,0,.35);
   --white: #e4e4e4 ;
 
-  --primary: #fcbb59;
+  --primary: #e4e4e4;
   --primaryTrasparency: #fcbb5998;
   
   --secondary: #fe758ebf ;
@@ -59,8 +59,14 @@ font-family: 'Merriweather', serif;
    --textSizeLink: red;
 }
 
-body {
-  background-color: var(--primary);
-  min-height: 100dvh;
+.allPage {
+  background-color: #FFA3F030;
+  min-height: 0;
 }
+
+.catBG {
+  background-image: url("/images/backgrounds/bgCat.png");
+}
+
+/* #fcbb5998 */
 
