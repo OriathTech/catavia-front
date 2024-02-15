@@ -32,7 +32,7 @@
 
   --text: black;
   --textTitle: black;
-  --textSub: black;
+  --textSub: azure;
   --textLink: black;
   --textHover: azure;
 
@@ -43,7 +43,7 @@
 
  
   --familyTitle: var(--font-heebo);
-  --familySub: var(--font-merri);
+  --familySub: var(--font-heebo);
   --familyText: var(--font-merri);
   --familyLink: var(--font-heebo);
 

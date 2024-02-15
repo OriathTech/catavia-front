@@ -6,9 +6,9 @@ export default function About() {
 
         <div className={`${styles.container}`}>
             <div>
-                <p>
+                <h2>
                     Me gustaría contarte cómo todo esto surgió.
-                </p>
+                </h2>
                 <p>
                     Hace más de tres años que surgió el sueño de transmitir,
                     esa sensación familiar y hogar que tanto nos llena, desde ese momento,

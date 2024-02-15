@@ -1,27 +1,83 @@
 .container {
     background: var(--primary);
-    max-width: 50%;
+    max-width: 90%;
     margin:2rem auto;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 25px;
-    box-shadow: 0 5px 10px rgba( 0,0,0,.5 )
+    box-shadow: 0 5px 10px var(--blackTransparency)
 }
 
 .container h2 {
-    font-size: 4rem;
+    color: var(--textSub);
+    font-family: var(--familySub);
+    font-weight: var(--weightBold);
     margin: 3rem auto 2rem auto;
-    
 }
 
 .container p {
-    font-size: 2rem;
+    color: var(--text);
+    font-family: var(--familyText);
+    font-weight: var(--weightLight);
     margin: 2rem auto 2rem auto;
 }
 
 .container div {
-    width: 70%;
-    margin-bottom: 2rem;
+    width: 80%;
+    margin: 2rem auto;
+}
+
+@media only screen and (min-width:1px) {
+    .container h2 {
+        font-size: var(--sizeSubSM);
+        margin: 2rem auto 1rem auto;
+        
+    }
+
+    .container p {
+        font-size: var(--sizeTextSM);
+        margin: 2rem auto 2rem auto;
+    }
+
+    .container {
+        max-width: 90%;
+    }
+}
+
+@media only screen and (min-width:1024px) {
+    .container h2 {
+        font-size: var(--sizeSubMD);
+        margin: 3rem auto 2rem auto;
+        
+    }
+
+    .container p {
+        font-size: var(--sizeTextMD);
+        margin: 2rem auto 2rem auto;
+    }
+
+    .container {
+        max-width: 60%;
+    }
+
+
+}
+
+@media only screen and (min-width:2560px) {
+    .container h2 {
+        font-size: var(--sizeSubLG);
+        margin: 3rem auto 2rem auto;
+        
+    }
+
+    .container p {
+        font-size: var(--sizeTextLG);
+        margin: 2rem auto 2rem auto;
+    }
+
+    .container {
+        max-width: 50%;
+    }
 }
