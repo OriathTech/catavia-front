@@ -1,5 +1,5 @@
 "use client"
-import Contact from "@/components/Contact/Contact"
+import Contact from "@/app/contact/components/Contact/Contact"
 
 
 export default function contactPage() {

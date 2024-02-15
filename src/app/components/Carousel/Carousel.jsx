@@ -1,5 +1,5 @@
 "use client"
-import { Card, CardBody, CardHeader, CardFooter } from "@nextui-org/card";
+import { Card} from "@nextui-org/card";
 import { Button } from "@nextui-org/button";
 import { Label } from "./Label/Label";
 
@@ -88,7 +88,7 @@ export default function Carousel() {
 
     return (
         <div className={`${styles.container} mx-auto`}>
-            <h1 className={styles.title}>Titulo Placeholder</h1>
+            <h1 className={styles.title}>Bienvenidos a Catavia Artesanal</h1>
             <>
                 {domLoaded && (
                     <Swiper

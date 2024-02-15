@@ -1,10 +1,10 @@
-import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from "../context/providers";
-import Footer from '@/components/Footer/Footer';
-import Header from '@/components/Header/Header';
 
-const inter = Inter({ subsets: ['latin'] })
+import Footer from '@/app/components/Footer/Footer';
+import Header from './components/Header/Header';
+
+import {heebo, dancing, merri} from '@/utils/fonts'
 
 export const metadata = {
   title: 'Catavia',
@@ -13,11 +13,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html className="html" lang="en">
-      <style>
-      @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
-      </style>
-
+    <html lang="en" className={`${heebo.variable} ${dancing.variable} ${merri.variable}`}>
       <body>
         <Providers>
           <Header />

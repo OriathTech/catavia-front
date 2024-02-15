@@ -1,5 +1,5 @@
 .background {
-    background: #ffdac6 ;
+    background: linear-gradient(0deg, var(--primary) 1%, var(--primaryTrasparency) 60%, var(--primary) 99%);
     display: block;
     height: 70dvh;
     overflow: hidden;
@@ -42,10 +42,20 @@
 
 .title {
     z-index: 3;
+    max-height: 70px;
+    font-family: var(--familyBannerTitle);
+    font-weight: 800;
+    color: var(--secondary);
+    -webkit-text-stroke: 1px rgba(0,0,0,.1);
+    
 }
 
 .sub {
+    font-family: var(--familyBannerSub);
+    font-weight: 800;
     z-index: 3;
+    -webkit-text-stroke: 1px var(--primaryTrasparency);
+    color: brown;
 }
 
 
@@ -66,12 +76,10 @@
 
     .title {
         font-size: 4rem;
-        font-weight: 600;
     }
 
     .sub {
-        font-size: 2rem;
-        font-weight: 600;
+        font-size: 4rem;
     }
 }
 
@@ -88,16 +96,15 @@
 
     .background {
         max-width: 2560px;
+        background: radial-gradient(circle, var(--primaryTrasparency) 0%,var(--primary)  99%);
     }
 
     .title {
-        font-size: 6rem;
-        font-weight: 600;
+        font-size: 5rem;
     }
 
     .sub {
-        font-size: 3rem;
-        font-weight: 600;
+        font-size: 5rem;
     }
 }
 
@@ -118,12 +125,10 @@
     }
 
     .title {
-        font-size: 12rem;
-        font-weight: 600;
+        font-size: 10rem;
     }
 
     .sub {
-        font-size: 6rem;
-        font-weight: 600;
+        font-size: 10rem;
     }
 }

@@ -2,71 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
- 
-/*
-CSS rules to specify families 
-font-family: 'Dancing Script', cursive;
-font-family: 'Heebo', sans-serif;
-font-family: 'Merriweather', serif;
-*/
 
 
 :root {
   min-width: 0;
   height: 0;
-  /*-- colores --*/
 
-  --blackTrasparency: rgba(0,0,0,.35);
-  --white: #e4e4e4 ;
+  /*-- Colors --*/
 
-  --primary: #e4e4e4;
-  --primaryTrasparency: #fcbb5998;
+  --blackTransparency: rgba(0, 0, 0, .3);
+  --blackTransparencyHard: rgba(0, 0, 0, .8);
+  --white: white;
+  --black: black;
+
+  --primary: #ffa500;
+  --primaryTransparency: #ffa50050;
+
+  --secondary: #e88e1f;
+  --secondaryTransparency: #e88e1f50;
+
+  --tertiary: #ffe9f5;
+  --tertiaryTransparency: #ffe9f550;
+
+
+  /*-- Text Colors--*/
+
+  --bannerTitle: orange ;
+  --bannerSub: brown ;
+
+  --text: black;
+  --textTitle: black;
+  --textSub: black;
+  --textLink: black;
+  --textHover: azure;
+
+  /*-- Texto Family--*/
+
+  --familyBannerTitle: var(--font-heebo) ;
+  --familyBannerSub: var(--font-dancing) ;
+
+ 
+  --familyTitle: var(--font-heebo);
+  --familySub: var(--font-merri);
+  --familyText: var(--font-merri);
+  --familyLink: var(--font-heebo);
+
+  /*-- Texto Weight--*/
+
+  --weightLight: 400;
+  --weightSemi: 600;
+  --weightBold: 800;
+
+
+  /* Text Size */
+
+  /* Banner */
+  --sizeBannerSM: 3rem;
+  --sizeBannerMD: 5rem;
+  --sizeBannerLG: 10rem;
+
+  /* Title */
   
-  --secondary: #fe758ebf ;
-  --secondaryTrasparency: red;
+  --sizeTitleSM: 2rem;
+  --sizeTitleMD: 3rem;
+  --sizeTitleLG: 3rem;
 
-  --tertiary: red;
-  --tertiaryTrasparency: red;
+  /* Sub */
 
-  /*--gradientes --*/
+  --sizeSubSM: 1.5rem;
+  --sizeSubMD: 2.5rem;
+  --sizeSubLG: 3.5rem;
 
-  --primaryGradient: red;
-  --secondaryGradient: red;
-  --tertiaryGradient: red;
+  /* Text */
 
-  /*-- texto color--*/
+  --sizeTextSM: 1rem;
+  --sizeTextMD: 2rem;
+  --sizeTextLG: 3rem;
 
-  --textColor: red;
-  --textColorTitle: red;
-  --textColorSubTitle: red;
-  --textLink: red;
-  --textHover: red;
+  /* Link */
 
-  /*-- texto fonts--*/
-
-  --textFontTitle:'Dancing Script', cursive;
-  --textFontSubTitle:'Heebo', sans-serif;
-  --textFont:'Merriweather', serif;
-  --textFontLink: red;
-
-  /*-- texto tamaño--*/
-  /* LG;MD;SM hacer mas */
-  
-   --textSizeTitle:2.7rem;
-   --textSizeSubTitle:1.7rem;
-   --textSize:1.2rem;
-   --textSizeNav: red;
-   --textSizeLink: red;
+  --sizeLinkSM: 1rem;
+  --sizeLinkMD: 1.5rem;
+  --sizeLinkLG: 2.5rem;
 }
 
-.allPage {
-  background-color: #FFA3F030;
-  min-height: 0;
+body {
+  font-family: var(--font-heebo);
+  background-color: var(--tertiary);
 }
 
 .catBG {
   background-image: url("/images/backgrounds/bgCat.png");
 }
-
-/* #fcbb5998 */
-

@@ -3,7 +3,7 @@
     align-items: center;
     justify-content:space-around;
     width: auto;
-    background-color: var(--blackTrasparency);
+    background-color: var(--primary);
     padding: 1rem 0rem;
 }
 

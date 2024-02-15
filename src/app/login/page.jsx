@@ -1,11 +1,11 @@
 "use client"
-import Login from "@/components/login/Login"
+import LoginForm from "@/app/login/components/LoginForm/LoginForm"
 
 
-export default function productsPage() {
+export default function loginPage() {
     return (
-      <div className="">
-        <Login/>
+      <div>
+        <LoginForm/>
       </div>
      
     )

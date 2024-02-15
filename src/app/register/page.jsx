@@ -1,12 +1,10 @@
 "use client"
-
-import Register from "@/components/Register/Register"
-
+import RegisterForm from "@/app/register/components/RegisterForm/RegisterForm"
 
 export default function registerPage() {
     return (
-      <div className="">
-        <Register/>
+      <div>
+        <RegisterForm/>
       </div>
      
     )

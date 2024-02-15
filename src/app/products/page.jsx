@@ -1,11 +1,11 @@
 "use client"
-import Carts from "@/components/Catalog/Carts/Catalog"
+import ProductList from "@/app/products/components/ProductList/ProductList"
 
 
 export default function productsPage() {
     return (
-      <div className="">
-        <Carts/>
+      <div>
+        <ProductList/>
       </div>
      
     )

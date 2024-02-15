@@ -1,9 +1,9 @@
 
-import styles from "./Login.module.css"
+import styles from "./LoginForm.module.css"
 import {Button, ButtonGroup} from "@nextui-org/button";
 import Link from "next/link"
 
-export default function Login (){
+export default function LoginForm (){
 
     return(
     <div className={`container mx-auto mb-4 p-7 border-4 ${styles.conteiner}`} >

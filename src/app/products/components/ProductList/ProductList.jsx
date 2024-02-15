@@ -2,15 +2,15 @@
 import { Card, CardBody, CardFooter } from "@nextui-org/card";
 
 import { Image } from "@nextui-org/image";
-import styles from "./Catalog.module.css"
+import styles from "./ProductList.module.css"
 import Link from "next/link";
-import { Dropdown,DropdownTrigger,DropdownMenu,DropdownSection,DropdownItem } from "@nextui-org/dropdown";
-import { Pagination, dropdown } from "@nextui-org/react";
+import { Dropdown,DropdownTrigger,DropdownMenu ,DropdownItem } from "@nextui-org/dropdown";
+import { Pagination} from "@nextui-org/react";
 import {Button} from "@nextui-org/button";
 import { useContext, useState,useEffect, useMemo } from "react";
 import { ProductContext } from "@/context/products/products";
 
-export default function Catalog() {
+export default function ProductList() {
 
     const { products } = useContext(ProductContext)
     const [filtrados, setFiltrados] = useState(products)

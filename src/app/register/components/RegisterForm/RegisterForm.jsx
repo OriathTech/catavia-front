@@ -1,6 +1,6 @@
 
-import styles from "./register.module.css"
-import {Button, ButtonGroup} from "@nextui-org/button";
+import styles from "./registerForm.module.css"
+import {Button} from "@nextui-org/button";
 import Link from "next/link"
 import { useRef } from "react";
 import {Input} from "@nextui-org/input";

@@ -9,11 +9,10 @@ import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-o
 import { Link } from "@nextui-org/link";
 import { Button } from "@nextui-org/button";
 import { MenuIcon } from "@/app/admin/components/icons/MenuIcon/MenuIcon";
-import { CartIcon } from "./CartIcon/CartIcon";
+import { CartIcon } from "./Sub/CartIcon/CartIcon";
 import Image from 'next/image'
 
-
-import styles from "./Header.module.css"
+import styles from './Header.module.css'
 
 export default function Header() {
     const { session } = useContext(SessionContext);

@@ -1,17 +1,17 @@
-import Welcome from "@/components/Home/Welcome/Welcome"
-import About from "@/components/Home/About/About"
-import Carousel from "@/components/Home/Carousel/Carousel"
+import Banner from "@/app/components/Banner/Banner"
+import About from "@/app/components/About/About"
+import Carousel from "@/app/components/Carousel/Carousel"
 
 
 
 export default function Home() {
   return (
-    <div className="allPage">
-      <Welcome />
+    <>
+      <Banner />
       <div className="catBG">
         <Carousel />
         <About />
       </div>
-    </div>
+    </>
   )
 }

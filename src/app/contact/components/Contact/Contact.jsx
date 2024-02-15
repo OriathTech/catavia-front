@@ -1,12 +1,12 @@
 
 import styles from "./Contact.module.css"
-import {Button, ButtonGroup} from "@nextui-org/button";
+import {Button} from "@nextui-org/button";
 import Link from "next/link"
 
 export default function Contact (){
 
     return(
-    <div className={`container mx-auto my-20 p-9 ${styles.conteiner}`} >
+    <div className={`container mx-auto my-20 p-9 ${styles.container}`} >
 
         <div className={`grid place-items-center  `}>
             <img src="cataviaLogo3.png" className={styles.img} alt="" />
