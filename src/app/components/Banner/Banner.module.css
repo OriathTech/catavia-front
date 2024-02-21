@@ -1,7 +1,7 @@
 .background {
     background: linear-gradient(0deg, var(--primary) 1%, var(--primaryTrasparency) 60%, var(--primary) 99%);
     display: block;
-    height: 70dvh;
+    height: 75dvh;
     overflow: hidden;
     position: relative;
     border-bottom: solid 1rem #e6e6e6 ;

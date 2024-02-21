@@ -6,19 +6,19 @@ import Link from "next/link"
 export default function Contact (){
 
     return(
-    <div className={`container mx-auto my-20 p-9 ${styles.container}`} >
+    <div className={`container mx-auto my-20 p-4 md:p-9 ${styles.container}`} >
 
         <div className={`grid place-items-center  `}>
-            <img src="cataviaLogo3.png" className={styles.img} alt="" />
+            <img src="cataviaLogo2.png" className={styles.img} alt="" />
         </div>
 
         <div className={`grid place-items-center  `}>
-            <p className={styles.title}>
+            <p className={`${styles.title} `}>
                 ¡¡ Contactame !!
             </p>
         </div>
 
-        <div className={`flex flex-col justify-evenly items-center `} >
+        <div className={`flex flex-col justify-evenly items-center gap-8 `} >
             <p className={styles.text}>
                 ¡Hola y gracias por visitar mi página web!
             </p>

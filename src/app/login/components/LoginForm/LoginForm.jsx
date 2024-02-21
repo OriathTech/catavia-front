@@ -1,32 +1,36 @@
 
 import styles from "./LoginForm.module.css"
-import {Button, ButtonGroup} from "@nextui-org/button";
+import {Button} from "@nextui-org/button";
+import {Input} from "@nextui-org/input";
 import Link from "next/link"
+import { useRef } from "react";
 
 export default function LoginForm (){
 
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
+
     return(
-    <div className={`container mx-auto mb-4 p-7 border-4 ${styles.conteiner}`} >
+    <div className={`container mx-auto my-9 py-9 ${styles.conteiner}`} >
 
         <div className={`grid place-items-center  ${styles.conteiner1}`}>
+            <img className={`${styles.img} mb-4`} src="/cataviaLogo2.png" alt="" />
             <p className={styles.title}>
-                Registro
+                Login
             </p>
         </div>
 
-        <div className={`flex flex-col justify-evenly items-center ${styles.conteiner2}`} >
+        <div className={`flex flex-col items-center ${styles.conteiner2}`} >
 
-            <input className={styles.input2} placeholder="E-mail" type="email" name="email" id="email" />
-            <input className={`flex flex-row justify-evenly items-center ${styles.conteinerDate} ${styles.input2}`} placeholder="password"  type="password" id="password" name="password" maxlength="30"/>
+            <Input classNames={{base: `${styles.input2}`, label: `${styles.label}`, inputWrapper: `${styles.inputWrapper}`,}} ref={emailRef} isRequired={true} label="Email" type="email" name="email" id="email" />
+            <Input classNames={{base: `${styles.input2}`, label: `${styles.label}`, inputWrapper: `${styles.inputWrapper}`,}} ref={passwordRef} className="mt-4" isRequired={true} label="password"  type="password" id="password" name="password" maxlength="30"/>
 
         </div>
 
-        <div className={`flex flex-row md:justify-evenly items-center ${styles.conteiner1}`}>
+        <div className={`flex flex-col lg:flex-row lg:justify-evenly items-center ${styles.conteiner1}`}>
             <Button className={styles.btn} radius="md" color="primary">
                 <Link href="/register"> Registrarce</Link>
             </Button>
-
-            <img className={`${styles.img}`} src="/cataviaLogo3.png" alt="" />
 
             <Button className={styles.btn} radius="md" color="primary">
                 <Link href="/"> Login</Link>

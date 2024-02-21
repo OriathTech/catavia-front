@@ -8,20 +8,20 @@
 }
 
 .img{
-    width: 4rem;   
+    width: 9rem;   
     margin-top: 1rem;
 }
 
 .title{
-    font-size: var(--textSizeTitle);
-    font-family: var(--textFontTitle);
+    font-size: var(--sizeTitleMD);
+    font-family: var(--familyBannerSub);
     margin: 1rem 0rem 2rem 0rem; 
 }
 
 .text{
     text-align: center;
-    font-size: var(--textSize);
-    font-family: var(--textFont);
+    font-size: var(--sizeTextMD);
+    font-family: var(--familyText);
 }
 
 .conteinerBtn{
@@ -36,21 +36,80 @@
 
 
 
-@media (max-width: 766px) {
-
-    .title{
-        font-size: 1.5rem;
-        font-family: var(--textFontTitle);
+@media only screen and (min-width:1px){
+    .container{
+        width:80%;
     }
     
-    .conteiner{
-        width: 90%;
+    .img{
+        width: 9rem;   
+    }
+    
+    .title{
+        font-size: var(--sizeTitleSM);
+    }
+    
+    .text{
+        font-size: var(--sizeTextSM);
     }
 
+    .conteinerBtn{
+        margin-top: 2rem;
+    }
+    
     .btn{
         width: 3rem;
         height: 3rem;
-        border-radius: 100%;
+    }
+
+}
+
+@media only screen and (min-width:1024px){
+    .container{
+        width:55%;
+    }
+    
+    .img{
+        width: 9rem;   
+        margin-top: 1rem;
+    }
+    
+    .title{
+        font-size: var(--sizeTitleMD);
+    }
+    
+    .text{
+        font-size: var(--sizeTextMD);
+    }
+    
+    .btn{
+        width: 4rem;
+        height: 4rem;
+    }
+
+}
+
+@media only screen and (min-width:2560px){
+    .container{
+        width:70%;
+    }
+    
+    .img{
+        width: 9rem;   
+        margin-top: 1rem;
+    }
+    
+    .title{
+        font-size: var(--sizeTitleLG);
+    }
+    
+    .text{
+        font-size: var(--sizeTextLG);
+    }
+    
+    .btn{
+        width: 5rem;
+        height: 5rem;
     }
 
 }

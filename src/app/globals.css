@@ -58,8 +58,8 @@
 
   /* Banner */
   --sizeBannerSM: 3rem;
-  --sizeBannerMD: 5rem;
-  --sizeBannerLG: 10rem;
+  --sizeBannerMD: 4rem;
+  --sizeBannerLG: 5rem;
 
   /* Title */
   
@@ -76,8 +76,8 @@
   /* Text */
 
   --sizeTextSM: 1rem;
-  --sizeTextMD: 2rem;
-  --sizeTextLG: 3rem;
+  --sizeTextMD: 1.5rem;
+  --sizeTextLG: 2rem;
 
   /* Link */
 

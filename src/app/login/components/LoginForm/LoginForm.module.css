@@ -1,162 +1,167 @@
 .conteiner{
     width: 50%;
     background-color: var(--secondary);
-    border-radius: 5px;
-    border-style: solid;
-    border-width: .5rem;
-    border-color: var(--white);
+    border-radius: 15px;
     -webkit-box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7);
     -moz-box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7);
     box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7);
 }
 
 
-.conteiner1{
-    height: auto;
-    padding: .5rem;
-    background-color: var(--primaryTrasparency);
-    border-radius: 10px;
-    border-style: solid;
-    border-width: .5rem;
-    border-color: var(--white);
-    -webkit-box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7);
-    -moz-box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7);
-    box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7); 
-}
-
 .conteiner2{
     height: auto;
-    margin: 1.5rem 0rem;
-    padding: 1rem;
-    background-color: var(--primaryTrasparency);
-    border-radius: 10px;
-    border-style: solid;
-    border-width: .5rem;
-    border-color: var(--white);
-    -webkit-box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7);
-    -moz-box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7);
-    box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7); 
 }
 
-.conteinerDate{
-    margin-top: 1rem;
+.img{
+    width: 6rem;    
 }
 
-.input{
-    border-radius: 10px;
-    text-align: center;
-    width: 45%;
-    height: 2.5rem;
-    font-size: var(--textSize);
+.title{
+    font-size: var(--sizeTitleMD);
+    font-family: var(--familyTitle);
 }
 
-.input::placeholder{
-    color: black;
-    text-align: center;
-    font-size: var(--textSize);
-    
+.btn{
+    width: 43%;
+    font-family: var(--familyLink);
+    font-size: var(--sizeTextMD);
 }
 
 .input2{
     border-radius: 10px;
     text-align: center;
-    width: 95%;
-    height: 2.5rem;
-    font-size: var(--textSize);
+    width: 90%;
+    font-family: var(--familyLink);
+    font-size: var(--sizeTextSM);
 }
 
 .input2::placeholder{
     color: black;
     text-align: center;
-    font-size: var(--textSize);
+    font-size: var(--sizeTextSM);
+    background-color: rgba(240, 248, 255, 0);
 }
 
-.img{
-    width: 4rem;    
+.label{
+    font-size: var(--sizeTextSM) ;
+    font-family: var(--familyLink);
+    color: black;
 }
 
-.title{
-    font-size: 2rem;
-    font-family: var(--textFontTitle);
-}
-
-.btn{
-    width: 30%;
-    font-size: 110%;
+.label:focus{
+    color: black;
 }
 
 
-@media (max-width: 766px) {
-    .title{
-        font-size: 1.5rem;
-        font-family: var(--textFontTitle);
-    }
+@media only screen and (min-width:1px){
 
-    
     .conteiner{
         width: 90%;
-        border-width: .5rem;
-    }
-
-    .conteiner2{
-        border-radius: 10px;
-        border-width: .5rem;
-        padding: .5rem;
-    }
-
-    .img{
-        width: 2.5rem;    
-    }
-
-    .btn{
-        font-size: 90%;
-        width: 90%;
-        margin: 0.5rem;
-    }
-
-    .input{
-        border-radius: 10px;
-        text-align: center;
-        width: 45%;
-        height: 2.5rem;
-        font-size: .8rem;
     }
     
-    .input::placeholder{
-        color: black;
-        text-align: center;
-        font-size: .8rem;
-        
+
+    .conteiner2{
+        padding: 1rem 0.5rem;
     }
     
     .input2{
-        border-radius: 10px;
-        text-align: center;
         width: 95%;
-        height: 2.5rem;
-        font-size: .8rem;
+    }
+    
+    .img{
+        width: 6rem;  
+    }
+    
+    .title{
+        font-size: var(--sizeTitleSM);
+    }
+    
+    .btn{
+        width: 84%;
+        margin: .3rem 0rem;
+        font-size:var(--sizeTextSM)
+    }
+
+    .input2{
+        width: 90%;
+        font-size: var(--sizeTextSM);
     }
     
     .input2::placeholder{
-        color: black;
-        text-align: center;
-        font-size: .8rem;
+        font-size: var(--sizeTextSM);
+        background-color: rgba(240, 248, 255, 0);
+    }
+    
+    .label{
+        font-size: var(--sizeTextSM) ;
+    }
+    
+    
+
+}
+
+@media only screen and (min-width:1024px){
+
+    .conteiner{
+        width: 50%;
+    }
+    
+    .conteiner2{
+        padding: 1rem 0rem;
     }
 
-    .conteinerDate{
-        margin-top: .5rem;
+    .title{
+        font-size: var(--sizeTitleMD);
+    }
+    
+    .btn{
+        width: 43%;
+        font-size: var(--sizeTextSM);
     }
 
-    .inputDate{
-        border-radius: 10px;
-        text-align: center;
-        width: 95%;
-        height: 2.5rem;
-        font-size: .8rem;
+    .input2{
+        width: 90%;
+        font-size: var(--sizeTextSM);
+    }
+    
+    .input2::placeholder{
+        font-size: var(--sizeTextSM);
+        background-color: rgba(240, 248, 255, 0);
+    }
+    
+    .label{
+        font-size: var(--sizeTextSM) ;
     }
 
-    .img{
-        display: none;
+}
+
+@media only screen and (min-width:2560px){
+    .conteiner{
+        width: 50%;
     }
+    
+    .title{
+        font-size: var(--sizeTitleLG);
+    }
+    
+    .btn{
+        width: 43%;
+        height: 4rem;
+        font-size: var(--sizeTextLG);
+    }
+
+    .input2{
+        width: 90%;
+        font-size: var(--sizeTextLG);
+    }
+    
+    .input2::placeholder{
+        font-size: var(--sizeTextLG);
+    }
+    
+    .label{
+        font-size: var(--sizeTextLG) ;
+    }
+
 
 }

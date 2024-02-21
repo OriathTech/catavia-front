@@ -133,7 +133,7 @@ export default function Carousel() {
 
                             <SwiperSlide className={styles.slide}>
                                 <div className={styles.labelContainer}>
-                                <Label price={item.price}/>
+                                    <Label price={item.price}/>
                                 </div>
                                 <Card className={styles.card} shadow="sm" key={item.key} isPressable onPress={() => console.log("item" + item.title)}>
                                     <div className={styles.body}>
