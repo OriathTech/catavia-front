@@ -9,6 +9,7 @@ import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-o
 import { Link } from "@nextui-org/link";
 import { Button } from "@nextui-org/button";
 import { MenuIcon } from "@/app/admin/components/icons/MenuIcon/MenuIcon";
+import { UserIcon } from "@/app/admin/components/icons/UserIcon/UserIcon";
 import { CartIcon } from "./Sub/CartIcon/CartIcon";
 import Image from 'next/image'
 
@@ -73,9 +74,17 @@ export default function Header() {
 
                 <NavbarContent justify="end">
                     <NavbarItem>
-                        <Button as={Link} color="warning" href="#" variant="flat">
-                            Sign Up
-                        </Button>
+                        <Dropdown>
+                            <DropdownTrigger>
+                                <Button isIconOnly aria-label="login">
+                                    <UserIcon />
+                                </Button>
+                            </DropdownTrigger>
+                            <DropdownMenu aria-label="Static Actions">
+                                <DropdownItem as={Link} href="/login">Login</DropdownItem>
+                                <DropdownItem as={Link} href="/register">Register</DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
                     </NavbarItem>
                     <NavbarItem className="flex gap-1">
                         <CartIcon />
