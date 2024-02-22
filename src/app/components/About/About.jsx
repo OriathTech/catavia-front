@@ -7,7 +7,7 @@ export default function About() {
         <div className={`${styles.container}`}>
             <div>
                 <h2>
-                    Me gustaría contarte cómo todo esto surgió.
+                    Me gustaría contarte cómo todo esto surgió
                 </h2>
                 <p>
                     Hace más de tres años que surgió el sueño de transmitir,
@@ -16,16 +16,16 @@ export default function About() {
                     En Catavia Artesanal, cada postre es más que una delicia;
                     es una expresión auténtica de mi dedicación.
                 </p>
-                <p>
-                    Descubre la magia de Catavia Artesanal.
-                </p>
+                <h2>
+                    Descubre la magia de Catavia Artesanal
+                </h2>
             </div>
 
             <Image
                 className={styles.logo}
                 src="/images/logos/cataviaLogo3.png"
-                width={176}
-                height={221}
+                width={117}
+                height={147}
                 alt="Logo Catavia Artesanal"
             />
         </div>
