@@ -164,9 +164,11 @@ export default function ProductsTablePage() {
                 return (
                     <div className="flex gap-3">
                         <Link href={`/admin/products/details?id=${product._id}`}>
-                            <Button size="sm" color="primary" variant="solid">
+
+                            <Button size="sm" color="primary" variant="flat">
                                 <ModifyIcon size={18} />
                             </Button>
+
                         </Link>
 
                         <Button size="sm" color="danger" variant="solid">
@@ -246,7 +248,7 @@ export default function ProductsTablePage() {
                         <select
                             className="bg-transparent outline-none text-small mx-1"
                             onChange={onRowsPerPageChange}
-                        >   
+                        >
                             <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="15">15</option>

@@ -6,7 +6,7 @@ import { CartContext } from "@/context/cart/cart";
 
 import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/navbar";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/dropdown";
-import { Link } from "@nextui-org/link";
+import Link from "next/link";
 import { Button } from "@nextui-org/button";
 import { MenuIcon } from "@/app/admin/components/icons/MenuIcon/MenuIcon";
 import { UserIcon } from "@/app/admin/components/icons/UserIcon/UserIcon";

@@ -8,6 +8,11 @@
   min-width: 0;
   height: 0;
 
+  user-select: none;
+  -webkit-user-select: none; /* Para navegadores basados en WebKit */
+  -moz-user-select: none; /* Para navegadores basados en Gecko (Firefox) */
+  -ms-user-select: none; /* Para navegadores basados en Microsoft (IE/Edge) */ 
+
   /*-- Colors --*/
 
   --blackTransparency: rgba(0, 0, 0, .3);

@@ -1,6 +1,6 @@
 "use client"
 import { useState, useMemo, useCallback, useContext } from "react";
-import { IngredientsContext } from "@/context/ingredients/ingredients";
+import { ElementsContext } from "@/context/elements/elements";
 import Link from "next/link";
 import styles from "./page.module.css"
 
@@ -24,7 +24,7 @@ const statusColorMap = {
 const columns = [
     { name: "ID", uid: "_id" },
     { name: "NOMBRE", uid: "name", sortable: true },
-    { name: "PRECIO X GRAMO", uid: "pricexg", sortable: true },
+    { name: "PRECIO X GRAMO", uid: "price", sortable: true },
     { name: "STATUS", uid: "status", sortable: true },
     { name: "ACCIONES", uid: "actions" }
 ];
@@ -35,10 +35,10 @@ const statusOptions = [
     { name: "Offline", uid: false }
 ];
 
-const INITIAL_VISIBLE_COLUMNS = ["name", "pricexg", "status", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ["name", "price", "status", "actions"];
 
 export default function IngredientsTablePage() {
-    const { ingredients } = useContext(IngredientsContext);
+    const { ingredients } = useContext(ElementsContext);
 
     const [filterValue, setFilterValue] = useState("");
     const [visibleColumns, setVisibleColumns] = useState(new Set(INITIAL_VISIBLE_COLUMNS));

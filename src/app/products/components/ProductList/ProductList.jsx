@@ -7,7 +7,6 @@ import { Label } from "@/app/components/Carousel/Label/Label";
 
 import { Image } from "@nextui-org/image";
 import styles from "./ProductList.module.css"
-import Link from "next/link";
 import { useContext, useState, useEffect, useMemo } from "react";
 import { ProductContext } from "@/context/products/products";
 
@@ -93,7 +92,7 @@ export default function ProductList() {
                 <div className={styles.container}>
                     {items.map((item, index) => (
                         
-                                <Card className={styles.card} shadow="sm" key="999" isPressable onPress={() => console.log("item" + item.title)}>
+                                <Card className={styles.card} shadow="sm" key="999" isPressable onPress={() => console.log("item" + item.name)}>
                                     <div className={styles.label}>
                                         <Label className={styles.text} price={item.price} />
                                     </div>
