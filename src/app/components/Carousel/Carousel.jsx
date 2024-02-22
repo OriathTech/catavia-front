@@ -131,7 +131,7 @@ export default function Carousel() {
                     >
                         {list.map((item, index) => (
 
-                            <SwiperSlide className={styles.slide}>
+                            <SwiperSlide key={item.key} className={styles.slide}>
                                 <div className={styles.labelContainer}>
                                 <Label price={item.price}/>
                                 </div>

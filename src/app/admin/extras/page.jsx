@@ -1,6 +1,6 @@
 "use client"
 import { useState, useMemo, useCallback, useContext } from "react";
-import { ExtrasContext } from "@/context/extras/extras";
+import { ElementsContext } from "@/context/elements/elements";
 import Link from "next/link";
 import styles from "./page.module.css"
 
@@ -24,7 +24,7 @@ const statusColorMap = {
 const columns = [
     { name: "ID", uid: "_id" },
     { name: "NOMBRE", uid: "name", sortable: true },
-    { name: "PRECIO X UNIDAD", uid: "pricexu", sortable: true },
+    { name: "PRECIO X UNIDAD", uid: "price", sortable: true },
     { name: "STATUS", uid: "status", sortable: true },
     { name: "ACCIONES", uid: "actions" }
 ];
@@ -35,10 +35,10 @@ const statusOptions = [
     { name: "Offline", uid: false }
 ];
 
-const INITIAL_VISIBLE_COLUMNS = ["name", "pricexu", "status", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ["name", "price", "status", "actions"];
 
 export default function ExtrasTablePage() {
-    const { extras } = useContext(ExtrasContext);
+    const { extras } = useContext(ElementsContext);
 
     const [filterValue, setFilterValue] = useState("");
     const [visibleColumns, setVisibleColumns] = useState(new Set(INITIAL_VISIBLE_COLUMNS));

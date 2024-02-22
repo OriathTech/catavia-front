@@ -1,6 +1,6 @@
 .header {
     background: var(--primary);
-    height: 20dvh;
+    height: 15dvh;
     padding-top: 1rem;
     display: flex;
     justify-content: center;
@@ -21,13 +21,13 @@
 }
 
 .menuBase {
-    background: rgba(0, 0, 0, .1);
+    background: var(--secondary);
     border-radius: 10px;
 }
 
 .menuLink span {
     text-align: center !important;
-    color: azure !important;
+    color: var(--textHover) !important;
     font-family: var(--familyLink) !important;
     font-weight: var(--weightSemi) !important;
     font-size: var(--sizeLinkSM) !important;
