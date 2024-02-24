@@ -7,7 +7,7 @@ export default function ElementDropdown({ items, addElement }) {
         <Dropdown>
             <DropdownTrigger>
                 <Button variant="bordered">
-                    + Agregar
+                    Agregar
                 </Button>
             </DropdownTrigger>
             <DropdownMenu aria-label="Dynamic Actions" items={items}>

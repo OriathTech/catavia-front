@@ -4,17 +4,19 @@
 import { Button } from '@nextui-org/button';
 import { DeleteIcon } from '@/app/admin/components/icons/DeleteIcon/DeleteIcon';
 
+import styles from "./ElementTable.module.css"
+
 export default function ElementTable({items, updateQuantity, deleteElement}) {
     return (
         <div className="overflow-x-auto">
-            <table>
-                <thead>
+            <table className={`${styles.tabla}`}>
+                <thead className={`${styles.tableHead}`}>
                     <tr>
-                        <th className={`py-2 px-4`}>Nombre</th>
-                        <th className={`py-2 px-4 md-px-4`}>Precio X u</th>
+                        <th className={`${styles.tableHeadStart} py-2 px-4`}>Nombre</th>
+                        <th className={`py-2 px-4 md-px-4`}>Precio</th>
                         <th className={`py-2 px-4`}>Cantidad</th>
                         <th className={`py-2 px-4`}>Total</th>
-                        <th className={`py-2 px-4`}>Acciones</th>
+                        <th className={`${styles.tableHeadEnd} py-2 px-4`}>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,19 +24,19 @@ export default function ElementTable({items, updateQuantity, deleteElement}) {
                         console.log(typeof (inputExtras))
                     ) : (
                         items.map(item => (
-                            <tr key={item._id} className={`border-b text-center`}>
+                            <tr key={item._id} className={`${styles.text} ${styles.tr} border-b text-center`}>
                                 <td className="py-2 px-4">{item.name}</td>
                                 <td className="py-2 px-4">{item.price}</td>
                                 <td className="py-2 px-4">
-                                    <div className={`flex h-full place-content-around justify-evenly items-center`}>
+                                    <div className={`${styles.containerInput} flex h-full place-content-around justify-evenly items-center`}>
                                         <input
                                             type="number"
                                             value={item.quantity}
                                             onChange={(e) => updateQuantity(parseInt(e.target.value), item)}
                                             min="1"
-                                            max="100"
+                                            max="9999"
                                             inputMode="numeric"
-                                            className={`w-16 rounded-lg text-center`}
+                                            className={`w-16 rounded-lg text-center ${styles.input}`}
                                         />
                                     </div>
                                 </td>

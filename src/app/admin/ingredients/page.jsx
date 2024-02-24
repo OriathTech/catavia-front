@@ -154,7 +154,7 @@ export default function IngredientsTablePage() {
             case "actions":
                 return (
                     <div className="flex gap-3">
-                        <Link href={`/admin/ingredients/details/${ingredient._id}`}>
+                        <Link href={`/admin/ingredients/details?id=${ingredient._id}`}>
                             <Button size="sm" color="primary" variant="flat">
                                 <ModifyIcon size={18} />
                             </Button>
@@ -185,7 +185,7 @@ export default function IngredientsTablePage() {
                         onClear={() => onClear()}
                         onValueChange={onSearchChange}
                     />
-                    <div className="flex flex row gap-3 ">
+                    <div className="flex row gap-3 ">
                         <Dropdown>
                             <DropdownTrigger className="">
                                 <Button endContent={<ChevronDownIcon className="text-small" />} variant="faded">
@@ -261,7 +261,7 @@ export default function IngredientsTablePage() {
         return (
             <div className="py-2 px-2 flex justify-between items-center">
                 <div>
-                    <Button color="primary" variant="shadow" endContent={<PlusIcon />}>
+                    <Button color="primary" variant="shadow" as={Link} href="/admin/ingredients/create" endContent={<PlusIcon />}>
                         Nuevo
                     </Button>
                 </div>

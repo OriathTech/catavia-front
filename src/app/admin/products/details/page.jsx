@@ -1,6 +1,6 @@
 "use client"
 import { useSearchParams } from 'next/navigation';
-import { useContext, useState, useEffect} from "react"
+import { useContext, useState, useEffect } from "react"
 
 import { ProductContext } from "@/context/products/products"
 import { ElementsContext } from '@/context/elements/elements';
@@ -8,6 +8,7 @@ import { ElementsContext } from '@/context/elements/elements';
 import { Input, Textarea } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Button } from '@nextui-org/button';
+import { CircularProgress } from "@nextui-org/progress";
 
 import ElementDropdown from '../components/ElementDropdown/ElementDropdown';
 import ElementTable from '../components/ElementTable/ElementTable';
@@ -114,7 +115,7 @@ export default function productDetailsAdminPage() {
         }
 
         const response = await updateProduct(productId, info);
-        if(response.status === "success") {
+        if (response.status === "success") {
             console.log("El producto ha sido actualizado")
             //Manejar resultado: success quedar en pagina pero avisar al admin
             //error: mostrar mensaje de error
@@ -123,7 +124,7 @@ export default function productDetailsAdminPage() {
 
     const handleDeleteProduct = async () => {
         const response = await deleteProduct(productId)
-        if(response.status === "success") {
+        if (response.status === "success") {
             //Manejar que verga hacer
         }
     }
@@ -205,97 +206,119 @@ export default function productDetailsAdminPage() {
     return (
         <>
             {!product ? (
-                <div className={styles.container}>
-                    <h1>Buscando Producto...</h1>
+                <div className={`grid place-items-center ${styles.containerLoading}`}>
+                    <CircularProgress color="primary" size="lg" aria-label="Buscando Producto..." label="Buscando Producto..." />
                 </div>
             ) : (
-                <div className={`${styles.container}`}>
+                <div className={`container mx-auto my-4 p-4 ${styles.conteiner}`} >
+                    <h1 className={`p-5 ${styles.text}`}>Modificar Producto</h1>
 
-                    <div className='flex flex-col items-center gap-4 w-fit w-11/12 mx-auto my-6'>
-                        <Input
-                            label="Nombre"
-                            type="text"
-                            labelPlacement="outside"
-                            placeholder="Ingresa Nombre"
-                            defaultValue={inputName}
-                            className="max-w-xs"
-                            onValueChange={(value) => setInputName(value)}
-                        />
+                    <div className={`flex flex-col md:flex-row justify-around gap-4 p-5`}>
+                        <div className={`flex flex-col gap-8 ${styles.containerInputs}`}>
+                            <Input
+                                label="Nombre"
+                                type="text"
+                                isRequired={true}
+                                labelPlacement="outside"
+                                placeholder="Ingresa Nombre"
+                                defaultValue={inputName}
+                                classNames={{
+                                    base: `${styles.input}`,
+                                }}
+                                onValueChange={(value) => setInputName(value)}
+                            />
+                            <Textarea
+                                label="Descripción"
+                                type="text"
+                                isRequired={true}
+                                labelPlacement="outside"
+                                placeholder="Ingresa una descripción"
+                                defaultValue={inputDescription}
+                                classNames={{
+                                    base: `${styles.input}`,
+                                }}
+                                onValueChange={(value) => setInputDescription(value)}
+                            />
+                        </div>
+                        <div className={`flex flex-col gap-8 ${styles.containerInputs}`}>
+                            <Select
+                                label="Categorías"
+                                labelPlacement="outside"
+                                isRequired={true}
+                                selectionMode="multiple"
+                                placeholder="Selecciona Categorías"
+                                selectedKeys={inputCategory}
+                                classNames={{
+                                    base: `${styles.input}`,
+                                }}
+                                onSelectionChange={setInputCategory}
+                            >
+                                {productCategories.map((category) => (
+                                    <SelectItem key={category.value} value={category.value}>
+                                        {category.label}
+                                    </SelectItem>
+                                ))}
+                            </Select>
 
-                        <Textarea
-                            label="Descripción"
-                            type="text"
-                            labelPlacement="outside"
-                            placeholder="Ingresa una descripción"
-                            defaultValue={inputDescription}
-                            className="max-w-xs"
-                            onValueChange={(value) => setInputDescription(value)}
-                        />
-
-                        <Select
-                            label="Categorías"
-                            labelPlacement="outside"
-                            selectionMode="multiple"
-                            placeholder="Selecciona Categorías"
-                            selectedKeys={inputCategory}
-                            className="max-w-xs"
-                            onSelectionChange={setInputCategory}
-                        >
-                            {productCategories.map((category) => (
-                                <SelectItem key={category.value} value={category.value}>
-                                    {category.label}
-                                </SelectItem>
-                            ))}
-                        </Select>
-
-                        <Select
-                            label="Status"
-                            labelPlacement="outside"
-                            placeholder="Selecciona un status"
-                            defaultSelectedKeys={inputStatus}
-                            className="max-w-xs"
-                            onSelectionChange={setInputStatus}
-                        >
-                            {productStatus.map((status) => (
-                                <SelectItem key={status.value} value={status.value}>
-                                    {status.label}
-                                </SelectItem>
-                            ))}
-                        </Select>
-
+                            <Select
+                                label="Status"
+                                labelPlacement="outside"
+                                isRequired={true}
+                                placeholder="Selecciona un status"
+                                defaultSelectedKeys={inputStatus}
+                                classNames={{
+                                    base: `${styles.input}`,
+                                }}
+                                onSelectionChange={setInputStatus}
+                            >
+                                {productStatus.map((status) => (
+                                    <SelectItem key={status.value} value={status.value}>
+                                        {status.label}
+                                    </SelectItem>
+                                ))}
+                            </Select>
+                        </div>
                     </div>
-                    <div className='container flex flex-wrap gap-4 justify-center'>
-                        <div className='flex flex-col gap-4 my-6 w-max overflow-x-auto'>
-                            <h2>Ingredientes</h2>
-                            <ElementDropdown items={ingredients} addElement={addIngredient} />
+
+                    <div className={`flex flex-col xl:flex-row justify-around gap-4 p-5`}>
+                        <div className={`flex flex-col gap-4 ${styles.containerInputs} my-4`}>
+                            <div className={`flex flex-row items-center`}>
+                                <h2 className='ml-3 mr-8'>Ingredientes</h2>
+                                <ElementDropdown items={ingredients} addElement={addIngredient}/>
+                            </div>
                             <ElementTable items={inputIngredients} updateQuantity={updateQuantityIngredient} deleteElement={deleteIngredient} />
                         </div>
 
-                        <div className='flex flex-col gap-4 my-6 w-fit overflow-x-auto'>
-                            <h2>Extras</h2>
-                            <ElementDropdown items={extras} addElement={addExtra} />
-                            <ElementTable items={inputExtras} updateQuantity={updateQuantityExtra} deleteElement={deleteExtra} />
+                        <div className={`flex flex-col gap-4 ${styles.containerInputs} my-4`}>
+                            <div className={`flex flex-row items-center`}>
+                                <h2 className='ml-3 mr-8'>Extras</h2>
+                                <ElementDropdown items={extras} addElement={addExtra} />
+                            </div>
+                            <ElementTable items={inputExtras} updateQuantity={updateQuantityExtra} deleteElement={deleteExtra}/>
                         </div>
                     </div>
 
-                    <div className='flex justify-around gap-6 items-end'>
+                    <div className='flex justify-around flex-col md:flex-row gap-6 md:items-end p-5'>
+                        <Button className={styles.input} variant="bordered" onClick={() => deleteProduct()}>
+                            Borrar
+                        </Button>
+
                         <Input
                             isReadOnly
                             type='number'
                             label="Total"
+                            placeholder="Total" 
                             labelPlacement="outside"
                             value={totalPrice}
+                            classNames={{
+                                base: `${styles.input}`,
+                            }}
                             className="w-fit"
                         />
 
-                        <Button onClick={() => handleSubmit()}>
+                        <Button className={styles.input} variant="bordered" onClick={() => handleSubmit()}>
                             Guardar Cambios
                         </Button>
-
-                        <Button onClick={() => deleteProduct()}>
-                            Borrar
-                        </Button>
-
                     </div>
                 </div>
             )}

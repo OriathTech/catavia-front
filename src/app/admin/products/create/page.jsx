@@ -166,80 +166,103 @@ export default function productCreateAdminPage() {
     }
 
     return (
-        <div className={`${styles.container}`}>
+        <div className={`container mx-auto my-4 p-4 ${styles.conteiner}`}>
+            <h1 className={`p-5 ${styles.text}`}>Nuevo Producto</h1>
+            <div className={`flex flex-col md:flex-row justify-around gap-4 p-5`}>
+                <div className={`flex flex-col gap-8 ${styles.containerInputs}`}>
+                    <Input
+                        label="Nombre"
+                        type="text"
+                        isRequired={true}
+                        labelPlacement="outside"
+                        placeholder="Ingresa Nombre"
+                        defaultValue={inputName}
+                        classNames={{
+                            base: `${styles.input}`,
+                        }}
+                        onValueChange={(value) => setInputName(value)}
+                    />
 
-            <div className='flex flex-col items-center gap-4 w-fit w-11/12 mx-auto my-6'>
-                <Input
-                    label="Nombre"
-                    type="text"
-                    labelPlacement="outside"
-                    placeholder="Ingresa Nombre"
-                    defaultValue={inputName}
-                    className="max-w-xs"
-                    onValueChange={(value) => setInputName(value)}
-                />
+                    <Textarea
+                        label="Descripción"
+                        type="text"
+                        isRequired={true}
+                        labelPlacement="outside"
+                        placeholder="Ingresa una descripción"
+                        defaultValue={inputDescription}
+                        classNames={{
+                            base: `${styles.input}`,
+                        }}
+                        onValueChange={(value) => setInputDescription(value)}
+                    />
+                </div>
 
-                <Textarea
-                    label="Descripción"
-                    type="text"
-                    labelPlacement="outside"
-                    placeholder="Ingresa una descripción"
-                    defaultValue={inputDescription}
-                    className="max-w-xs"
-                    onValueChange={(value) => setInputDescription(value)}
-                />
+                <div className={`flex flex-col gap-8 ${styles.containerInputs}`}>
+                    <Select
+                        label="Categorías"
+                        labelPlacement="outside"
+                        isRequired={true}
+                        selectionMode="multiple"
+                        placeholder="Selecciona Categorías"
+                        selectedKeys={inputCategory}
+                        classNames={{
+                            base: `${styles.input}`,
+                        }}
+                        onSelectionChange={setInputCategory}
+                    >
+                        {productCategories.map((category) => (
+                            <SelectItem key={category.value} value={category.value}>
+                                {category.label}
+                            </SelectItem>
+                        ))}
+                    </Select>
 
-                <Select
-                    label="Categorías"
-                    labelPlacement="outside"
-                    selectionMode="multiple"
-                    placeholder="Selecciona Categorías"
-                    selectedKeys={inputCategory}
-                    className="max-w-xs"
-                    onSelectionChange={setInputCategory}
-                >
-                    {productCategories.map((category) => (
-                        <SelectItem key={category.value} value={category.value}>
-                            {category.label}
-                        </SelectItem>
-                    ))}
-                </Select>
+                    <Select
+                        label="Status"
+                        labelPlacement="outside"
+                        isRequired={true}
+                        placeholder="Selecciona un status"
+                        defaultSelectedKeys={inputStatus}
+                        classNames={{
+                            base: `${styles.input}`,
+                        }}
+                        onSelectionChange={setInputStatus}
+                    >
+                        {productStatus.map((status) => (
+                            <SelectItem key={status.value} value={status.value}>
+                                {status.label}
+                            </SelectItem>
+                        ))}
+                    </Select>
+                </div>
 
-                <Select
-                    label="Status"
-                    labelPlacement="outside"
-                    placeholder="Selecciona un status"
-                    defaultSelectedKeys={inputStatus}
-                    className="max-w-xs"
-                    onSelectionChange={setInputStatus}
-                >
-                    {productStatus.map((status) => (
-                        <SelectItem key={status.value} value={status.value}>
-                            {status.label}
-                        </SelectItem>
-                    ))}
-                </Select>
 
             </div>
-            <div className='container flex flex-wrap gap-4 justify-center'>
-                <div className='flex flex-col gap-4 my-6 w-max overflow-x-auto'>
-                    <h2>Ingredientes</h2>
-                    <ElementDropdown items={ingredients} addElement={addIngredient} />
+
+            <div className={`flex flex-col xl:flex-row justify-around gap-4 p-5`}>
+                <div className={`flex flex-col gap-4 ${styles.containerInputs} my-4`}>
+                    <div className={`flex flex-row items-center`}>
+                        <h2 className='ml-3 mr-8'>Ingredientes</h2>
+                        <ElementDropdown items={ingredients} addElement={addIngredient} />
+                    </div>
                     <ElementTable items={inputIngredients} updateQuantity={updateQuantityIngredient} deleteElement={deleteIngredient} />
                 </div>
 
-                <div className='flex flex-col gap-4 my-6 w-fit overflow-x-auto'>
-                    <h2>Extras</h2>
-                    <ElementDropdown items={extras} addElement={addExtra} />
+                <div className={`flex flex-col gap-4 ${styles.containerInputs} my-4`}>
+                    <div className={`flex flex-row items-center`}>
+                        <h2 className='ml-3 mr-8'>Extras</h2>
+                        <ElementDropdown items={extras} addElement={addExtra} />
+                    </div>
                     <ElementTable items={inputExtras} updateQuantity={updateQuantityExtra} deleteElement={deleteExtra} />
                 </div>
             </div>
 
-            <div className='flex justify-around gap-6 items-end'>
+            <div className='flex justify-around flex-col md:flex-row gap-6 md:items-end p-5'>
                 <Input
                     isReadOnly
                     type='number'
                     label="Total"
+                    placeholder="Total"
                     labelPlacement="outside"
                     value={totalPrice}
                     className="w-fit"

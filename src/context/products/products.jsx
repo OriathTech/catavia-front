@@ -22,6 +22,7 @@ const ProductProvider = ({ children }) => {
 
   useEffect(() => {
     fetchProducts();
+    console.log(products)
   }, []);
 
   const getProductById = (productId) => {

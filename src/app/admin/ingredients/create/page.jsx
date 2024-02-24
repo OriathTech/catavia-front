@@ -7,6 +7,8 @@ import { Input } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Button } from '@nextui-org/button';
 
+import styles from "./page.module.css"
+
 const ingredientStatus = [
     { label: "Online", value: "online" },
     { label: "Offline", value: "offline" }
@@ -37,58 +39,75 @@ export default function ingredientCreateAdminPage() {
 
     return (
 
-        <div className={`${styles.container}`}>
+        <div className={`container mx-auto my-4 p-4 ${styles.conteiner}`} >
+                <h1 className={`p-5 ${styles.text}`}>Crear Ingrediente</h1>
+                <div className={`flex flex-col md:flex-row justify-around gap-4 p-5`}>
+                    <div className={`flex flex-col gap-8 ${styles.containerInputs}`}>
+                        <Input
+                            label="Nombre"
+                            type="text"
+                            isRequired={true}
+                            labelPlacement="outside"
+                            placeholder="Ingresa Nombre"
+                            defaultValue={inputName}
+                                                        classNames={{
+                                base: `${styles.input}`,
+                            }}
+                            onValueChange={(value) => setInputName(value)}
+                        />
 
-            <div className='flex flex-col items-center gap-4 w-fit w-11/12 mx-auto my-6'>
-                <Input
-                    label="Nombre"
-                    type="text"
-                    labelPlacement="outside"
-                    placeholder="Ingresa Nombre"
-                    defaultValue={inputName}
-                    className="max-w-xs"
-                    onValueChange={(value) => setInputName(value)}
-                />
+                        <Input
+                            label="Precio por Gramo"
+                            type="number"
+                            isRequired={true}
+                            labelPlacement="outside"
+                            placeholder="Ingresa un precio"
+                            defaultValue={inputPrice}
+                                                        classNames={{
+                                base: `${styles.input}`,
+                            }}
+                            onValueChange={(value) => setInputPrice(value)}
+                        />
+                    </div>
+                    <div className={`flex flex-col gap-8 ${styles.containerInputs}`}>
+                        <Input
+                            isReadOnly
+                            type='text'
+                            isRequired={true}
+                            label="Categoría"
+                            labelPlacement="outside"
+                            value={"Ingrediente"}
+                            classNames={{
+                                base: `${styles.input}`,
+                            }}
+                        />
 
-                <Input
-                    label="Precio por Gramo"
-                    type="number"
-                    labelPlacement="outside"
-                    placeholder="Ingresa un precio"
-                    defaultValue={inputPrice}
-                    className="max-w-xs"
-                    onValueChange={(value) => setInputPrice(value)}
-                />
+                        <Select
+                            label="Status"
+                            labelPlacement="outside"
+                            isRequired={true}
+                            placeholder="Selecciona un status"
+                            defaultSelectedKeys={inputStatus}
+                            classNames={{
+                                base: `${styles.input}`,
+                            }}
+                            onSelectionChange={setInputStatus}
+                        >
+                            {ingredientStatus.map((status) => (
+                                <SelectItem key={status.value} value={status.value}>
+                                    {status.label}
+                                </SelectItem>
+                            ))}
+                        </Select>
+                    </div>
+                </div>
 
-                <Input
-                    isReadOnly
-                    type='text'
-                    label="Categoría"
-                    labelPlacement="outside"
-                    value={"Ingrediente"}
-                    className="w-fit"
-                />
-
-                <Select
-                    label="Status"
-                    labelPlacement="outside"
-                    placeholder="Selecciona un status"
-                    defaultSelectedKeys={inputStatus}
-                    className="max-w-xs"
-                    onSelectionChange={setInputStatus}
-                >
-                    {ingredientStatus.map((status) => (
-                        <SelectItem key={status.value} value={status.value}>
-                            {status.label}
-                        </SelectItem>
-                    ))}
-                </Select>
-
+            <div className='flex justify-around flex-col md:flex-row gap-6 md:items-end p-5'>
+                <Button className={styles.input} variant="bordered" onClick={() => handleSubmit()}>
+                    Crear Ingrediente
+                </Button>
             </div>
 
-            <Button onClick={() => handleSubmit()}>
-               Crear Ingrediente
-            </Button>
         </div>
     )
 }

@@ -272,7 +272,7 @@ export default function ProductsTablePage() {
         return (
             <div className="py-2 px-2 flex justify-between items-center gap-4">
                 <div>
-                    <Button color="primary" variant="shadow" endContent={<PlusIcon />}>
+                    <Button color="primary" variant="shadow" as={Link} href="/admin/products/create" endContent={<PlusIcon />}>
                         Nuevo
                     </Button>
                 </div>

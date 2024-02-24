@@ -8,6 +8,7 @@ import { ProductContext } from '@/context/products/products';
 import { Input } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Button } from '@nextui-org/button';
+import { CircularProgress } from "@nextui-org/progress";
 
 import styles from "./page.module.css"
 
@@ -64,49 +65,65 @@ export default function ingredientDetailsAdminPage() {
 
     return (
         <>
-            {!ingredient ? (
-                <div className={styles.container}>
-                    <h1>Buscando Ingrediente...</h1>
-                </div>
-            ) : (
-                <div className={`${styles.container}`}>
+        {!ingredient ? (
+            <div className={`grid place-items-center ${styles.containerLoading}`}>
+                <CircularProgress color="primary" size="lg" aria-label="Buscando Producto..." label="Buscando Producto..." />
+            </div>
+        ) : (
+            <div className={`container mx-auto my-4 p-4 ${styles.conteiner}`} >
+                <h1 className={`p-5 ${styles.text}`}>Modificar Extra</h1>
 
-                    <div className='flex flex-col items-center gap-4 w-fit w-11/12 mx-auto my-6'>
+                <div className={`flex flex-col md:flex-row justify-around gap-4 p-5`}>
+                    <div className={`flex flex-col gap-8 ${styles.containerInputs}`}>
                         <Input
                             label="Nombre"
                             type="text"
+                            isRequired={true}
                             labelPlacement="outside"
                             placeholder="Ingresa Nombre"
                             defaultValue={inputName}
-                            className="max-w-xs"
+                            classNames={{
+                                base: `${styles.input}`,
+                            }}
                             onValueChange={(value) => setInputName(value)}
                         />
 
                         <Input
                             label="Precio por Gramo"
                             type="number"
+                            isRequired={true}
                             labelPlacement="outside"
                             placeholder="Ingresa un precio"
                             defaultValue={inputPrice}
-                            className="max-w-xs"
+                            classNames={{
+                                base: `${styles.input}`,
+                            }}
                             onValueChange={(value) => setInputPrice(value)}
                         />
+                    </div>
 
+                    <div className={`flex flex-col gap-8 ${styles.containerInputs}`}>
                         <Input
                             isReadOnly
                             type='text'
                             label="Categoría"
+                            isRequired={true}
                             labelPlacement="outside"
                             value={"Ingrediente"}
-                            className="w-fit"
+                            classNames={{
+                                base: `${styles.input}`,
+                            }}
                         />
 
                         <Select
                             label="Status"
                             labelPlacement="outside"
+                            isRequired={true}
                             placeholder="Selecciona un status"
                             defaultSelectedKeys={inputStatus}
-                            className="max-w-xs"
+                            classNames={{
+                                base: `${styles.input}`,
+                            }}
                             onSelectionChange={setInputStatus}
                         >
                             {ingredientStatus.map((status) => (
@@ -115,17 +132,21 @@ export default function ingredientDetailsAdminPage() {
                                 </SelectItem>
                             ))}
                         </Select>
-
                     </div>
+                </div >
 
-                    <Button onClick={() => handleSubmit()}>
+                <div className='flex justify-around flex-col md:flex-row gap-6 md:items-end p-5'>
+                
+                    <Button className={styles.input} variant="bordered" onClick={() => handleDeleteIngredient()}>
+                        Borrar Ingrediente
+                    </Button>
+
+                    <Button className={styles.input} variant="bordered" onClick={() => handleSubmit()}>
                         Guardar Cambios
                     </Button>
 
-                    <Button onClick={() => handleDeleteIngredient()}>
-                        Borrar Ingrediente
-                    </Button>
                 </div>
+            </div>
             )}
         </>
     )

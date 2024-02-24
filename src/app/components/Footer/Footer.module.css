@@ -1,98 +1,99 @@
-.container{
-    display: flex;
-    align-items: center;
-    justify-content:space-around;
-    width: auto;
-    background-color: var(--primary);
-    padding: 1rem 0rem;
-}
 
-.containerLeft{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content:space-around;
-    width: 50%;
-    font-size: 2rem ;
-    font-family: var(--textFont);
-}
-
-.containerRight{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content:space-around;
-    width: 50%;
-    font-size: 1rem;
-}
-
-.containerliks{
-    display: flex;
-    align-items: center;
-}
-
-.instagram{
-    padding: 1rem 0rem;
-}
-
-.logoOT{
-    padding-left: 0.4rem ;
-}
-
-.containerliks{
-    padding-bottom: 0.2rem;
-}
-
-.containerOT{
-    display: flex;
-    align-items: center;
-    padding-bottom: 0.2rem;
-}
-
-@media (max-width: 576px) {   
-
+@media only screen and (min-width:1px){
     .container{
+        width: auto;
+        display: flex;
+        align-items: center;
+        background-color: var(--primary);
+        justify-content:space-around;
+        padding: 1rem 0rem;
+    }
+    
+    .container1{
+        display: flex;
+        align-items: center;
+        justify-content:space-around;
         flex-direction: column;
+        padding: 1rem 0rem;
     }
     
     .containerLeft{
         display: flex;
-        flex-direction: row-reverse;
+        flex-direction: column;
         align-items: center;
-        width: 100%;
-        font-size: 1.3rem ;
-        font-family: var(--textFont);
-    }
-
-    .textCatavia{
-        display: none;
+        justify-content:space-around;
+        font-size: var(--sizeLinkMD) ;
+        font-family: var(--familyLink);
     }
     
     .containerRight{
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
         align-items: center;
         justify-content:space-around;
-        width: 100%;
-        font-size: 1rem;
-        margin-top: 1rem;
-    }
-
-    .containerOT{
-        display: inline-block;
-        display: flex;
-        padding: 0.5rem 0rem;
     }
     
-    .containerliks{
+    .textCatavia{
+        font-family: var(--familySub);
+        font-size: var(--sizeLinkSM);
+        font-weight: var(--weightSemi) ;
+    }
+    
+    .containerOT{
         display: flex;
         align-items: center;
+        padding-bottom: 0.2rem;
+        font-family: var(--familyLink);
+        font-size: var(--sizeLinkSM);
+    }
+    
+    .logoOT{
+        padding-right: 0.5rem ;
+        width: 2.5rem;
     }
 
-    .imglogo{
-        width: 6rem;
-        height: 6rem;
+}
+@media only screen and (min-width:600px){
+    .container{
+        justify-content:space-around;
+        padding: 1rem 0rem;
+    }
+    
+    .container1{
+        flex-direction: row;
+        align-items: center;
+        justify-content:space-around;
+    }
+    
+    .containerLeft{
+        width: 20%;
+        flex-direction: column;
+        align-items: center;
+        justify-content:space-around;
+    }
+    
+    .containerRight{
+        flex-direction: row;
+        align-items: center;
+        justify-content:space-around;
+        width: 20%;
+        font-size: var(--sizeLinkSM);
+    }
+    
+    .textCatavia{
+        font-size: var(--sizeLinkSM);
+    }
+    
+    .containerOT{
+        display: flex;
+        align-items: center;
+        font-family: var(--familyLink);
+        font-size: var(--sizeLinkSM);
+    }
+    
+    .logoOT{
+        padding-right: 0.5rem ;
+        width: 2.5rem;
     }
 
- }
+}
