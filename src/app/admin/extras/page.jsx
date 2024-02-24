@@ -153,7 +153,7 @@ export default function ExtrasTablePage() {
             case "actions":
                 return (
                     <div className="flex gap-3">
-                        <Link href={`/admin/extras/details/${extra._id}`}>
+                        <Link href={`/admin/extras/details?id=${extra._id}`}>
                             <Button size="sm" color="primary" variant="flat">
                                 <ModifyIcon size={18} />
                             </Button>

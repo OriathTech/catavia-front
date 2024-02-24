@@ -154,7 +154,7 @@ export default function IngredientsTablePage() {
             case "actions":
                 return (
                     <div className="flex gap-3">
-                        <Link href={`/admin/ingredients/details/${ingredient._id}`}>
+                        <Link href={`/admin/ingredients/details?id=${ingredient._id}`}>
                             <Button size="sm" color="primary" variant="flat">
                                 <ModifyIcon size={18} />
                             </Button>

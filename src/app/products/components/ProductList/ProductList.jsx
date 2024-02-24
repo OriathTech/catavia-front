@@ -1,23 +1,36 @@
 "use client"
-import { Card, CardBody, CardFooter } from "@nextui-org/card";
-import { Pagination } from "@nextui-org/react";
-import { Button } from "@nextui-org/button";
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/dropdown";
-import { Label } from "@/app/components/Carousel/Label/Label";
-
-import { Image } from "@nextui-org/image";
-import styles from "./ProductList.module.css"
 import { useContext, useState, useEffect, useMemo } from "react";
 import { ProductContext } from "@/context/products/products";
 
+import { Card } from "@nextui-org/card";
+import { Pagination } from "@nextui-org/react";
+import { Button } from "@nextui-org/button";
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/dropdown";
+import { Image } from "@nextui-org/image";
+
+import { Label } from "@/app/components/Carousel/Label/Label";
+
+import styles from "./ProductList.module.css"
+
 export default function ProductList() {
-
-    const { products } = useContext(ProductContext)
-    const [filtrados, setFiltrados] = useState(products)
-    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
-
+    const { products, categories } = useContext(ProductContext);
+    const [filtrados, setFiltrados] = useState(products);
+    const [selectedCategory, setSelectedCategory] = useState("todos");
+    const [selectedKeys, setSelectedKeys] = useState(new Set(["Categorias"]));
     const [page, setPage] = useState(1);
     const productsPerPage = 8;
+
+    useEffect(() => {
+        
+    }, [])
+
+    useEffect(() => {
+        if (selectedCategory !== "todos") {
+            filtrarPorCategoria(selectedCategory);
+        } else {
+            setFiltrados(products);
+        }
+    }, [selectedCategory, products]);
 
     const pages = Math.ceil(filtrados.length / productsPerPage);
 
@@ -35,15 +48,7 @@ export default function ProductList() {
         setFiltrados(productosFiltrados);
     };
 
-    useEffect(() => {
-        if (categoriaSeleccionada) {
-            filtrarPorCategoria(categoriaSeleccionada);
-        } else {
-            setFiltrados(products);
-        }
-    }, [categoriaSeleccionada, products]);
 
-    const [selectedKeys, setSelectedKeys] = useState(new Set(["Categorias"]));
 
     const selectedValue = useMemo(
         () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
@@ -71,39 +76,32 @@ export default function ProductList() {
                         selectedKeys={selectedKeys}
                         onSelectionChange={setSelectedKeys}
                         style={{ maxHeight: '200px', overflowY: 'auto' }}
+                        items={categories}
                     >
-                        <DropdownItem key="Todos" onClick={() => setCategoriaSeleccionada("")}>Todos</DropdownItem>
-                        <DropdownItem key="salados" onClick={() => setCategoriaSeleccionada("salados")}>salados</DropdownItem>
-                        <DropdownItem key="chocolatería" onClick={() => setCategoriaSeleccionada("chocolateria")}>chocolatería</DropdownItem>
-                        <DropdownItem key="tartas" onClick={() => setCategoriaSeleccionada("tartas")}>tartas</DropdownItem>
-                        <DropdownItem key="tortas" onClick={() => setCategoriaSeleccionada("tortas")}>tortas</DropdownItem>
-                        <DropdownItem key="postres" onClick={() => setCategoriaSeleccionada("postres")}>postres</DropdownItem>
-                        <DropdownItem key="individuales" onClick={() => setCategoriaSeleccionada("individuales")}>individuales</DropdownItem>
-                        <DropdownItem key="frutales" onClick={() => setCategoriaSeleccionada("frutales")}>frutales</DropdownItem>
-                        <DropdownItem key="regalos" onClick={() => setCategoriaSeleccionada("regalos")}>regalos</DropdownItem>
-                        <DropdownItem key="temporada" onClick={() => setCategoriaSeleccionada("temporada")}>temporada</DropdownItem>
-                        <DropdownItem key="catering" onClick={() => setCategoriaSeleccionada("catering")}>catering</DropdownItem>
-                        <DropdownItem key="desayunos" onClick={() => setCategoriaSeleccionada("desayunos")}>desayunos</DropdownItem>
-                        <DropdownItem key="panificados" onClick={() => setCategoriaSeleccionada("panificados")}>panificados</DropdownItem>
+                        {(item) => (
+                            <DropdownItem key={item.value} onPress={() => setSelectedCategory(item.value)}>
+                                {item.label}
+                            </DropdownItem>
+                        )}
                     </DropdownMenu>
                 </Dropdown>
             </span>
-            <div className="">
+            <div className="container mx-auto">
                 <div className={styles.container}>
                     {items.map((item, index) => (
-                        
-                                <Card className={styles.card} shadow="sm" key="999" isPressable onPress={() => console.log("item" + item.name)}>
-                                    <div className={styles.label}>
-                                        <Label className={styles.text} price={item.price} />
-                                    </div>
-                                    <div >
-                                        <Image alt="ghj" className={styles.img} src={"./cupcake.jpeg"} />
-                                    </div>
-                                    <div className={styles.footer} >
-                                        <p className={styles.text}>{item.name}</p>
-                                    </div>
-                                </Card>
-                        
+
+                        <Card className={styles.card} shadow="sm" key={item._id} isPressable onPress={() => console.log("item" + item.name)}>
+                            <div className={styles.label}>
+                                <Label className={styles.text} price={item.price} />
+                            </div>
+                            <div >
+                                <Image alt="ghj" className={styles.img} src={"./cupcake.jpeg"} />
+                            </div>
+                            <div className={styles.footer} >
+                                <p className={styles.text}>{item.name}</p>
+                            </div>
+                        </Card>
+
                     ))}
                 </div>
                 <div className="grid place-content-center m-6">
