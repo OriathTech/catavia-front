@@ -1,23 +1,41 @@
 "use client"
-
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SessionContext } from "@/context/session/session";
 import { CartContext } from "@/context/cart/cart";
 
+import Link from "next/link";
+import Image from 'next/image'
+
 import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/navbar";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/dropdown";
-import Link from "next/link";
 import { Button } from "@nextui-org/button";
+
 import { MenuIcon } from "@/app/admin/components/icons/MenuIcon/MenuIcon";
-import { UserIcon } from "@/app/admin/components/icons/UserIcon/UserIcon";
-import { CartIcon } from "./Sub/CartIcon/CartIcon";
-import Image from 'next/image'
+import { SessionIcon } from "../icons/SessionIcon/SessionIcon";
+import { CartIcon } from "../icons/CartIcon/CartIcon";
 
 import styles from './Header.module.css'
 
 export default function Header() {
-    const { session } = useContext(SessionContext);
+    const { session, logout } = useContext(SessionContext);
     const { quantityTotalProducts } = useContext(CartContext)
+    const [isLogged, setIsLogged] = useState(false)
+
+    useEffect(() => {
+        session?.name ? setIsLogged(true) : setIsLogged(false)
+    }, [session])
+
+    const handleLogout = async () => {
+        try {
+            const response = await logout()
+            if (response.status = "success") {
+                console.log(`Esta es la response.data de axios ${JSON.stringify(response)}`)
+                console.log("Te has deslogeado")
+            }
+        } catch (error) {
+            console.log("error")
+        }
+    }
 
     return (
         <>
@@ -27,7 +45,7 @@ export default function Header() {
                     src="/images/logos/cataviaLogo3.png"
                     width={176}
                     height={221}
-                    alt="Logo Catavia Artesanal"
+                    alt="Catavia Artesanal - Logo"
                 />
             </header>
 
@@ -40,11 +58,11 @@ export default function Header() {
                         <DropdownMenu classNames={{
                             base: `${styles.menuBase}`,
                             list: `${styles.menuList}`
-                        }} aria-label="Static Actions">
+                        }} aria-label="Menú desplegable para Mobiles">
                             <DropdownItem as={Link} href="/" key="home" className={styles.menuLink}>Inicio</DropdownItem>
                             <DropdownItem as={Link} href="/products" key="products" className={styles.menuLink}>Productos</DropdownItem>
                             <DropdownItem as={Link} href="/contact" key="contact" className={styles.menuLink}>Contacto</DropdownItem>
-                            <DropdownItem as={Link} href="/admin" key="admin" className={`${styles.menuLink} ${session.role !== "admin" ? "hidden" : ''}`}>Admin</DropdownItem>
+                            <DropdownItem as={Link} href="/admin" key="admin" className={`${styles.menuLink} ${session?.role !== "admin" ? "hidden" : ""}`}>Admin</DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
                 </NavbarContent>
@@ -65,7 +83,7 @@ export default function Header() {
                             Contacto
                         </Link>
                     </NavbarItem>
-                    <NavbarItem className={`${session.role !== "admin" ? "hidden" : ''}`}>
+                    <NavbarItem className={`${session?.role !== "admin" ? "hidden" : ""}`}>
                         <Link className={styles.link} href="/admin" >
                             Admin
                         </Link>
@@ -74,20 +92,24 @@ export default function Header() {
 
                 <NavbarContent justify="end">
                     <NavbarItem>
-                        <Dropdown>
-                            <DropdownTrigger>
-                                <Button isIconOnly aria-label="login">
-                                    <UserIcon />
-                                </Button>
-                            </DropdownTrigger>
-                            <DropdownMenu aria-label="Static Actions">
-                                <DropdownItem as={Link} href="/login">Login</DropdownItem>
-                                <DropdownItem as={Link} href="/register">Register</DropdownItem>
-                            </DropdownMenu>
-                        </Dropdown>
+                        <NavbarContent justify="start">
+                            <Dropdown className={styles.dropdown}>
+                                <DropdownTrigger>
+                                    <Button className={styles.button} isIconOnly size="lg" startContent={isLogged ? <SessionIcon fill="#8cc63e"/> : <SessionIcon fill="#ef4d3c"/>}></Button>
+                                </DropdownTrigger>
+                                <DropdownMenu classNames={{
+                                    base: `${styles.menuBase}`,
+                                    list: `${styles.menuList}`
+                                }} aria-label="Acciones de Sesión">
+                                    <DropdownItem as={Link} href="/login" key="login" className={styles.menuLink}>Iniciar Sesión</DropdownItem>
+                                    <DropdownItem as={Link} href="/register" key="register" className={styles.menuLink}>Registrarse</DropdownItem>
+                                    {isLogged && <DropdownItem onClick={handleLogout} key="logout" className={`${styles.menuLink}`}>Cerrar Sesión</DropdownItem>}
+                                </DropdownMenu>
+                            </Dropdown>
+                        </NavbarContent>
                     </NavbarItem>
                     <NavbarItem className="flex gap-1">
-                        <CartIcon />
+                        <Button className={styles.button} as={Link} href="/cart" isIconOnly size="lg" startContent={<CartIcon />}></Button>
                         <span>{quantityTotalProducts}</span>
                     </NavbarItem>
                 </NavbarContent>

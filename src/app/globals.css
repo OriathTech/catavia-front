@@ -94,6 +94,11 @@
 body {
   font-family: var(--font-heebo);
   background-color: var(--tertiary);
+  min-height: 100vh;
+}
+
+main {
+  min-height: 75vh;
 }
 
 .catBG {

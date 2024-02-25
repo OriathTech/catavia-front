@@ -6,6 +6,7 @@ const ProductContext = createContext();
 
 const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([])
 
   const fetchProducts = async () => {
     try {
@@ -21,9 +22,32 @@ const ProductProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    console.log("Cargando productos")
     fetchProducts();
     console.log(products)
   }, []);
+
+  useEffect(() => {
+    const newCategories = products.reduce((acc, product) => {
+      if (product.category.length > 0) {
+        product.category.forEach(category => {
+          const categoryLabel = category[0].toUpperCase() + category.slice(1);
+          acc.push({
+            value: category,
+            label: categoryLabel,
+          });
+        });
+      }
+      return acc;
+    }, []);
+
+    const uniqueCategories = newCategories.filter((category, index, self) =>
+      index === self.findIndex((c) =>
+        c.value === category.value && c.label === category.label
+      )
+    );
+    setCategories(uniqueCategories);
+  }, [products]);
 
   const getProductById = (productId) => {
     const product = products.find((product) => product._id === productId);
@@ -85,8 +109,8 @@ const ProductProvider = ({ children }) => {
   const updateProduct = async (productId, info) => {
     try {
       console.log(`Aca empezamos: ${productId} ${info}`)
-      
-      const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}`, info , {
+
+      const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}`, info, {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json'
@@ -113,7 +137,7 @@ const ProductProvider = ({ children }) => {
   };
 
   return (
-    <ProductContext.Provider value={{ products, getProductById, postProduct, deleteProduct, updateProduct }}>
+    <ProductContext.Provider value={{ products, categories, getProductById, postProduct, deleteProduct, updateProduct }}>
       {children}
     </ProductContext.Provider>
   );

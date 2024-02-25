@@ -1,6 +1,6 @@
 .header {
     background: var(--primary);
-    height: 15dvh;
+    height: 16dvh;
     padding-top: 1rem;
     display: flex;
     justify-content: center;
@@ -8,7 +8,7 @@
 
 .navbar {
     background: var(--secondary) !important;
-    height: 10dvh !important;
+    height: 9dvh !important;
     border-bottom: solid 1px var(--blackTransparency) !important;
 }
 
@@ -48,6 +48,10 @@
     text-shadow: var(--blackTransparency) !important;
 }
 
+.button {
+    background: transparent !important;
+}
+
 @media only screen and (min-width:1px) {
     .link {
         font-size: var(--sizeLinkSM) !important;
@@ -57,11 +61,5 @@
 @media only screen and (min-width:1024px) {
     .link {
         font-size: var(--sizeLinkMD) !important;
-    }
-}
-
-@media only screen and (min-width:2560px) {
-    .link {
-        font-size: var(--sizeLinkLG) !important;
     }
 }

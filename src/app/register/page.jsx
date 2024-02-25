@@ -6,6 +6,5 @@ export default function registerPage() {
       <div>
         <RegisterForm/>
       </div>
-     
     )
   }

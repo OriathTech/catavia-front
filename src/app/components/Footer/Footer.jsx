@@ -1,20 +1,22 @@
-import Link from "next/link";
 import styles from "./Footer.module.css";
-import { StrawberryIcon } from "@/app/admin/components/icons/StrawberryIcon/StrawberryIcon";
+import { FacebookIcon } from "../icons/FacebookIcon/FacebookIcon";
+import { WhatsappIcon } from "../icons/WhatsappIcon/WhatsappIcon";
+import { InstagramIcon } from "../icons/InstagramIcon/InstagramIcon";
+import { OriathIcon } from "../icons/OriathIcon/OriathIcon";
 
 
 export default function Footer() {
   return (
     <footer className={`${styles.container}`}>
-        <div className={`${styles.container1} container gap-4`}>
+        <div className={`${styles.container1} container mx-auto`}>
 
             <div className={styles.containerLeft}>
-                <Link href="https://www.oriathtech.com.ar/"> 
+                <a href="https://www.oriathtech.com.ar/" target="_blank"> 
                     <div className={styles.containerOT}>
-                        <img className={styles.logoOT} src="./FooterLogoOT.svg" width="25" height="25" alt="logo catavia footer" />
-                        <p>Powered by Oriath|Tech</p>
+                        <OriathIcon height={"2rem"} width={"2rem"}/>
+                        <p className="mx-2">Powered by Oriath|Tech</p>
                     </div>
-                </Link>
+                </a>
             </div>
 
             <div>
@@ -24,15 +26,15 @@ export default function Footer() {
             </div>
 
             <div className={styles.containerRight}>
-                <Link className={styles.logoOT} target="_blank" href="https://api.whatsapp.com/send/?phone=5491169206183&text=type=phone_number&app_absent=0"> 
-                    <StrawberryIcon/>
-                </Link>
-                <Link className={styles.logoOT} target="_blank" href="https://www.instagram.com/catavia.artesanal/"> 
-                    <StrawberryIcon/>
-                </Link>
-                <Link className={styles.logoOT} href="https://www.facebook.com/Postrescatavia"  target="_blank"> 
-                    <StrawberryIcon/>
-                </Link>
+                <a className={styles.logoOT} target="_blank" href="https://api.whatsapp.com/send/?phone=5491169206183&text=type=phone_number&app_absent=0"> 
+                    <WhatsappIcon/>
+                </a>
+                <a className={styles.logoOT} target="_blank" href="https://www.instagram.com/catavia.artesanal/"> 
+                    <InstagramIcon/>
+                </a>
+                <a className={styles.logoOT} href="https://www.facebook.com/Postrescatavia"  target="_blank"> 
+                    <FacebookIcon/>
+                </a>
             </div>
         </div>
     </footer>

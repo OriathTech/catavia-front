@@ -75,10 +75,10 @@
 }
 
 .text {
-  color: azure;
-  font-family: 'Times New Roman', Times, serif;
+  color: var(--textSub);
+  font-family: var(--font-merri);
   font-weight: 400;
-  font-size: 1rem;
+  font-size: var(--sizeTextSM);
 }
 
 .img {
@@ -87,7 +87,7 @@
 }
 
 .title {
-  font-size: 2rem;
+  font-size: var(--sizeTitleSM);
   font-weight: 600;
   text-align: center;
 }
@@ -106,6 +106,18 @@
 }
 
 @media only screen and (min-width:1440px) {
+  .container {
+    max-width: 70%;
+  }
+  .text {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (min-width:2500px) {
+  .container {
+    max-width: 70%;
+  }
   .text {
     font-size: 1.5rem;
   }
