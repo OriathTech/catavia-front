@@ -44,15 +44,15 @@ export default function Register() {
     }
 
     return (
-        <div className={`container mx-auto my-20 p-4 ${styles.conteiner}`} >
-            <div className={`grid place-items-center  ${styles.conteiner1}`}>
+        <div className={`container mx-auto my-20 p-4 ${styles.container}`} >
+            <div className={`grid place-items-center  ${styles.container1}`}>
                 <img className={`${styles.img} my-2`} src="/cataviaLogo2.png" alt="" />
                 <p className={styles.title}>
                     Registro
                 </p>
             </div>
 
-            <div className={`${styles.conteiner2}`} >
+            <div className={`${styles.container2}`} >
 
                 <div className="flex flex-row  justify-between lg:justify-around items-center">
                     <Input
@@ -83,7 +83,7 @@ export default function Register() {
                     />
                 </div>
 
-                <div className={`flex flex-col justify-evenly items-center ${styles.conteinerDate}`}>
+                <div className={`flex flex-col justify-evenly items-center ${styles.containerDate}`}>
                     <Input
                         classNames={{
                             base: `${styles.inputDate}`,
@@ -102,7 +102,7 @@ export default function Register() {
 
             </div>
 
-            <div className={`flex flex-col justify-evenly items-center ${styles.conteiner2}`} >
+            <div className={`flex flex-col justify-evenly items-center ${styles.container2}`} >
                 <Input
                     classNames={{
                         base: `${styles.inputDate}`,
@@ -140,7 +140,7 @@ export default function Register() {
                 />
             </div>
 
-            <div className={`flex flex-col lg:flex-row md:justify-evenly items-center ${styles.conteiner3}`}>
+            <div className={`flex flex-col lg:flex-row md:justify-evenly items-center ${styles.container3}`}>
 
                 <Button className={`mb-3 lg:mb-0 ${styles.btn}`} radius="md" color="primary">
                     <Link href="/login"> Login</Link>

@@ -1,14 +1,14 @@
-.conteiner{
-    width: 50%;
-    background-color: var(--secondary);
+.container{
+    background-color: var(--primary);
     border-radius: 15px;
     -webkit-box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7);
     -moz-box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7);
     box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7);
+    margin: 4rem auto
 }
 
 
-.conteiner2{
+.container2{
     height: auto;
 }
 
@@ -24,7 +24,6 @@
 .btn{
     width: 43%;
     font-family: var(--familyLink);
-    font-size: var(--sizeTextMD);
 }
 
 .input2{
@@ -32,18 +31,15 @@
     text-align: center;
     width: 90%;
     font-family: var(--familyLink);
-    font-size: var(--sizeTextSM);
 }
 
 .input2::placeholder{
     color: black;
     text-align: center;
-    font-size: var(--sizeTextSM);
     background-color: rgba(240, 248, 255, 0);
 }
 
 .label{
-    font-size: var(--sizeTextSM) ;
     font-family: var(--familyLink);
     color: black;
 }
@@ -55,12 +51,12 @@
 
 @media only screen and (min-width:1px){
 
-    .conteiner{
+    .container{
         width: 90%;
     }
     
 
-    .conteiner2{
+    .container2{
         padding: 1rem 0.5rem;
     }
     
@@ -100,13 +96,13 @@
 
 }
 
-@media only screen and (min-width:1024px){
+@media only screen and (min-width:900px){
 
-    .conteiner{
-        width: 50%;
+    .container{
+        width: 40%;
     }
     
-    .conteiner2{
+    .container2{
         padding: 1rem 0rem;
     }
 
@@ -116,52 +112,15 @@
     
     .btn{
         width: 43%;
-        font-size: var(--sizeTextSM);
     }
 
     .input2{
         width: 90%;
-        font-size: var(--sizeTextSM);
     }
-    
-    .input2::placeholder{
-        font-size: var(--sizeTextSM);
-        background-color: rgba(240, 248, 255, 0);
-    }
-    
-    .label{
-        font-size: var(--sizeTextSM) ;
-    }
-
 }
 
-@media only screen and (min-width:2560px){
-    .conteiner{
-        width: 50%;
+@media only screen and (min-width:2500px){
+    .container{
+        width: 20%;
     }
-    
-    .title{
-        font-size: var(--sizeTitleLG);
-    }
-    
-    .btn{
-        width: 43%;
-        height: 4rem;
-        font-size: var(--sizeTextLG);
-    }
-
-    .input2{
-        width: 90%;
-        font-size: var(--sizeTextLG);
-    }
-    
-    .input2::placeholder{
-        font-size: var(--sizeTextLG);
-    }
-    
-    .label{
-        font-size: var(--sizeTextLG) ;
-    }
-
-
 }

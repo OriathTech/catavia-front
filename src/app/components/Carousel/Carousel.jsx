@@ -102,7 +102,7 @@ export default function Carousel() {
                                 <Button isIconOnly startContent={<ArrowRightIcon />} />
                             </div>
 
-                            <Button className={styles.button} size="lg" radius="full">
+                            <Button as={Link} href="/products" className={styles.button} size="lg" radius="full">
                                 Ver más
                             </Button>
 

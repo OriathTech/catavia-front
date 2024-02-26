@@ -36,16 +36,16 @@ export default function LoginForm() {
     }
 
     return (
-        <div className={`container mx-auto my-9 py-9 ${styles.conteiner}`} >
+        <div className={`container mx-auto my-9 py-9 ${styles.container}`} >
 
-            <div className={`grid place-items-center  ${styles.conteiner1}`}>
+            <div className={`grid place-items-center`}>
                 <img className={`${styles.img} mb-4`} src="/cataviaLogo2.png" alt="" />
                 <p className={styles.title}>
                     Login
                 </p>
             </div>
 
-            <div className={`flex flex-col items-center ${styles.conteiner2}`} >
+            <div className={`flex flex-col items-center ${styles.container2}`} >
                 <Input
                     classNames={{
                         base: `${styles.input2}`,
@@ -82,7 +82,7 @@ export default function LoginForm() {
                 />
             </div>
 
-            <div className={`flex flex-col lg:flex-row lg:justify-evenly items-center ${styles.conteiner1}`}>
+            <div className={`flex flex-col lg:flex-row lg:justify-evenly items-center ${styles.container1}`}>
                 <Button className={styles.btn} radius="md" color="primary">
                     <Link href="/register"> Crear Cuenta</Link>
                 </Button>

@@ -1,9 +1,16 @@
-import styles from "./Cart.module.css";
+"use client"
 import { useContext } from "react";
 import { CartContext } from "@/context/cart/cart";
-import { Button } from "@nextui-org/button";
+
 import Link from "next/link";
+
+import { Button } from "@nextui-org/button";
+
+import { ArrowLeftIcon } from "@/app/components/icons/ArrowLeftIcon/ArrowLeftIcon";
+import { ArrowRightIcon } from "@/app/components/icons/ArrowRightIcon/ArrowRightIcon";
 import { DeleteIcon } from "@/app/admin/components/icons/DeleteIcon/DeleteIcon";
+
+import styles from "./Cart.module.css";
 
 
 export default function Cart() {
@@ -28,13 +35,14 @@ export default function Cart() {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className={`${styles.container} container mx-auto my-14 p-4`}>
+      <h1 className={styles.title}>Carrito de compras</h1>
       <div className="grid place-content-center">
         {cart.products.length === 0 ? (
           <div className="overflow-x-auto">
             <p className={`${styles.text} py-2 px-4 mb-8`}>No hay productos en el carrito. Por favor, agregue algunos productos.</p>
             <Button className={`${styles.text} py-2 px-4 mb-5`} radius="full" color="secondary" as={Link} href="/products">
-              Comprar
+              Volver al Catálogo
             </Button>
           </div>
         ) : (
@@ -53,12 +61,12 @@ export default function Cart() {
               <tbody>
                 {cart.products.map(item => (
                   <tr key={item._id} className={`${styles.text} ${styles.tr} border-b text-center`}>
-                    <td className="py-2 px-4"><img src={item.url} alt="Producto" className={`${styles.img} h-20 w-20 rounded-lg object-cover mx-auto`} /></td>
+                    <td className="py-2 px-4"><img src={item.thumbnails?.first.url ? item.thumbnails.first.url : "/defaultProduct.png" } alt="Producto" className={`${styles.img} h-20 w-20 rounded-lg object-cover mx-auto`} /></td>
                     <td className="py-2 px-4">{item.name}</td>
                     <td className="py-2 px-4">${item.price}</td>
                     <td className="py-2 px-4">
                       <div className={`${styles.containerInput} flex h-full place-content-around justify-evenly items-center`}>
-                        <button onClick={() => handleUpdateQuantity(item._id, item.quantity - 1)} className={`w-auto h-8`}><img className={styles.arrow} src="/dereita.svg" alt="Decrease Quantity" /></button>
+                        <Button className={styles.arrowBtn} isIconOnly startContent={<ArrowRightIcon />} onClick={() => handleUpdateQuantity(item._id, item.quantity - 1)} />
                         <input
                           type="number"
                           value={item.quantity}
@@ -68,7 +76,7 @@ export default function Cart() {
                           inputMode="numeric"
                           className={`w-16 rounded-lg text-center ${styles.input}`}
                         />
-                        <button onClick={() => handleUpdateQuantity(item._id, item.quantity + 1)} className={`w-auto h-8`}><img className={styles.arrow} src="/izqueida.svg" alt="Increase Quantity" /></button>
+                        <Button className={styles.arrowBtn} isIconOnly startContent={<ArrowLeftIcon />} onClick={() => handleUpdateQuantity(item._id, item.quantity + 1)} />
                       </div>
                     </td>
                     <td className="py-2 px-4">${calculateTotalPrice(item)}</td>
