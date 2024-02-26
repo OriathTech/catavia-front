@@ -4,6 +4,14 @@
   overflow-x: scroll;
 }
 
+.title {
+  font-family: var(--familyTitle);
+  font-size: var(--sizeTitleSM);
+  font-weight: var(--weightSemi);
+  color: var(--text);
+  text-align: center;
+}
+
 /* Table Header */
 
 .tableHead {
@@ -30,6 +38,11 @@
 
 .tr {
   border-color: var(--blackTrasparency);
+}
+
+.arrowBtn {
+  background: transparent;
+  margin: auto 2px;
 }
 
 @media only screen and (min-width: 1px) {
@@ -61,7 +74,6 @@
   .btn {
     height: 3rem;
     min-width: 3rem;
-
   }
 
   .arrow {

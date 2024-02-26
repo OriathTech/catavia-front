@@ -1,25 +1,19 @@
-.conteiner{
+.container{
     width: 50%;
-    background-color: var(--secondary);
+    background-color: var(--primary);
     border-radius: 15px;
     -webkit-box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7);
     -moz-box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7);
     box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7);
 }
 
-
-.conteiner1{
-    height: auto;
-    width: 100%;
-}
-
-.conteiner2{
+.container2{
     height: auto;
     margin-top: 0.5rem;
     padding: 1rem;
 }
 
-.conteiner3{
+.container3{
     margin: 0.5rem 0rem;
     height: auto;
     width: 100%;
@@ -34,7 +28,6 @@
 }
 
 .label{
-    font-size: var(--sizeTextSM) ;
     font-family: var(--familyLink);
     color: black;
 }
@@ -43,7 +36,7 @@
     color: black;
 }
 
-.conteinerDate{
+.containerDate{
     margin-top: 1rem;
     width: 100%;
 }
@@ -53,7 +46,6 @@
     text-align: center;
     width: 90%;
     font-family: var(--familyLink);
-    font-size: var(--sizeTextSM);
 }
 
 .input{
@@ -64,7 +56,6 @@
     color: black;
     text-align: center;
     font-family: var(--familyLink);
-    font-size: var(--sizeTextSM);
     background-color: rgba(240, 248, 255, 0);
     
 }
@@ -74,13 +65,11 @@
     text-align: center;
     width: 90%;
     font-family: var(--familyLink);
-    font-size: var(--sizeTextSM);
 }
 
 .input2::placeholder{
     color: black;
     text-align: center;
-    font-size: var(--sizeTextSM);
     background-color: rgba(240, 248, 255, 0);
 }
 
@@ -89,33 +78,30 @@
 }
 
 .title{
-    font-size: var(--sizeTitleMD);
     font-family: var(--familyTitle);
 }
 
 .btn{
     width: 39%;
     font-family: var(--familyLink);
-    font-size: var(--sizeTextMD)
 }
 
 .text{
-    font-size: var(--sizeTextMD);
     font-family: var(--familyLink);
 }
 
 @media only screen and (min-width:1px){
-    .conteiner{
+    .container{
         width: 90%;
     }
 
-    .conteiner2{
+    .container2{
 
         margin-top: 0.5rem;
         padding: 1rem;
     }
     
-    .conteiner3{
+    .container3{
         margin: 0.2rem 0rem;
     }
     
@@ -124,7 +110,7 @@
         font-size: var(--sizeTextSM) ;
     }
     
-    .conteinerDate{
+    .containerDate{
         margin-top: 1rem;
         width: 100%;
     }
@@ -172,17 +158,17 @@
 
 @media only screen and (min-width:1024px){
 
-    .conteiner{
+    .container{
         width: 50%;
     }
 
-    .conteiner2{
+    .container2{
 
         margin-top: 0.5rem;
         padding: 1rem;
     }
     
-    .conteiner3{
+    .container3{
         margin: 0.5rem 0rem;
     }
     
@@ -191,7 +177,7 @@
         font-size: var(--sizeTextSM) ;
     }
     
-    .conteinerDate{
+    .containerDate{
         margin-top: 1rem;
         width: 100%;
     }
@@ -233,71 +219,12 @@
 
 }
 
-@media only screen and (min-width:2560px){
-
-    
-    .conteiner{
-        width: 50%;
-    }
-
-    .conteiner2{
-
-        margin-top: 0.5rem;
-        padding: 1rem;
-    }
-    
-    .conteiner3{
-        margin: 0.5rem 0rem;
-    }
-    
-    
-    .label{
-        font-size: var(--sizeTextMD) ;
-    }
-    
-    .conteinerDate{
-        margin-top: 1rem;
-        width: 100%;
-    }
-    
-    .inputDate{
-        width: 90%; 
-        font-size: var(--sizeTextMD);
+@media only screen and (min-width:2500px){
+    .container{
+        width: 20%;
     }
 
     .inputWrapper{
         height: 4rem;
     }
-    
-    .input{
-        width: 40%;
-    }
-    
-    .input::placeholder{
-        font-size: var(--sizeTextMD);        
-    }
-    
-    .input2{
-        width: 90%;
-        font-size: var(--sizeTextMD);
-    }
-    
-    .input2::placeholder{
-        font-size: var(--sizeTextMD);
-    }
-    
-    .title{
-        font-size: var(--sizeTitleLG);
-    }
-    
-    .btn{
-        width: 40%;
-        font-size: var(--sizeTextLG)
-    }
-    
-    .text{
-        font-size: var(--sizeTextLG);
-    }
-
-
 }

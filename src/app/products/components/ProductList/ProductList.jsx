@@ -93,7 +93,7 @@ export default function ProductList() {
                                 <Label className={styles.text} price={item.price} />
                             </div>
                             <div >
-                                <Image alt="ghj" className={styles.img} src={"./cupcake.jpeg"} />
+                                <Image alt="ghj" className={styles.img} src={item.thumbnails?.first.url ? item.thumbnails.first.url : "/defaultProduct.png" } />
                             </div>
                             <div className={styles.footer} >
                                 <p className={styles.text}>{item.name}</p>
