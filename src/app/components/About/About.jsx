@@ -7,14 +7,14 @@ export default function About() {
         <div className={`${styles.container}`}>
             <div>
                 <h2>
-                    Me gustaría contarte cómo todo esto surgió
+                    Me encantaría contarte cómo todo esto se originó
                 </h2>
                 <p>
-                    Hace más de tres años que surgió el sueño de transmitir,
-                    esa sensación familiar y hogar que tanto nos llena, desde ese momento,
+                    Hace más de tres años emergió el sueño de transmitir,
+                    esa sensación acogedora y familiar que tanto nos llena, desde entonces,
                     decidí endulzar tus momentos con mis creaciones.
                     En Catavia Artesanal, cada postre es más que una delicia;
-                    es una expresión auténtica de mi dedicación.
+                    es una manifestación auténtica de mi dedicación.
                 </p>
                 <h2>
                     Descubre la magia de Catavia Artesanal
