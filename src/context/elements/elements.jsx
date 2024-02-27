@@ -1,5 +1,6 @@
 "use client"
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
+import { errorHandler } from '@/utils/errorHandler';
 import axios from 'axios';
 
 const ElementsContext = createContext();
@@ -24,18 +25,10 @@ const ElementsProvider = ({ children }) => {
             return response.data;
 
         } catch (error) {
-            console.error('Error en el Context:', error);
-            return {
-                status: "error",
-                message: "Error en el Context",
-                error: error
-            };
+            const handledError = errorHandler(error)
+            return handledError;
         }
     };
-
-    useEffect(() => {
-        getElements();
-    }, []);
 
     const getIngredientById = (elementId) => {
         const element = ingredients.find((element) => element._id === elementId);
@@ -68,12 +61,8 @@ const ElementsProvider = ({ children }) => {
             return response.data;
 
         } catch (error) {
-            console.error('Error en el Context:', error);
-            return {
-                status: "error",
-                message: "Error en el Context",
-                error: error
-            };
+            const handledError = errorHandler(error)
+            return handledError;
         }
     };
 
@@ -104,12 +93,8 @@ const ElementsProvider = ({ children }) => {
             return response.data;
 
         } catch (error) {
-            console.error('Error en el Context:', error);
-            return {
-                status: "error",
-                message: "Error en el Context",
-                error: error
-            };
+            const handledError = errorHandler(error)
+            return handledError;
         }
     };
 
@@ -136,12 +121,8 @@ const ElementsProvider = ({ children }) => {
             return response.data;
 
         } catch (error) {
-            console.error('Error en el Context:', error);
-            return {
-                status: "error",
-                message: "Error en el Context",
-                error: error
-            };
+            const handledError = errorHandler(error)
+            return handledError;
         }
     };
 

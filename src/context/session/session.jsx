@@ -1,11 +1,16 @@
 "use client"
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
+import { errorHandler } from '@/utils/errorHandler';
 import axios from 'axios';
 
 const SessionContext = createContext();
 
 const SessionProvider = ({ children }) => {
   const [session, setSession] = useState();
+
+  useEffect(() => {
+    logout()
+  }, []);
 
   const loginJWT = async (info) => {
     try {
@@ -22,17 +27,15 @@ const SessionProvider = ({ children }) => {
         setSession(response.data.payload);
         console.log(session)
         return response.data;
+      } else {
+        response.data;
       }
 
       return response.data;
 
     } catch (error) {
-      console.error('Error en el Context:', error);
-      return {
-        status: "error",
-        message: "Error en el Context",
-        error: error
-      };
+      const handledError = errorHandler(error)
+      return handledError;
     }
   };
 
@@ -53,12 +56,8 @@ const SessionProvider = ({ children }) => {
       return response.data;
 
     } catch (error) {
-      console.error('Error en el Context:', error);
-      return {
-        status: "error",
-        message: "Error en el Context",
-        error: error
-      };
+      const handledError = errorHandler(error)
+      return handledError;
     }
   };
 
@@ -72,16 +71,13 @@ const SessionProvider = ({ children }) => {
       });
 
       if (response.status === 200) {
-        setSession({});
+        setSession(null);
         return response.data;
       }
 
     } catch (error) {
-      return {
-        status: "error",
-        message: "Error en el Context",
-        error: error
-      };
+      const handledError = errorHandler(error)
+      return handledError;
     }
   };
 

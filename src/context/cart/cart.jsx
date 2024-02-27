@@ -1,21 +1,23 @@
 "use client"
 import { createContext, useState } from 'react';
+import { errorHandler } from '@/utils/errorHandler';
+import axios from 'axios';
 
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState({ 
+    const [cart, setCart] = useState({
         products: [
-        { _id: 1, url: "tortafrutilla2.jpeg", name: "Torta de Fresa", quantity: 10, price: 500 },
-        { _id: 2, url: "tortafrutilla2.jpeg", name: "Pastel de Frutas", quantity: 5, price: 600 },
-        { _id: 3, url: "tortafrutilla2.jpeg", name: "Cheesecake de Frutilla", quantity: 8, price: 300 },
-        { _id: 4, url: "tortafrutilla2.jpeg", name: "Tarta de Frutilla", quantity: 12, price: 800 },
-        { _id: 5, url: "tortafrutilla2.jpeg", name: "Cupcakes de Frutilla", quantity: 20, price: 900 }
+            { _id: 1, url: "tortafrutilla2.jpeg", name: "Torta de Fresa", quantity: 10, price: 500 },
+            { _id: 2, url: "tortafrutilla2.jpeg", name: "Pastel de Frutas", quantity: 5, price: 600 },
+            { _id: 3, url: "tortafrutilla2.jpeg", name: "Cheesecake de Frutilla", quantity: 8, price: 300 },
+            { _id: 4, url: "tortafrutilla2.jpeg", name: "Tarta de Frutilla", quantity: 12, price: 800 },
+            { _id: 5, url: "tortafrutilla2.jpeg", name: "Cupcakes de Frutilla", quantity: 20, price: 900 }
         ],
         total: 38000,
         deliveryDate: null
 
-});
+    });
     const [quantityTotalProducts, setQuantityTotalProducts] = useState(0);
 
     const addProductCart = (product, quantity) => {
@@ -24,7 +26,6 @@ const CartProvider = ({ children }) => {
         if (indexProductCart !== -1) {
             const updatedCart = { ...cart };
             updatedCart.products[indexProductCart].quantity = quantity;
-
             setCart(updatedCart);
         } else {
             const productToAdd = {
@@ -33,6 +34,10 @@ const CartProvider = ({ children }) => {
                 price: product.price,
                 quantity: quantity
             };
+
+            if (product.thumbnails.first.url) {
+                productToAdd.thumnail = product.thumbnails.first.url;
+            }
 
             setCart((prevCart) => ({
                 ...prevCart,
@@ -85,18 +90,14 @@ const CartProvider = ({ children }) => {
             if (response.status === 200) {
                 setCart({ products: [] });
                 setQuantityTotalProducts(0);
-                return response;
+                return response.data;
             }
 
-            return response;
+            return response.data;
 
         } catch (error) {
-            console.error('Error en el Context:', error);
-            return {
-                status: "error",
-                message: "Error en el Context",
-                error: error
-            };
+            const handledError = errorHandler(error)
+            return handledError;
         }
     };
 

@@ -40,7 +40,7 @@ export default function Cart() {
       <div className="grid place-content-center">
         {cart.products.length === 0 ? (
           <div className="overflow-x-auto grid place-items-center">
-            <p className={`${styles.text} py-2 px-4 mb-8`}>No hay productos en el carrito. Por favor, elige algunos del menú.</p>
+            <p className={`${styles.text} py-2 px-4 mb-8`}>No hay productos en el carrito. Por favor, elige algunos del catalogo.</p>
             <Button className={`${styles.text} py-2 px-4 mb-5`} radius="full" color="secondary" as={Link} href="/products">
               Volver al Catálogo
             </Button>

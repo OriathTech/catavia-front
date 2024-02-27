@@ -1,5 +1,7 @@
 "use client"
 import { createContext, useState } from 'react';
+import { errorHandler } from '@/utils/errorHandler';
+import axios from 'axios';
 
 const UsersContext = createContext();
 
@@ -14,18 +16,14 @@ const UsersProvider = ({ children }) => {
 
             if (response.status === 200) {
                 setUsers(response.data.payload);
-                return response;
+                return response.data;
             }
 
-            return response;
+            return response.data;
 
         } catch (error) {
-            console.error('Error en el Context:', error);
-            return {
-                status: "error",
-                message: "Error en el Context",
-                error: error
-            };
+            const handledError = errorHandler(error)
+            return handledError;
         }
     };
 
@@ -42,18 +40,14 @@ const UsersProvider = ({ children }) => {
 
             if (response.status === 200) {
                 setUsers((prevUsers) => prevUsers.filter((user) => user._id !== response.data.payload._id));
-                return response;
+                return response.data;
             }
 
-            return response;
+            return response.data;
 
         } catch (error) {
-            console.error('Error en el Context:', error);
-            return {
-                status: "error",
-                message: "Error en el Context",
-                error: error
-            };
+            const handledError = errorHandler(error)
+            return handledError;
         }
     };
 
@@ -71,18 +65,14 @@ const UsersProvider = ({ children }) => {
                     user._id === response.data.payload._id ? response.data.payload : user
                 ));
 
-                return response;
+                return response.data;
             }
 
-            return response;
+            return response.data;
 
         } catch (error) {
-            console.error('Error en el Context:', error);
-            return {
-                status: "error",
-                message: "Error en el Context",
-                error: error
-            };
+            const handledError = errorHandler(error)
+            return handledError;
         }
     };
 
