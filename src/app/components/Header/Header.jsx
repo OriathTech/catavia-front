@@ -1,5 +1,6 @@
 "use client"
 import { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { SessionContext } from "@/context/session/session";
 import { CartContext } from "@/context/cart/cart";
 
@@ -17,6 +18,7 @@ import { CartIcon } from "../icons/CartIcon/CartIcon";
 import styles from './Header.module.css'
 
 export default function Header() {
+    const router = useRouter()
     const { session, logout } = useContext(SessionContext);
     const { quantityTotalProducts } = useContext(CartContext)
     const [isLogged, setIsLogged] = useState(false)
@@ -29,8 +31,8 @@ export default function Header() {
         try {
             const response = await logout()
             if (response.status = "success") {
-                console.log(`Esta es la response.data de axios ${JSON.stringify(response)}`)
-                console.log("Te has deslogeado")
+                router.refresh();
+                router.push("/");
             }
         } catch (error) {
             console.log("error")

@@ -17,7 +17,8 @@ const ProductProvider = ({ children }) => {
       }
 
     } catch (error) {
-      console.error('Error en el Context:', error);
+      const handledError = errorHandler(error)
+      return handledError;
     }
   };
 
@@ -71,12 +72,8 @@ const ProductProvider = ({ children }) => {
       return response.data;
 
     } catch (error) {
-      console.error('Error en el Context:', error);
-      return {
-        status: "error",
-        message: "Error en el Context",
-        error: error
-      };
+      const handledError = errorHandler(error)
+      return handledError;
     }
   };
 
@@ -97,12 +94,8 @@ const ProductProvider = ({ children }) => {
       return response.data;
 
     } catch (error) {
-      console.error('Error en el Context:', error);
-      return {
-        status: "error",
-        message: "Error en el Context",
-        error: error
-      };
+      const handledError = errorHandler(error)
+      return handledError;
     }
   };
 
@@ -127,12 +120,8 @@ const ProductProvider = ({ children }) => {
       return response.data;
 
     } catch (error) {
-      console.error('Error en el Context:', error);
-      return {
-        status: "error",
-        message: "Error en el Context",
-        error: error
-      };
+      const handledError = errorHandler(error)
+      return handledError;
     }
   };
 
