@@ -17,8 +17,8 @@
 /* Slider Controls */
 
 .btn {
-  width: 9rem;
-  background-color: rgb(245, 232, 94);
+  height: 3rem;
+  background: rgba(255, 192, 203, 0);
   color: black;
   margin-top: .5rem;
   font-size: 1.3rem;
@@ -73,9 +73,10 @@
 }
 
 .text {
+  text-align: center;
   color: var(--text);
-  font-family: var(--font-merri);
-  font-weight: 400;
+  font-family: var(--familyText);
+  font-weight: var(--weightLight);
   font-size: var(--sizeTextSM);
 }
 
@@ -85,14 +86,17 @@
 }
 
 .title {
-  font-size: var(--sizeTitleSM);
-  font-weight: 600;
+  font-family: var(--familyText);
+  font-size: var(--sizeTitleMD);
+  padding: 1.5rem;
+  font-weight: var(--weightLight);
   text-align: center;
 }
 
 .controlsContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 3rem;
   gap: 1rem;
 }

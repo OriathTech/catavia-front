@@ -1,6 +1,6 @@
 .container{
     width:70%;
-    background-color: var(--secondary);
+    background-color: var(--primary);
     border-radius: 60px;
     -webkit-box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7);
     -moz-box-shadow: 0px 0px 16px -2px rgba(0,0,0,0.7);
@@ -15,6 +15,7 @@
 .title{
     font-size: var(--sizeTitleMD);
     font-family: var(--familyBannerSub);
+    font-weight:var(--weightBold) ;
     margin: 1rem 0rem 2rem 0rem; 
 }
 
@@ -32,6 +33,7 @@
     width: 4rem;
     height: 4rem;
     border-radius: 100%;
+    background-color: rgba(0, 255, 255, 0);
 }
 
 

@@ -1,6 +1,8 @@
 "use client"
 import { useContext, useState, useEffect, useMemo } from "react";
 import { ProductContext } from "@/context/products/products";
+import { SessionContext } from "@/context/session/session";
+import Link from "next/link";
 
 import { Card } from "@nextui-org/card";
 import { Pagination } from "@nextui-org/react";
@@ -14,15 +16,14 @@ import styles from "./ProductList.module.css"
 
 export default function ProductList() {
     const { products, categories } = useContext(ProductContext);
+    const { session } = useContext(SessionContext);
     const [filtrados, setFiltrados] = useState(products);
     const [selectedCategory, setSelectedCategory] = useState("todos");
     const [selectedKeys, setSelectedKeys] = useState(new Set(["Categorias"]));
     const [page, setPage] = useState(1);
     const productsPerPage = 8;
 
-    useEffect(() => {
-        
-    }, [])
+
 
     useEffect(() => {
         if (selectedCategory !== "todos") {
@@ -55,6 +56,12 @@ export default function ProductList() {
 
     return (
         <div>
+            {!session && (
+                <div className={`w-full`}>
+                    <h2 className={`m-8 py-4 rounded-lg bg-red-400 ${styles.text}`}>Únete a nuestra comunidad. ¡Inicia sesión o regístrate para formar parte!</h2>
+                </div>
+            )}
+
             <span className={styles.containerDropdown}>
                 <Dropdown>
                     <DropdownTrigger>
@@ -88,12 +95,12 @@ export default function ProductList() {
                 <div className={styles.container}>
                     {items.map((item, index) => (
 
-                        <Card className={styles.card} shadow="sm" key={item._id} isPressable onPress={() => console.log("item" + item.name)}>
+                        <Card className={styles.card} shadow="sm" key={item._id} isPressable as={Link} href={`products/details?id=${item._id}`}>
                             <div className={styles.label}>
                                 <Label className={styles.text} price={item.price} />
                             </div>
                             <div >
-                                <Image alt="ghj" className={styles.img} src={item.thumbnails?.first.url ? item.thumbnails.first.url : "/defaultProduct.png" } />
+                                <Image alt="ghj" className={styles.img} src={item.thumbnails?.first.url ? item.thumbnails.first.url : "/defaultProduct.png"} />
                             </div>
                             <div className={styles.footer} >
                                 <p className={styles.text}>{item.name}</p>

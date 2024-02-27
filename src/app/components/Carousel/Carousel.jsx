@@ -97,17 +97,17 @@ export default function Carousel() {
                                 </SwiperSlide>
                             ))}
                         </Swiper>
-                        <div className={styles.controlsContainer}>
-                            <div className={`prev grid place-items-center ${styles.slider_arrow}`}>
-                                <Button isIconOnly startContent={<ArrowRightIcon />} />
+                        <div className={`  ${styles.controlsContainer}`}>
+                            <div className={`prev  ${styles.slider_arrow}`}>
+                                <Button className={` ${styles.btn}`} isIconOnly startContent={<ArrowRightIcon />} />
                             </div>
 
                             <Button as={Link} href="/products" className={styles.button} size="lg" radius="full">
                                 Ver más
                             </Button>
 
-                            <div className={`next grid place-items-center ${styles.slider_arrow}`}>
-                                <Button isIconOnly startContent={<ArrowLeftIcon />} />
+                            <div className={`next ${styles.slider_arrow}`}>
+                                <Button className={styles.btn} isIconOnly startContent={<ArrowLeftIcon />} />
                             </div>
                         </div>
                     </>

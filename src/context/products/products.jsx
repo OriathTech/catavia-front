@@ -40,7 +40,7 @@ const ProductProvider = ({ children }) => {
       }
       return acc;
     }, []);
-
+    newCategories.unshift({ value: "todos", label: "Todos",})
     const uniqueCategories = newCategories.filter((category, index, self) =>
       index === self.findIndex((c) =>
         c.value === category.value && c.label === category.label
