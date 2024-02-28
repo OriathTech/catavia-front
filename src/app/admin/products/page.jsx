@@ -163,13 +163,9 @@ export default function ProductsTablePage() {
             case "actions":
                 return (
                     <div className="flex gap-3">
-                        <Link href={`/admin/products/details?id=${product._id}`}>
-
-                            <Button size="sm" color="primary" variant="flat">
-                                <ModifyIcon size={18} />
-                            </Button>
-
-                        </Link>
+                        <Button as={Link} href={`/admin/products/details?id=${product._id}`} size="sm" color="primary" variant="flat">
+                            <ModifyIcon size={18} />
+                        </Button>
 
                         <Button size="sm" color="danger" variant="solid">
                             <DeleteIcon size={20} />

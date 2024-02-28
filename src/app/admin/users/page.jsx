@@ -150,11 +150,9 @@ export default function UsersTablePage() {
             case "actions":
                 return (
                     <div className="flex gap-3">
-                        <Link href={`/admin/users/details?id=${user._id}`}>
-                            <Button size="sm" color="primary" variant="flat">
-                                <ModifyIcon size={18} />
-                            </Button>
-                        </Link>
+                        <Button as={Link} href={`/admin/users/details?id=${user._id}`} size="sm" color="primary" variant="flat">
+                            <ModifyIcon size={18} />
+                        </Button>
 
                         <Button size="sm" color="danger" variant="solid">
                             <DeleteIcon size={20} />

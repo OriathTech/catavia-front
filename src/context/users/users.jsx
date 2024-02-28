@@ -27,6 +27,25 @@ const UsersProvider = ({ children }) => {
         }
     };
 
+    const getTickets = async (uid) => {
+        try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/users/tickets/${uid}`, {
+                withCredentials: true
+            });
+
+            if (response.status === 200) {
+                setUsers(response.data.payload);
+                return response.data;
+            }
+
+            return response.data;
+
+        } catch (error) {
+            const handledError = errorHandler(error)
+            return handledError;
+        }
+    };
+
     const getUserById = (userId) => {
         const user = users.find((user) => user._id === userId);
         return user || null;
@@ -77,7 +96,7 @@ const UsersProvider = ({ children }) => {
     };
 
     return (
-        <UsersContext.Provider value={{ users, getUsers, getUserById, deleteUser, updateUser }}>
+        <UsersContext.Provider value={{ users, getUsers, getUserById, deleteUser, updateUser, getTickets }}>
             {children}
         </UsersContext.Provider>
     );
