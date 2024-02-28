@@ -19,7 +19,7 @@ export default function ProductList() {
     const { session } = useContext(SessionContext);
     const [filtrados, setFiltrados] = useState(products);
     const [selectedCategory, setSelectedCategory] = useState("todos");
-    const [selectedKeys, setSelectedKeys] = useState(new Set(["Categorias"]));
+    const [selectedKeys, setSelectedKeys] = useState(new Set(["todos"]));
     const [page, setPage] = useState(1);
     const productsPerPage = 8;
 
@@ -58,39 +58,43 @@ export default function ProductList() {
         <div>
             {!session && (
                 <div className={`w-full`}>
-                    <h2 className={`m-8 py-4 rounded-lg bg-red-400 ${styles.text}`}>Únete a nuestra comunidad. ¡Inicia sesión o regístrate para formar parte!</h2>
+                    <h2 className={`mt-8 mx-8 py-4 rounded-lg p-4 bg-red-400 ${styles.text}`}>Únete a nuestra comunidad. ¡Inicia sesión o regístrate para formar parte!</h2>
                 </div>
             )}
 
-            <span className={styles.containerDropdown}>
-                <Dropdown>
-                    <DropdownTrigger>
-                        <Button
-                            className="capitalize"
-                            color="primary"
-                            variant="solid"
+            <div className={`w-full flex flex-col md:flex-row justify-around justify-items-center `}>
+                <span className={`mt-8 md:my-8 mx-8 md:ml-8 md:mr-0 rounded-lg ${styles.containerDropdown}`}>
+                    <Dropdown>
+                        <DropdownTrigger>
+                            <Button
+                                className={`capitalize w-full ${styles.textLink}`}
+                                color="primary"
+                                variant="solid"
+                            >
+                                Categorias
+                            </Button>
+                        </DropdownTrigger>
+                        <DropdownMenu
+                            classNames={{ base: styles.maxHeightDropdown }}
+                            aria-label="Single selection example"
+                            disallowEmptySelection
+                            selectionMode="single"
+                            selectedKeys={selectedKeys}
+                            onSelectionChange={setSelectedKeys}
+                            items={categories}
                         >
-                            {selectedValue}
-                        </Button>
-                    </DropdownTrigger>
-                    <DropdownMenu
-                        classNames={{ base: styles.maxHeightDropdown }}
-                        aria-label="Single selection example"
-                        disallowEmptySelection
-                        selectionMode="single"
-                        selectedKeys={selectedKeys}
-                        onSelectionChange={setSelectedKeys}
-                        style={{ maxHeight: '200px', overflowY: 'auto' }}
-                        items={categories}
-                    >
-                        {(item) => (
-                            <DropdownItem key={item.value} onPress={() => setSelectedCategory(item.value)}>
-                                {item.label}
-                            </DropdownItem>
-                        )}
-                    </DropdownMenu>
-                </Dropdown>
-            </span>
+                            {(item) => (
+                                <DropdownItem
+                                    key={item.value} onPress={() => setSelectedCategory(item.value)}>
+                                    {item.label}
+                                </DropdownItem>
+                            )}
+                        </DropdownMenu>
+                    </Dropdown>
+                </span>
+                <h2 className={`m-6 md:my-8 md:mr-8 mx-8 md:ml-4 p-1 w-auto md:w-full rounded-lg pl-3 bg-orange-200 ${styles.textSeccion}`}> Estas viendo la sección de {selectedValue}</h2>
+            </div>
+
             <div className="container mx-auto">
                 <div className={styles.container}>
                     {items.map((item, index) => (

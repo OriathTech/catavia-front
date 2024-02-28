@@ -1,6 +1,6 @@
 .conteiner{
     width: 100%;
-    background-color: var(--primary);
+    background-color: var(--primaryTransparency);
     border-radius: 15px;
 }
 

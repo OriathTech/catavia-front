@@ -4,9 +4,7 @@
 
 
 .containerDropdown{
-    position: sticky;
-    top: 14%;
-    margin-left: 2rem;
+    
     z-index: 14;    
 }
 
@@ -58,6 +56,21 @@
     font-family: var(--font-merri);
     font-size: var(--sizeTextMD);
     text-align: center;
+
+}
+
+.textSeccion{
+    font-family: var(--font-merri);
+    font-size: var(--sizeTextMD);
+    text-align: center;
+    background-color: var(--primary);
+}
+
+.textLink{
+    font-family: var(--font-merri);
+    font-size: var(--sizeTextMD);
+    text-align: center;
+    padding: 1.5rem;
 }
 
 .footer{

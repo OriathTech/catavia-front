@@ -7,14 +7,8 @@ const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
     const [cart, setCart] = useState({
-        products: [
-            { _id: 1, url: "tortafrutilla2.jpeg", name: "Torta de Fresa", quantity: 10, price: 500 },
-            { _id: 2, url: "tortafrutilla2.jpeg", name: "Pastel de Frutas", quantity: 5, price: 600 },
-            { _id: 3, url: "tortafrutilla2.jpeg", name: "Cheesecake de Frutilla", quantity: 8, price: 300 },
-            { _id: 4, url: "tortafrutilla2.jpeg", name: "Tarta de Frutilla", quantity: 12, price: 800 },
-            { _id: 5, url: "tortafrutilla2.jpeg", name: "Cupcakes de Frutilla", quantity: 20, price: 900 }
-        ],
-        total: 38000,
+        products: [],
+        total: 0,
         deliveryDate: null
 
     });
