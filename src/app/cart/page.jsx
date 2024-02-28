@@ -1,10 +1,11 @@
 "use client"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "@/context/cart/cart";
 
 import Link from "next/link";
 
 import { Button } from "@nextui-org/button";
+import { Input } from "@nextui-org/input";
 
 import { ArrowLeftIcon } from "@/app/components/icons/ArrowLeftIcon/ArrowLeftIcon";
 import { ArrowRightIcon } from "@/app/components/icons/ArrowRightIcon/ArrowRightIcon";
@@ -15,6 +16,7 @@ import styles from "./page.module.css"
 
 export default function Cart() {
   const { cart, deleteProductCart, deleteAllProductsCart, updateQuantityProduct, checkout } = useContext(CartContext);
+  const [deliveryDate, setDeliveryDate] = useState("2024-02-28")
 
   const calculateTotalPrice = (item) => {
     return (cart.products.find(product => product._id === item._id)?.quantity || 0) * item.price;
@@ -61,7 +63,7 @@ export default function Cart() {
               <tbody>
                 {cart.products.map(item => (
                   <tr key={item._id} className={`${styles.text} ${styles.tr} border-b text-center`}>
-                    <td className="py-2 px-4"><img src={item.thumbnail ? item.thumbnail : "/defaultProduct.png" } alt="Producto" className={`${styles.img} h-20 w-20 rounded-lg object-cover mx-auto`} /></td>
+                    <td className="py-2 px-4"><img src={item.thumbnail ? item.thumbnail : "/defaultProduct.png"} alt="Producto" className={`${styles.img} h-20 w-20 rounded-lg object-cover mx-auto`} /></td>
                     <td className="py-2 px-4">{item.name}</td>
                     <td className="py-2 px-4">${item.price}</td>
                     <td className="py-2 px-4">
@@ -87,6 +89,16 @@ export default function Cart() {
 
               <tbody>
                 <tr className="text-center">
+                  <Input
+                    isRequired={true}
+                    placeholder="Fecha de Entrega"
+                    type="date"
+                    variant={"flat"}
+                    min={"2024-02-28"}
+                    label="Fecha De Nacimiento"
+                    onValueChange={setDeliveryDate}
+                  />
+
                   <td className="py-2 px-auto md:px-4">
                     <Button className={`${styles.text} ${styles.btn} p-2 bg-red-500 text-white`} onClick={deleteAllProductsCart} radius="full"> <DeleteIcon /> Eliminar </Button>
                   </td>

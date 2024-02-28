@@ -101,8 +101,6 @@ const ProductProvider = ({ children }) => {
 
   const updateProduct = async (productId, info) => {
     try {
-      console.log(`Aca empezamos: ${productId} ${info}`)
-
       const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}`, info, {
         withCredentials: true,
         headers: {
@@ -125,8 +123,56 @@ const ProductProvider = ({ children }) => {
     }
   };
 
+  const updateThumbnail = async (productId, position, url) => {
+    try {
+      const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}/thumbnail/${position}`, url, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.status === 200) {
+        setProducts(prevProducts => prevProducts.map(product =>
+          product._id === response.data.payload._id ? response.data.payload : product
+        ));
+        return response.data;
+      }
+
+      return response.data;
+
+    } catch (error) {
+      const handledError = errorHandler(error)
+      return handledError;
+    }
+  };
+
+  const deleteThumbnail = async (productId, position) => {
+    try {
+      const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}/thumbnail/${position}`, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.status === 200) {
+        setProducts(prevProducts => prevProducts.map(product =>
+          product._id === response.data.payload._id ? response.data.payload : product
+        ));
+        return response.data;
+      }
+
+      return response.data;
+
+    } catch (error) {
+      const handledError = errorHandler(error)
+      return handledError;
+    }
+  };
+
   return (
-    <ProductContext.Provider value={{ products, categories, getProductById, postProduct, deleteProduct, updateProduct }}>
+    <ProductContext.Provider value={{ products, categories, getProductById, postProduct, deleteProduct, updateProduct, deleteThumbnail, updateThumbnail }}>
       {children}
     </ProductContext.Provider>
   );
