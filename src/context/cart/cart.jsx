@@ -69,7 +69,10 @@ const CartProvider = ({ children }) => {
     };
 
     const deleteAllProductsCart = () => {
-        setCart({ products: [] });
+        setCart((prevCart) => ({
+            ...prevCart,
+            products: []
+        }));
         setQuantityTotalProducts(0);
     };
 

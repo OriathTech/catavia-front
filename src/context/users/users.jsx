@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { errorHandler } from '@/utils/errorHandler';
 import axios from 'axios';
 
@@ -7,6 +7,12 @@ const UsersContext = createContext();
 
 const UsersProvider = ({ children }) => {
     const [users, setUsers] = useState([]);
+
+    useEffect(()=>{
+        console.log("CONTEXT -----> " ,users)
+
+
+    },[users])
 
     const getUsers = async () => {
         try {
@@ -33,8 +39,7 @@ const UsersProvider = ({ children }) => {
                 withCredentials: true
             });
 
-            if (response.status === 200) {
-                setUsers(response.data.payload);
+            if (response.status === 200){
                 return response.data;
             }
 
@@ -47,7 +52,8 @@ const UsersProvider = ({ children }) => {
     };
 
     const getUserById = (userId) => {
-        const user = users.find((user) => user._id === userId);
+        const copy = [...users]
+        const user = copy.find((user) => user._id === userId);
         return user || null;
     };
 
