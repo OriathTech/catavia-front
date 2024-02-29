@@ -17,7 +17,7 @@ const extraStatus = [
     { label: "Offline", value: "offline" }
 ]
 
-export default function extraDetailsAdminPage() {
+export default function ExtraDetailsAdminPage() {
     const searchParams = useSearchParams();
     const extraId = searchParams.get('id');
     const { extras, getExtraById, deleteElement, updateElement } = useContext(ElementsContext);

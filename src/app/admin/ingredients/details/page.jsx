@@ -17,7 +17,7 @@ const ingredientStatus = [
     { label: "Offline", value: "offline" }
 ]
 
-export default function ingredientDetailsAdminPage() {
+export default function IngredientDetailsAdminPage() {
     const searchParams = useSearchParams();
     const ingredientId = searchParams.get('id');
     const { ingredients, getIngredientById, deleteElement, updateElement } = useContext(ElementsContext);

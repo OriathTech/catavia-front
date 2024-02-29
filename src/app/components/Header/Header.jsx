@@ -20,12 +20,17 @@ import styles from './Header.module.css'
 export default function Header() {
     const router = useRouter()
     const { session, logout } = useContext(SessionContext);
-    const { quantityTotalProducts } = useContext(CartContext)
-    const [isLogged, setIsLogged] = useState(false)
+    const { quantityTotalProducts } = useContext(CartContext);
+    const [isLogged, setIsLogged] = useState(false);
+    const [quantity, setQuantity] = useState(0);
 
     useEffect(() => {
         session?.name ? setIsLogged(true) : setIsLogged(false)
     }, [session])
+
+    useEffect(() => {
+        setQuantity(quantityTotalProducts)
+    }, [quantityTotalProducts])
 
     const handleLogout = async () => {
         try {
@@ -97,7 +102,7 @@ export default function Header() {
                         <NavbarContent justify="start">
                             <Dropdown className={styles.dropdown}>
                                 <DropdownTrigger>
-                                    <Button className={styles.button} isIconOnly size="lg" startContent={isLogged ? <SessionIcon fill="#8cc63e"/> : <SessionIcon fill="#ef4d3c"/>}></Button>
+                                    <Button className={styles.button} isIconOnly size="lg" startContent={isLogged ? <SessionIcon fill="#8cc63e" /> : <SessionIcon fill="#ef4d3c" />}></Button>
                                 </DropdownTrigger>
                                 <DropdownMenu classNames={{
                                     base: `${styles.menuBase}`,
@@ -112,7 +117,7 @@ export default function Header() {
                     </NavbarItem>
                     <NavbarItem className="flex gap-1">
                         <Button className={styles.button} as={Link} href="/cart" isIconOnly size="lg" startContent={<CartIcon />}></Button>
-                        <span>{quantityTotalProducts}</span>
+                        <span>{quantity}</span>
                     </NavbarItem>
                 </NavbarContent>
             </Navbar>

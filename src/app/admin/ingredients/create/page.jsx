@@ -14,7 +14,7 @@ const ingredientStatus = [
     { label: "Offline", value: "offline" }
 ]
 
-export default function ingredientCreateAdminPage() {
+export default function IngredientCreateAdminPage() {
     const { postElement } = useContext(ElementsContext);
 
     // Form Inputs

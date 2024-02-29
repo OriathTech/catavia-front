@@ -15,7 +15,7 @@ const extraStatus = [
     { label: "Offline", value: "offline" }
 ]
 
-export default function extraCreateAdminPage() {
+export default function ExtraCreateAdminPage() {
     const { postElement } = useContext(ElementsContext);
 
     // Form Inputs

@@ -1,5 +1,5 @@
 export const errorHandler = (error) => {
-    if (error.response.data.status === "error") {
+    if (error.response.data) {
         return {
             status: error.response.data.status,
             message: error.response.data.message,

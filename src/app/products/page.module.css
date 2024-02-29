@@ -1,11 +1,11 @@
-.unlogin{
+.unlogin {
     background-color: red;
 }
 
 
-.containerDropdown{
-    
-    z-index: 14;    
+.containerDropdown {
+
+    z-index: 14;
 }
 
 .maxHeightDropdown {
@@ -21,26 +21,24 @@
     width: 400px;
 }
 
-.container{
+.container {
     width: 90%;
     margin: 0 auto;
     display: flex;
-    gap: 1.5rem;
     flex-wrap: wrap;
+    gap: 1.5rem;
     justify-content: center;
-    align-items:center ;
+
 }
 
-.card{
-    max-width: 100%;
-    width: 330px;
-    height: 429px;
+.card {
+    width: 264px;
+    height: 340px;
     position: relative;
     padding: 1rem;
-    
 }
 
-.label{
+.label {
     position: absolute;
     top: 2.2%;
     right: 0%;
@@ -48,32 +46,32 @@
     z-index: 15;
 }
 
-.img{
+.img {
     width: 100%;
 }
 
-.text{
+.text {
     font-family: var(--font-merri);
     font-size: var(--sizeTextMD);
     text-align: center;
 
 }
 
-.textSeccion{
+.categoryContainer {
     font-family: var(--font-merri);
     font-size: var(--sizeTextMD);
     text-align: center;
     background-color: var(--primary);
 }
 
-.textLink{
+.textLink {
     font-family: var(--font-merri);
     font-size: var(--sizeTextMD);
     text-align: center;
     padding: 1.5rem;
 }
 
-.footer{
+.footer {
     width: 100%;
     background: var(--primary);
     border-radius: 25px;
@@ -82,13 +80,13 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items:center ;
+    align-items: center;
 }
 
 
-@media only screen and (min-width:2560px){
-    
-    .container{
+@media only screen and (min-width:2560px) {
+
+    .container {
         width: 60%;
     }
 

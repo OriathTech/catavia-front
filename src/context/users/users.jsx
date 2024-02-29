@@ -83,7 +83,6 @@ const UsersProvider = ({ children }) => {
                 setUsers(prevUsers => prevUsers.map(user =>
                     user._id === response.data.payload._id ? response.data.payload : user
                 ));
-
                 return response.data;
             }
 

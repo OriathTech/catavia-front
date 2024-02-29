@@ -18,7 +18,7 @@ export default function UsersDetailsPage() {
     useEffect(() => {
         const user = getUserById(userId);
         setUser(user);
-    }, [users])
+    }, [userId])
 
     const loadTickets = async () => {
         const response = await getTickets(userId);
@@ -29,6 +29,11 @@ export default function UsersDetailsPage() {
             toast.error(response.message);
         }
     }
+
+    useEffect(() => {
+        console.log(user);
+        console.log(tickets)
+    }, [loadTickets])
 
     return (
         <div>

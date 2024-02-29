@@ -1,6 +1,7 @@
 "use client"
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { errorHandler } from '@/utils/errorHandler';
+import { getDeliveryDate } from '@/utils/getDeliveryDate';
 import axios from 'axios';
 
 const CartContext = createContext();
@@ -8,14 +9,32 @@ const CartContext = createContext();
 const CartProvider = ({ children }) => {
     const [cart, setCart] = useState({
         products: [],
-        total: 0,
         deliveryDate: null
-
     });
     const [quantityTotalProducts, setQuantityTotalProducts] = useState(0);
 
-    const addProductCart = (product, quantity) => {
-        const indexProductCart = cart.products.findIndex((p) => p._id === product._id);
+    useEffect(() => {
+        setCart((prevCart) => ({
+            ...prevCart,
+            deliveryDate: getDeliveryDate()
+        }));
+    }, []);
+
+    useEffect(() => {
+        console.log(cart)
+        setQuantityTotalProducts(cart.products.reduce((total, p) => total + p.quantity, 0));
+    }, [cart]);
+
+    const addDeliveryDate = (deliveryDate) => {
+        setCart((prevCart) => ({
+            ...prevCart,
+            deliveryDate: deliveryDate
+        }));
+    };
+
+    const addProductCart = async (product, quantity) => {
+
+        const indexProductCart = cart.products.findIndex((p) => p.productId === product._id);
 
         if (indexProductCart !== -1) {
             const updatedCart = { ...cart };
@@ -23,7 +42,7 @@ const CartProvider = ({ children }) => {
             setCart(updatedCart);
         } else {
             const productToAdd = {
-                _id: product._id,
+                productId: product._id,
                 name: product.name,
                 price: product.price,
                 quantity: quantity
@@ -38,9 +57,6 @@ const CartProvider = ({ children }) => {
                 products: [...prevCart.products, productToAdd]
             }));
         }
-
-        const totalQuantity = cart.products.reduce((total, p) => total + p.quantity, 0);
-        setQuantityTotalProducts(totalQuantity);
     };
 
     const deleteProductCart = (productId) => {
@@ -50,8 +66,6 @@ const CartProvider = ({ children }) => {
         };
 
         setCart(updatedCart);
-        const totalQuantity = updatedCart.products.reduce((total, p) => total + p.quantity, 0);
-        setQuantityTotalProducts(totalQuantity);
     };
 
     const deleteAllProductsCart = () => {
@@ -63,18 +77,17 @@ const CartProvider = ({ children }) => {
         const updatedCart = {
             ...cart,
             products: cart.products.map((product) =>
-                product._id === productId ? { ...product, quantity: newQuantity } : product
+                product.productId === productId ? { ...product, quantity: newQuantity } : product
             )
         };
 
         setCart(updatedCart);
-        const totalQuantity = updatedCart.products.reduce((total, p) => total + p.quantity, 0);
-        setQuantityTotalProducts(totalQuantity);
     };
 
-    const checkout = async () => {
+    const checkout = async (cart) => {
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/products/chekout`, { cart }, {
+            console.log(JSON.stringify(cart))
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/products/checkout`, cart, {
                 withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',
@@ -82,8 +95,10 @@ const CartProvider = ({ children }) => {
             });
 
             if (response.status === 200) {
-                setCart({ products: [] });
-                setQuantityTotalProducts(0);
+                setCart((prevCart) => ({
+                    ...prevCart,
+                    products: []
+                }));
                 return response.data;
             }
 
@@ -96,7 +111,7 @@ const CartProvider = ({ children }) => {
     };
 
     return (
-        <CartContext.Provider value={{ cart, quantityTotalProducts, addProductCart, deleteProductCart, deleteAllProductsCart, updateQuantityProduct, checkout }}>
+        <CartContext.Provider value={{ cart, quantityTotalProducts, addProductCart, deleteProductCart, deleteAllProductsCart, updateQuantityProduct, checkout, addDeliveryDate }}>
             {children}
         </CartContext.Provider>
     );

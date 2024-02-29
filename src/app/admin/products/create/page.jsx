@@ -34,7 +34,7 @@ const productStatus = [
     { label: "Featured", value: "featured" },
 ]
 
-export default function productCreateAdminPage() {
+export default function ProductCreateAdminPage() {
     const { postProduct } = useContext(ProductContext);
     const { ingredients, extras } = useContext(ElementsContext);
 

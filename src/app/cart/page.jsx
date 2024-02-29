@@ -1,11 +1,13 @@
 "use client"
 import { useContext, useState } from "react";
 import { CartContext } from "@/context/cart/cart";
+import { getDeliveryDate } from "@/utils/getDeliveryDate";
 
 import Link from "next/link";
 
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
+import { Toaster, toast } from "sonner";
 
 import { ArrowLeftIcon } from "@/app/components/icons/ArrowLeftIcon/ArrowLeftIcon";
 import { ArrowRightIcon } from "@/app/components/icons/ArrowRightIcon/ArrowRightIcon";
@@ -15,11 +17,11 @@ import styles from "./page.module.css"
 
 
 export default function Cart() {
-  const { cart, deleteProductCart, deleteAllProductsCart, updateQuantityProduct, checkout } = useContext(CartContext);
-  const [deliveryDate, setDeliveryDate] = useState("2024-02-28")
+  const { cart, deleteProductCart, deleteAllProductsCart, updateQuantityProduct, addDeliveryDate, checkout } = useContext(CartContext);
+  const deliveryDate = getDeliveryDate()
 
   const calculateTotalPrice = (item) => {
-    return (cart.products.find(product => product._id === item._id)?.quantity || 0) * item.price;
+    return (cart.products.find(product => product.productId === item.productId)?.quantity || 0) * item.price;
   };
 
   const calculateTotal = () => {
@@ -31,13 +33,28 @@ export default function Cart() {
   };
 
   const handleUpdateQuantity = (productId, newQuantity) => {
+    console.log("aca Llego")
     if (newQuantity >= 1 && newQuantity <= 100) {
       updateQuantityProduct(productId, newQuantity);
     }
   };
 
+  const handleCheckout = async () => {
+    if (deliveryDate > cart.deliveryDate) {
+      return toast.error("Ingrese una Fecha de Entrega válida. Recuerde que el mimino es 3 días a partir de la fecha actual.");
+    }
+
+    const response = await checkout(cart)
+    if (response.payload) {
+      console.log(JSON.stringify(response.payload))
+    } else {
+      return toast.error(response.message);
+    }
+  }
+
   return (
     <div className={`${styles.container} container mx-auto my-14 p-4`}>
+      <Toaster position="top-right"  richColors/>
       <h1 className={styles.title}>Carrito de compras</h1>
       <div className="grid place-content-center">
         {cart.products.length === 0 ? (
@@ -62,54 +79,48 @@ export default function Cart() {
               </thead>
               <tbody>
                 {cart.products.map(item => (
-                  <tr key={item._id} className={`${styles.text} ${styles.tr} border-b text-center`}>
+                  <tr key={item.productId} className={`${styles.text} ${styles.tr} border-b text-center`}>
                     <td className="py-2 px-4"><img src={item.thumbnail ? item.thumbnail : "/defaultProduct.png"} alt="Producto" className={`${styles.img} h-20 w-20 rounded-lg object-cover mx-auto`} /></td>
                     <td className="py-2 px-4">{item.name}</td>
                     <td className="py-2 px-4">${item.price}</td>
-                    <td className="py-2 px-4">
-                      <div className={`${styles.containerInput} flex h-full place-content-around justify-evenly items-center`}>
-                        <Button className={styles.arrowBtn} isIconOnly startContent={<ArrowRightIcon />} onClick={() => handleUpdateQuantity(item._id, item.quantity - 1)} />
-                        <input
-                          type="number"
-                          value={item.quantity}
-                          onChange={(e) => handleUpdateQuantity(item._id, parseInt(e.target.value))}
-                          min="1"
-                          max="100"
-                          inputMode="numeric"
-                          className={`w-16 rounded-lg text-center ${styles.input}`}
-                        />
-                        <Button className={styles.arrowBtn} isIconOnly startContent={<ArrowLeftIcon />} onClick={() => handleUpdateQuantity(item._id, item.quantity + 1)} />
-                      </div>
+                    <td className="py-2 px-4 flex">
+                      <Button className={styles.arrowBtn} isIconOnly startContent={<ArrowRightIcon />} onClick={() => handleUpdateQuantity(item.productId, item.quantity - 1)} />
+                      <input
+                        type="number"
+                        value={item.quantity}
+                        onChange={(e) => handleUpdateQuantity(item.productId, parseInt(e.target.value))}
+                        min="1"
+                        max="100"
+                        inputMode="numeric"
+                        className={`w-16 rounded-lg text-center ${styles.input}`}
+                      />
+                      <Button className={styles.arrowBtn} isIconOnly startContent={<ArrowLeftIcon />} onClick={() => handleUpdateQuantity(item.productId, item.quantity + 1)} />
                     </td>
                     <td className="py-2 px-4">${calculateTotalPrice(item)}</td>
-                    <td className="py-2 px-4"><Button className={`${styles.text} ${styles.btn} p-2 bg-red-500 text-white`} onClick={() => deleteProductCart(item._id)} radius="full" isIconOnly> <DeleteIcon />  </Button></td>
+                    <td className="py-2 px-4"><Button className={`${styles.text} ${styles.btn} p-2 bg-red-500 text-white`} onClick={() => deleteProductCart(item.productId)} radius="full" isIconOnly> <DeleteIcon />  </Button></td>
                   </tr>
                 ))}
               </tbody>
-
-              <tbody>
-                <tr className="text-center">
-                  <Input
-                    isRequired={true}
-                    placeholder="Fecha de Entrega"
-                    type="date"
-                    variant={"flat"}
-                    min={"2024-02-28"}
-                    label="Fecha De Nacimiento"
-                    onValueChange={setDeliveryDate}
-                  />
-
-                  <td className="py-2 px-auto md:px-4">
-                    <Button className={`${styles.text} ${styles.btn} p-2 bg-red-500 text-white`} onClick={deleteAllProductsCart} radius="full"> <DeleteIcon /> Eliminar </Button>
-                  </td>
-                  <td colSpan="3"></td>
-                  <td className={`${styles.text} py-2 px-auto md:px-4`}> Total: ${calculateTotal()}</td>
-                  <td className="py-2 px-auto md:px-4">
-                    <Button className={`${styles.text} ${styles.btn} p-2 text-white`} radius="full" color="success"> Comprar </Button>
-                  </td>
-                </tr>
-              </tbody>
             </table>
+
+            <div className="flex">
+              <Input
+                isRequired={true}
+                placeholder={deliveryDate}
+                type="date"
+                variant={"flat"}
+                min={deliveryDate}
+                label="Fecha de Entrega"
+                defaultValue={cart.deliveryDate}
+                onValueChange={(value) => addDeliveryDate(value)}
+              />
+
+              <Button className={`${styles.text} ${styles.btn} p-2 bg-red-500 text-white`} onClick={deleteAllProductsCart} radius="full"> <DeleteIcon /> Eliminar </Button>
+
+              <span className={`${styles.text} py-2 px-auto md:px-4`}> Total: ${calculateTotal()}</span>
+
+              <Button className={`${styles.text} ${styles.btn} p-2 text-white`} onClick={handleCheckout} radius="full" color="success"> Comprar </Button>
+            </div>
           </div>
         )}
       </div>

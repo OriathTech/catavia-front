@@ -36,7 +36,7 @@ const productStatus = [
     { label: "Featured", value: "featured" },
 ]
 
-export default function productDetailsAdminPage() {
+export default function ProductDetailsAdminPage() {
     const searchParams = useSearchParams();
     const productId = searchParams.get('id');
     const { products, getProductById, deleteProduct, updateProduct } = useContext(ProductContext);
