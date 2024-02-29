@@ -6,6 +6,7 @@ import { SessionContext } from "@/context/session/session";
 import Link from "next/link"
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
+import { Toaster, toast } from "sonner";
 
 import { EyeFilledIcon } from "@/app/components/icons/EyeFilledIcon/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "@/app/components/icons/EyeSlashFilledIcon/EyeSlashFilledIcon";
@@ -37,7 +38,10 @@ export default function RegisterPage() {
 
     const response = await register(info)
     if (response.status === "success") {
+      toast.success(response.message)
       router.push("/products")
+    } else {
+      toast.error(response.message)
     }
   }
 
@@ -49,6 +53,7 @@ export default function RegisterPage() {
 
   return (
     <div className={`container mx-auto my-20 p-4 ${styles.container}`} >
+      <Toaster position="top-right" richColors />
       <div className={`grid place-items-center  ${styles.container1}`}>
         <p className={styles.title}>
           Crear Cuenta
