@@ -24,11 +24,7 @@ export default function UsersDetailsPage() {
     useEffect(() => {
         const user = getUserById(userId);
         setUser(user);
-<<<<<<< HEAD
-    }, [userId])
-=======
     }, [userId ])
->>>>>>> 0f821caa099da5b2f9de737a425c5a0306957173
 
     const loadTickets = async () => {
         const user = getUserById(userId);
@@ -43,18 +39,6 @@ export default function UsersDetailsPage() {
     }
 
     useEffect(() => {
-<<<<<<< HEAD
-        console.log(user);
-        console.log(tickets)
-    }, [loadTickets])
-
-    return (
-        <div>
-            <Toaster position="top-right" richColors />
-            <div>
-                INFO USUARIO
-            </div>
-=======
         console.log("user ------------", user);
         console.log("tickets----------", tickets);    
     }, [user, tickets])
@@ -196,7 +180,5 @@ export default function UsersDetailsPage() {
                 </div>
             )}
         </>
->>>>>>> 0f821caa099da5b2f9de737a425c5a0306957173
-
     );
 }
