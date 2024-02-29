@@ -82,7 +82,7 @@ export default function ProductDetailsPage() {
             <div className={`grid mb-2 grid-cols-12 gap-2 ${styles.conteinerTarjeta}`}>
                 <div className={`lg:col-span-5 lg:row-span-3 row-span-1 col-span-12 ${styles.conteinerImg}`}>
 
-                    <div className={`${styles.slider_container} `}>
+                    <div className={`${styles.conteinerImg} h-0 `}>
                         <div className={`${styles.conteinerImg} `}>
                             <>
                                 {domLoaded && (

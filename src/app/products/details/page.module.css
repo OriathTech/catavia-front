@@ -6,7 +6,7 @@
 
 .conteinerImg{
     border-radius: 15px;
-    box-shadow: 0 1px 5px var(--blackTransparency)
+
 }
 
 /*carruse */
@@ -89,7 +89,7 @@
 @media only screen and (min-width:2560px){
 
     .conteinerImg{
-        height: 24rem;
+        height: auto;
     }
 
     .name{
@@ -109,7 +109,7 @@
 @media only screen and (min-width:1024px){
 
     .conteinerImg{
-        height: 24rem;
+        height: auto;
     }
     
     .name{
@@ -148,7 +148,8 @@
     }
     
     .conteinerImg{
-        height: 24rem;
+        height: auto;
+        display: block;
     }
     
     .name{

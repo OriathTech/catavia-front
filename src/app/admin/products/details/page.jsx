@@ -321,7 +321,7 @@ export default function ProductDetailsAdminPage() {
                             Guardar Cambios
                         </Button>
                     </div>
-                        <UploadImg/>
+                        <UploadImg item={product} />
                 </div>
             )}
         </>
