@@ -1,6 +1,8 @@
 "use client"
 import { createContext, useState, useEffect } from 'react';
+import { errorHandler } from '@/utils/errorHandler';
 import axios from 'axios';
+
 
 const ProductContext = createContext();
 
@@ -123,9 +125,10 @@ const ProductProvider = ({ children }) => {
     }
   };
 
-  const updateThumbnail = async (productId, position, url) => {
+  const updateThumbnail = async (productId, position, data) => {
     try {
-      const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}/thumbnail/${position}`, url, {
+      console.log("---.--.-.-.---",productId, position, data);
+      const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}/thumbnail/${position}`, data, {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json'
