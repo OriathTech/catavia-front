@@ -12,6 +12,7 @@ import { CircularProgress } from "@nextui-org/progress";
 
 import ElementDropdown from '../components/ElementDropdown/ElementDropdown';
 import ElementTable from '../components/ElementTable/ElementTable';
+import UploadImg from '../components/UploadImg/UploadImg';
 
 import styles from "./page.module.css"
 
@@ -320,6 +321,7 @@ export default function productDetailsAdminPage() {
                             Guardar Cambios
                         </Button>
                     </div>
+                        <UploadImg/>
                 </div>
             )}
         </>
