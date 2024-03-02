@@ -15,6 +15,20 @@ export default function UploadImg({item}) {
   const {updateThumbnail, deleteThumbnail} = useContext(ProductContext)
 
   const [showPicker, setShowPicker] = useState({state:false, position:"first"});
+
+  const handleDeleteThumbnail = async (productId, position) => {
+    try {
+      const response = await deleteThumbnail(productId, position);
+      if (response.status === "success") {
+        toast.success(response.message);
+      } else {
+        toast.error(response.message);
+      }
+    } catch (error) {
+      toast.error("Error en el servidor. Intente mas tarde")
+    }
+  }
+
   return (
     <div className={`container mx-auto my-4 p-4`}>
       <Toaster position="top-right" richColors />
@@ -29,7 +43,7 @@ export default function UploadImg({item}) {
             <img src={item.thumbnails?.first.url ? item.thumbnails.first.url : "/defaultProduct.png"} alt="Imagen 1" className="mb-2" />
           </div>
           <div className="flex justify-around">
-            <Button className='px-4 py-2' color="warning">
+            <Button className='px-4 py-2' color="warning" onClick={() => handleDeleteThumbnail(item._id, "first")}>
               Borrar
             </Button>
 
@@ -51,6 +65,7 @@ export default function UploadImg({item}) {
 
                   }}
                   onUploadDone={async (res) => {
+                    console.log(res);
                     const url = JSON.stringify(res.filesUploaded[0].url)
                     const response = await updateThumbnail(item._id, showPicker.position ,{url:url});
                     if (response.status==="success"){
@@ -83,7 +98,7 @@ export default function UploadImg({item}) {
             <img src={item.thumbnails?.second.url ? item.thumbnails.second.url : "/defaultProduct.png"} alt="Imagen 2" className="mb-2" />
           </div>
           <div className="flex justify-around">
-            <Button className='px-4 py-2' color="warning">
+            <Button className='px-4 py-2' color="warning" onClick={() => handleDeleteThumbnail(item._id, "second")}>
               Borrar
             </Button>
 
@@ -100,7 +115,7 @@ export default function UploadImg({item}) {
             <img src={item.thumbnails?.third.url ? item.thumbnails.third.url : "/defaultProduct.png"} alt="Imagen 3" className="mb-2" />
           </div>
           <div className="flex justify-around">
-            <Button className='px-4 py-2' color="warning">
+            <Button className='px-4 py-2' color="warning" onClick={() => handleDeleteThumbnail(item._id, "third")}>
               Borrar
             </Button>
 

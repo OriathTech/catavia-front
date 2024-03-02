@@ -1,5 +1,7 @@
 "use client"
-import { useContext, useState } from "react";
+
+import { useContext } from "react";
+import { useRouter } from "next/navigation";
 import { CartContext } from "@/context/cart/cart";
 import { getDeliveryDate } from "@/utils/getDeliveryDate";
 
@@ -13,12 +15,16 @@ import { ArrowLeftIcon } from "@/app/components/icons/ArrowLeftIcon/ArrowLeftIco
 import { ArrowRightIcon } from "@/app/components/icons/ArrowRightIcon/ArrowRightIcon";
 import { DeleteIcon } from "@/app/admin/components/icons/DeleteIcon/DeleteIcon";
 
+
+import { generateLinkWathsapp } from "@/utils/generateLinkWathsapp";
+
 import styles from "./page.module.css"
 
 
 export default function Cart() {
   const { cart, deleteProductCart, deleteAllProductsCart, updateQuantityProduct, addDeliveryDate, checkout } = useContext(CartContext);
   const deliveryDate = getDeliveryDate()
+  const router = useRouter()
 
   const calculateTotalPrice = (item) => {
     return (cart.products.find(product => product.productId === item.productId)?.quantity || 0) * item.price;
@@ -40,21 +46,27 @@ export default function Cart() {
   };
 
   const handleCheckout = async () => {
+
     if (deliveryDate > cart.deliveryDate) {
       return toast.error("Ingrese una Fecha de Entrega válida. Recuerde que el mimino es 3 días a partir de la fecha actual.");
     }
-
-    const response = await checkout(cart)
-    if (response.payload) {
-      console.log(JSON.stringify(response.payload))
-    } else {
-      return toast.error(response.message);
+    
+    try {
+      const response = await checkout(cart)
+      if (response.payload) {
+        const message = generateLinkWathsapp(response.payload)
+        window.open(message, "_blank");
+      } else {
+        return toast.error(response.message);
+      }
+    } catch (error) {
+      toast.error("Error en el servidor. Intente mas tarde")
     }
   }
 
   return (
     <div className={`${styles.container} container mx-auto my-14 p-4`}>
-      <Toaster position="top-right"  richColors/>
+      <Toaster position="top-right" richColors />
       <h1 className={styles.title}>Carrito de compras</h1>
       <div className="grid place-content-center">
         {cart.products.length === 0 ? (
