@@ -95,10 +95,17 @@
 
 }
 
-@media only screen and (min-width:900px){
+@media only screen and (min-width:700px){
 
     .container{
-        width: 40%;
+        width: 60%;
+    }
+}
+
+@media only screen and (min-width:1000px){
+
+    .container{
+        width: 50%;
     }
     
     .container2{
@@ -118,7 +125,7 @@
     }
 }
 
-@media only screen and (min-width:2500px){
+@media only screen and (min-width:2000px){
     .container{
         width: 20%;
     }

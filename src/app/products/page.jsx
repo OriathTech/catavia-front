@@ -26,10 +26,12 @@ export default function ProductsPage() {
 
 
     useEffect(() => {
+        const filteredProducts = products.filter(product => product.status !== "offline");
+
         if (selectedCategory.value !== "todos") {
-            filtrarPorCategoria(selectedCategory.value);
+            filtrarPorCategoria(selectedCategory.value, filteredProducts);
         } else {
-            setFiltrados(products);
+            setFiltrados(filteredProducts);
         }
     }, [selectedCategory, products]);
 
@@ -42,11 +44,11 @@ export default function ProductsPage() {
         return filtrados.slice(start, end);
     }, [page, filtrados]);
 
-    const filtrarPorCategoria = (categoria) => {
-        const productosFiltrados = products.filter(producto => {
+    const filtrarPorCategoria = (categoria, array ) => {
+        const filteredProducts = array.filter(producto => {
             return producto.category.includes(categoria);
         });
-        setFiltrados(productosFiltrados);
+        setFiltrados(filteredProducts);
     };
 
     const selectedValue = useMemo(

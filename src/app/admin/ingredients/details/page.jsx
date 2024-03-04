@@ -46,7 +46,7 @@ export default function IngredientDetailsAdminPage() {
     }, [ingredients]);
 
     const handleSubmit = async () => {
-        if (!inputName || !inputPrice || !Array.from(inputStatus)[0] ) {
+        if (!inputName || !inputPrice || !Array.from(inputStatus)[0]) {
             return toast.error("Hay campos incompletos.")
         }
 
@@ -163,8 +163,21 @@ export default function IngredientDetailsAdminPage() {
 
                     <div className='flex justify-around flex-col md:flex-row gap-6 md:items-end p-5'>
 
-                        <Button className={styles.input} color="danger" variant="solid" onClick={() => handleDeleteIngredient()}>
-                            Borrar Ingrediente
+                        <Button
+                            onClick={() => {
+                                toast.warning(`Estas seguro? Se eliminara el ingrediente: ${ingredient.name}`, {
+                                    action: {
+                                        label: 'Eliminar',
+                                        onClick: () => handleDeleteIngredient()
+                                    },
+                                    cancel: {
+                                        label: 'Cancelar',
+                                        onClick: () => console.log('Cancel!')
+                                    },
+                                    duration: 10000
+                                })
+                            }} color="danger" variant="solid" className={styles.input}>
+                            Eliminar Ingrediente
                         </Button>
 
                         <Button className={styles.input} color="primary" variant="solid" onClick={() => handleSubmit()}>

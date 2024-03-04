@@ -26,6 +26,10 @@ export default function IngredientCreateAdminPage() {
     const [inputPrice, setInputPrice] = useState(0);
 
     const handleSubmit = async () => {
+        if (!inputName || !inputPrice || !Array.from(inputStatus)[0] ) {
+            return toast.error("Hay campos incompletos.")
+        }
+
         const info = {
             name: inputName,
             category: "ingredient",

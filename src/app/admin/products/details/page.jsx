@@ -62,7 +62,6 @@ export default function ProductDetailsAdminPage() {
     useEffect(() => {
         if (productId) {
             const product = getProductById(productId);
-            console.log(product)
             if (product) {
                 setProduct(product);
                 setInputName(product.name);
@@ -206,7 +205,7 @@ export default function ProductDetailsAdminPage() {
             name: extra.name,
             price: extra.price,
             category: extra.category,
-            quantity: 2,
+            quantity: 1,
             total: extra.price
         };
 
@@ -321,8 +320,21 @@ export default function ProductDetailsAdminPage() {
                             </div>
 
                             <div className='flex justify-around flex-col md:flex-row gap-6 md:items-end p-5'>
-                                <Button className={styles.input} color="danger" variant="solid" onClick={() => handleDeleteProduct()}>
-                                    Borrar
+                                <Button
+                                    onClick={() => {
+                                        toast.warning(`Estas seguro? Se eliminara el producto: ${product.name}`, {
+                                            action: {
+                                                label: 'Eliminar',
+                                                onClick: () => handleDeleteProduct()
+                                            },
+                                            cancel: {
+                                                label: 'Cancelar',
+                                                onClick: () => console.log('Cancel!')
+                                            },
+                                            duration: 10000
+                                        })
+                                    }} size="sm" color="danger" variant="solid" className={styles.input}>
+                                    Eliminar Producto
                                 </Button>
 
                                 <Input

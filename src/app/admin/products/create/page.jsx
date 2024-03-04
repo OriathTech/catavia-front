@@ -92,10 +92,14 @@ export default function ProductCreateAdminPage() {
     }
 
     const updateQuantityIngredient = (newQuantity, item) => {
+        let quantity = newQuantity
+        if (isNaN(newQuantity) || newQuantity === 0) {
+            quantity = 1
+        }
         const updatedArray = inputIngredients.map((ingredient) => {
             if (ingredient._id === item._id) {
-                const newTotal = newQuantity * ingredient.price;
-                return { ...ingredient, quantity: newQuantity, total: newTotal };
+                const newTotal = quantity * ingredient.price;
+                return { ...ingredient, quantity: quantity, total: newTotal };
             } else {
                 return ingredient;
             }
@@ -105,10 +109,14 @@ export default function ProductCreateAdminPage() {
     };
 
     const updateQuantityExtra = (newQuantity, item) => {
+        let quantity = newQuantity
+        if (isNaN(newQuantity) || newQuantity === 0) {
+            quantity = 1
+        }
         const updatedArray = inputExtras.map((extra) => {
             if (extra._id === item._id) {
-                const newTotal = newQuantity * extra.price;
-                return { ...extra, quantity: newQuantity, total: newTotal };
+                const newTotal = quantity * extra.price;
+                return { ...extra, quantity: quantity, total: newTotal };
             } else {
                 return extra;
             }
@@ -121,14 +129,12 @@ export default function ProductCreateAdminPage() {
 
         const ingredientIndex = inputIngredients.findIndex((i) => i._id === ingredient._id);
 
-        console.log(ingredients)
-
         if (ingredientIndex !== -1) {
             return
         };
 
         const ingredientToAdd = {
-            id: ingredient._id,
+            _id: ingredient._id,
             name: ingredient.name,
             price: ingredient.price,
             category: ingredient.category,
@@ -137,20 +143,17 @@ export default function ProductCreateAdminPage() {
         };
 
         setInputIngredients((prev) => ([...prev, ingredientToAdd]));
-        console.log(inputIngredients)
     }
 
     const addExtra = (extra) => {
         const extraIndex = inputExtras.findIndex((i) => i._id === extra._id);
-
-        console.log(extras)
 
         if (extraIndex !== -1) {
             return
         };
 
         const extraToAdd = {
-            id: extra._id,
+            _id: extra._id,
             name: extra.name,
             price: extra.price,
             category: extra.category,
@@ -159,7 +162,6 @@ export default function ProductCreateAdminPage() {
         };
 
         setInputExtras((prev) => ([...prev, extraToAdd]));
-        console.log(inputExtras)
     }
 
     const deleteIngredient = (id) => {

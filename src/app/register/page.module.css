@@ -156,6 +156,14 @@
 
 }
 
+@media only screen and (min-width:700px){
+
+    .container{
+        width: 60%;
+    }
+
+}
+
 @media only screen and (min-width:1024px){
 
     .container{
@@ -219,7 +227,7 @@
 
 }
 
-@media only screen and (min-width:2500px){
+@media only screen and (min-width:2000px){
     .container{
         width: 20%;
     }
