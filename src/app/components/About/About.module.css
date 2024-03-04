@@ -12,7 +12,7 @@
 
 .container h2 {
     color: var(--textSub);
-    font-family: var(--familyBannerSub);
+    font-family: var(--familyTitle);
     font-weight: var(--weightBold);
     margin: 3rem auto 2rem auto;
 }
@@ -31,7 +31,7 @@
 
 @media only screen and (min-width:1px) {
     .container h2 {
-        font-size: var(--sizeSubSM);
+        font-size: var(--sizeTitleSM);
         margin: 2rem auto 1rem auto;
         
     }
@@ -46,9 +46,9 @@
     }
 }
 
-@media only screen and (min-width:1024px) {
+@media only screen and (min-width:1000px) {
     .container h2 {
-        font-size: var(--sizeSubMD);
+        font-size: var(--sizeTitleMD);
         margin: 3rem auto 2rem auto;
         
     }
@@ -71,9 +71,9 @@
     }
 }
 
-@media only screen and (min-width:2560px) {
+@media only screen and (min-width:2500px) {
     .container h2 {
-        font-size: var(--sizeSubLG);
+        font-size: var(--sizeTitleLG);
         margin: 3rem auto 2rem auto;
         
     }

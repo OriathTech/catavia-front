@@ -80,7 +80,7 @@ export default function ProductDetailsPage() {
     return (
         <div className={`container mx-auto my-10 p-7 border-4 ${styles.conteiner}`} >
             <div className={`grid mb-2 grid-cols-12 gap-2 ${styles.conteinerTarjeta}`}>
-                <div className={`lg:col-span-5 lg:row-span-3 row-span-1 col-span-12 ${styles.conteinerImg}`}>
+                <div className={`lg:col-span-5  row-span-4 col-span-12 ${styles.conteinerImg}`}>
 
                     <div className={`${styles.conteinerImg} h-0 `}>
                         <div className={`${styles.conteinerImg} `}>

@@ -13,8 +13,8 @@
 }
 
 .title{
-    font-family: var(--familyBannerSub);
-    font-weight:var(--weightBold) ;
+    font-family: var(--familyTitle);
+    font-weight:var(--weightSemi) ;
     margin: 1rem 0rem 2rem 0rem; 
 }
 

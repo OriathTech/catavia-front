@@ -19,24 +19,20 @@ export default function ContactPage() {
 
             <div className={`grid place-items-center  `}>
             <p className={`${styles.title} `}>
-            ¡Qué alegría verte por aquí!
+            Contacto
             </p>
         </div>
 
             <div className={`flex flex-col justify-evenly items-center gap-8 `} >
 
                 <p className={styles.text}>
-                Si estás pensando en deleitarte con mis deliciosos productos, ¡has llegado al lugar indicado!
-                </p>
-
-                <p className={styles.text}>
-                Estoy aquí para ayudarte en lo que necesites. Si tienes consultas sobre nuestros productos, 
+                Estoy aquí para ayudarte en lo que necesites. Si tenes consultas sobre nuestros productos, 
                 el estado de tus pedidos o cualquier otra consulta, no dudes en ponerte en contacto conmigo. 
                 Estaré encantada de resolver cualquier duda que tengas. 
                 </p>
 
                 <p className={styles.text}>
-                    ¡Contáctame a través de los enlaces que encontrarás aqui abajo!
+                    Contáctame a través de los siguientes enlaces.
                 </p>
             </div>
 

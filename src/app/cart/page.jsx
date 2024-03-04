@@ -77,6 +77,7 @@ export default function Cart() {
             </Button>
           </div>
         ) : (
+          <>
           <div className="overflow-x-auto">
             <table className={`${styles.table}`}>
               <thead className={`${styles.tableHead}`}>
@@ -114,26 +115,28 @@ export default function Cart() {
                 ))}
               </tbody>
             </table>
-
-            <div className="flex">
+          </div>
+          <div className="flex justify-center flex-wrap items-center md:justify-end md:gap-4">
               <Input
                 isRequired={true}
                 placeholder={deliveryDate}
                 type="date"
                 variant={"flat"}
+                className={`${styles.btn} w-auto my-3`}
                 min={deliveryDate}
                 label="Fecha de Entrega"
                 defaultValue={cart.deliveryDate}
                 onValueChange={(value) => addDeliveryDate(value)}
               />
+              <div className="flex justify-center items-center my-3" >
+                <Button className={`${styles.text} ${styles.btn}  bg-red-500 text-white`} onClick={deleteAllProductsCart} radius="full"> <DeleteIcon /> Eliminar </Button>
 
-              <Button className={`${styles.text} ${styles.btn} p-2 bg-red-500 text-white`} onClick={deleteAllProductsCart} radius="full"> <DeleteIcon /> Eliminar </Button>
+                <span className={`${styles.text} px-2 md:px-4`}> Total: ${calculateTotal()}</span>
 
-              <span className={`${styles.text} py-2 px-auto md:px-4`}> Total: ${calculateTotal()}</span>
-
-              <Button className={`${styles.text} ${styles.btn} p-2 text-white`} onClick={handleCheckout} radius="full" color="success"> Comprar </Button>
+                <Button className={`${styles.text} ${styles.btn} text-white`} onClick={handleCheckout} radius="full" color="success"> Comprar </Button>
+              </div>
             </div>
-          </div>
+          </>
         )}
       </div>
     </div>
