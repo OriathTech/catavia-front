@@ -5,7 +5,7 @@ export default function AdminLayout({ children }) {
     return (
         <main className={styles.main}>
             <AdminNavbar />
-            <div className="w-4/5 lg:w-3/5 xl:w-8/12 mx-auto mt-4 mb-8">
+            <div className={`${styles.container} w-4/5 lg:w-3/5 xl:w-8/12 mx-auto mt-4 mb-8`}>
                 {children}
             </div>
         </main>

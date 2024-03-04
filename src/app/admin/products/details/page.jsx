@@ -1,14 +1,17 @@
 "use client"
 import { useSearchParams } from 'next/navigation';
 import { useContext, useState, useEffect } from "react"
+import { useRouter } from 'next/navigation';
 
 import { ProductContext } from "@/context/products/products"
 import { ElementsContext } from '@/context/elements/elements';
+import { SessionContext } from '@/context/session/session';
 
 import { Input, Textarea } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Button } from '@nextui-org/button';
 import { CircularProgress } from "@nextui-org/progress";
+import { Toaster, toast } from 'sonner';
 
 import ElementDropdown from '../components/ElementDropdown/ElementDropdown';
 import ElementTable from '../components/ElementTable/ElementTable';
@@ -38,10 +41,12 @@ const productStatus = [
 ]
 
 export default function ProductDetailsAdminPage() {
+    const router = useRouter()
     const searchParams = useSearchParams();
     const productId = searchParams.get('id');
     const { products, getProductById, deleteProduct, updateProduct } = useContext(ProductContext);
     const { ingredients, extras } = useContext(ElementsContext);
+    const { session } = useContext(SessionContext);
 
     const [product, setProduct] = useState(null);
 
@@ -52,12 +57,6 @@ export default function ProductDetailsAdminPage() {
     const [inputStatus, setInputStatus] = useState([]);
     const [inputIngredients, setInputIngredients] = useState([]);
     const [inputExtras, setInputExtras] = useState([]);
-
-    //Thumbnails
-    const [inputFirst, setFirst] = useState(null);
-    const [inputSecond, setSecond] = useState(null);
-    const [inputThird, setThird] = useState(null);
-
     const [totalPrice, setTotalPrice] = useState(0)
 
     useEffect(() => {
@@ -70,9 +69,6 @@ export default function ProductDetailsAdminPage() {
                 setInputDescription(product.description);
                 setInputCategory(product.category);
                 setInputStatus([product.status]);
-                setFirst(product.thumbnails.first.url)
-                setSecond(product.thumbnails.second.url)
-                setThird(product.thumbnails.third.url)
 
                 const elements = product.elements.map((element) => {
                     const total = element.quantity * element.price;
@@ -99,7 +95,6 @@ export default function ProductDetailsAdminPage() {
     }, [inputIngredients, inputExtras]);
 
     const handleSubmit = async () => {
-
         const allElements = [...inputIngredients, ...inputExtras];
 
         const elements = allElements.map(element => {
@@ -115,27 +110,45 @@ export default function ProductDetailsAdminPage() {
             elements: elements
         }
 
-        const response = await updateProduct(productId, info);
-        if (response.status === "success") {
-            console.log("El producto ha sido actualizado")
-            //Manejar resultado: success quedar en pagina pero avisar al admin
-            //error: mostrar mensaje de error
+        try {
+            const response = await updateProduct(productId, info);
+            if (response.status === "success") {
+                toast.success(response.message)
+                router.push("")
+            } else {
+                toast.error(response.message)
+            }
+
+        } catch (error) {
+            toast.error("Hubo un problema en el servidor. Intente mas tarde.")
         }
     }
 
     const handleDeleteProduct = async () => {
-        const response = await deleteProduct(productId)
-        if (response.status === "success") {
-            //Manejar que verga hacer
+        try {
+            const response = await deleteProduct(productId)
+            if (response.status === "success") {
+                toast.success(response.message)
+                router.push("/admin/products")
+            } else {
+                toast.error(response.message)
+            }
+
+        } catch (error) {
+            toast.error("Hubo un problema en el servidor. Intente mas tarde")
         }
     }
 
 
     const updateQuantityIngredient = (newQuantity, item) => {
+        let quantity = newQuantity
+        if (isNaN(newQuantity) || newQuantity === 0) {
+            quantity = 1
+        }
         const updatedArray = inputIngredients.map((ingredient) => {
             if (ingredient._id === item._id) {
-                const newTotal = newQuantity * ingredient.price;
-                return { ...ingredient, quantity: newQuantity, total: newTotal };
+                const newTotal = quantity * ingredient.price;
+                return { ...ingredient, quantity: quantity, total: newTotal };
             } else {
                 return ingredient;
             }
@@ -145,10 +158,14 @@ export default function ProductDetailsAdminPage() {
     };
 
     const updateQuantityExtra = (newQuantity, item) => {
+        let quantity = newQuantity
+        if (isNaN(newQuantity) || newQuantity === 0) {
+            quantity = 1
+        }
         const updatedArray = inputExtras.map((extra) => {
             if (extra._id === item._id) {
-                const newTotal = newQuantity * extra.price;
-                return { ...extra, quantity: newQuantity, total: newTotal };
+                const newTotal = quantity * extra.price;
+                return { ...extra, quantity: quantity, total: newTotal };
             } else {
                 return extra;
             }
@@ -206,13 +223,14 @@ export default function ProductDetailsAdminPage() {
 
     return (
         <>
+            <Toaster position="top-right" richColors />
             {!product ? (
                 <div className={`grid place-items-center ${styles.containerLoading}`}>
                     <CircularProgress color="primary" size="lg" aria-label="Buscando Producto..." label="Buscando Producto..." />
                 </div>
             ) : (
-                <div className={`container mx-auto my-4 p-4 ${styles.conteiner}`} >
-                    <h1 className={`p-5 ${styles.text}`}>Modificar Producto</h1>
+                <div className={`container mx-auto my-4 p-4`} >
+                    <h1 className={`p-5 ${styles.title}`}>Modificar Producto</h1>
 
                     <div className={`flex flex-col md:flex-row justify-around gap-4 p-5`}>
                         <div className={`flex flex-col gap-8 ${styles.containerInputs}`}>
@@ -281,47 +299,55 @@ export default function ProductDetailsAdminPage() {
                         </div>
                     </div>
 
-                    <div className={`flex flex-col xl:flex-row justify-around gap-4 p-5`}>
-                        <div className={`flex flex-col gap-4 ${styles.containerInputs} my-4`}>
-                            <div className={`flex flex-row items-center`}>
-                                <h2 className='ml-3 mr-8'>Ingredientes</h2>
-                                <ElementDropdown items={ingredients} addElement={addIngredient}/>
+
+                    {session?.role === "admin" ? (
+                        <>
+                            <div className={`flex flex-col xl:flex-row justify-around gap-4 p-5`}>
+                                <div className={`flex flex-col gap-4 ${styles.containerInputs} my-4`}>
+                                    <div className={`flex flex-row items-center`}>
+                                        <h2 className='ml-3 mr-8'>Ingredientes</h2>
+                                        <ElementDropdown items={ingredients} addElement={addIngredient} />
+                                    </div>
+                                    <ElementTable items={inputIngredients} updateQuantity={updateQuantityIngredient} deleteElement={deleteIngredient} />
+                                </div>
+
+                                <div className={`flex flex-col gap-4 ${styles.containerInputs} my-4`}>
+                                    <div className={`flex flex-row items-center`}>
+                                        <h2 className='ml-3 mr-8'>Extras</h2>
+                                        <ElementDropdown items={extras} addElement={addExtra} />
+                                    </div>
+                                    <ElementTable items={inputExtras} updateQuantity={updateQuantityExtra} deleteElement={deleteExtra} />
+                                </div>
                             </div>
-                            <ElementTable items={inputIngredients} updateQuantity={updateQuantityIngredient} deleteElement={deleteIngredient} />
-                        </div>
 
-                        <div className={`flex flex-col gap-4 ${styles.containerInputs} my-4`}>
-                            <div className={`flex flex-row items-center`}>
-                                <h2 className='ml-3 mr-8'>Extras</h2>
-                                <ElementDropdown items={extras} addElement={addExtra} />
+                            <div className='flex justify-around flex-col md:flex-row gap-6 md:items-end p-5'>
+                                <Button className={styles.input} color="danger" variant="solid" onClick={() => handleDeleteProduct()}>
+                                    Borrar
+                                </Button>
+
+                                <Input
+                                    isReadOnly
+                                    type='number'
+                                    label="Total"
+                                    placeholder="Total"
+                                    labelPlacement="outside"
+                                    value={totalPrice}
+                                    classNames={{
+                                        base: `${styles.input}`,
+                                    }}
+                                    className="w-fit"
+                                />
+
+                                <Button className={styles.input} color="primary" variant="solid" onClick={() => handleSubmit()}>
+                                    Guardar Cambios
+                                </Button>
                             </div>
-                            <ElementTable items={inputExtras} updateQuantity={updateQuantityExtra} deleteElement={deleteExtra}/>
-                        </div>
-                    </div>
+                            <UploadImg item={product} />
+                        </>
 
-                    <div className='flex justify-around flex-col md:flex-row gap-6 md:items-end p-5'>
-                        <Button className={styles.input} variant="bordered" onClick={() => deleteProduct()}>
-                            Borrar
-                        </Button>
-
-                        <Input
-                            isReadOnly
-                            type='number'
-                            label="Total"
-                            placeholder="Total" 
-                            labelPlacement="outside"
-                            value={totalPrice}
-                            classNames={{
-                                base: `${styles.input}`,
-                            }}
-                            className="w-fit"
-                        />
-
-                        <Button className={styles.input} variant="bordered" onClick={() => handleSubmit()}>
-                            Guardar Cambios
-                        </Button>
-                    </div>
-                        <UploadImg item={product} />
+                    ) : (
+                        <h2 className={`${styles.title}`}>No tenes los permisos necesarios para modificar el producto.</h2>
+                    )}
                 </div>
             )}
         </>

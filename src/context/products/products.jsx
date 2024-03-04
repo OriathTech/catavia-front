@@ -12,6 +12,7 @@ const ProductProvider = ({ children }) => {
 
   const fetchProducts = async () => {
     try {
+      console.log("aca llego")
       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/products`);
 
       if (response.status === 200) {
@@ -25,9 +26,7 @@ const ProductProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("Cargando productos")
     fetchProducts();
-    console.log(products)
   }, []);
 
   useEffect(() => {
@@ -81,7 +80,7 @@ const ProductProvider = ({ children }) => {
 
   const deleteProduct = async (productId) => {
     try {
-      const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}`, { info }, {
+      const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}`, {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json'
@@ -127,7 +126,6 @@ const ProductProvider = ({ children }) => {
 
   const updateThumbnail = async (productId, position, data) => {
     try {
-      console.log("---.--.-.-.---",productId, position, data);
       const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/products/${productId}/thumbnail/${position}`, data, {
         withCredentials: true,
         headers: {
@@ -175,7 +173,7 @@ const ProductProvider = ({ children }) => {
   };
 
   return (
-    <ProductContext.Provider value={{ products, categories, getProductById, postProduct, deleteProduct, updateProduct, deleteThumbnail, updateThumbnail }}>
+    <ProductContext.Provider value={{ products, categories, getProductById, postProduct, deleteProduct, updateProduct, deleteThumbnail, updateThumbnail, fetchProducts }}>
       {children}
     </ProductContext.Provider>
   );

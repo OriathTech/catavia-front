@@ -21,10 +21,10 @@
   --black: black;
 
   --primary: #ffa500;
-  --primaryTransparency: #ffa50050;
+  --primaryTransparency: #ffa50080;
 
   --secondary: #e88e1f;
-  --secondaryTransparency: #e88e1f50;
+  --secondaryTransparency: #e88e1f90;
 
   --tertiary: #ffe9f5;
   --tertiaryTransparency: #ffe9f550;
@@ -68,21 +68,21 @@
 
   /* Title */
   
-  --sizeTitleSM: 2rem;
-  --sizeTitleMD: 3rem;
-  --sizeTitleLG: 3rem;
+  --sizeTitleSM: 1.6rem;
+  --sizeTitleMD: 2rem;
+  --sizeTitleLG: 2.4rem;
 
   /* Sub */
 
-  --sizeSubSM: 1.5rem;
-  --sizeSubMD: 2.5rem;
-  --sizeSubLG: 3.5rem;
+  --sizeSubSM: 1.2rem;
+  --sizeSubMD: 1.6rem;
+  --sizeSubLG: 2rem;
 
   /* Text */
 
-  --sizeTextSM: 1rem;
-  --sizeTextMD: 1.5rem;
-  --sizeTextLG: 2rem;
+  --sizeTextSM: 0.8rem;
+  --sizeTextMD: 1.2rem;
+  --sizeTextLG: 1.6rem;
 
   /* Link */
 

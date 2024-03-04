@@ -1,5 +1,6 @@
 "use client"
 import { useContext, useState, useEffect } from "react"
+import { useRouter } from "next/navigation";
 
 import { ProductContext } from "@/context/products/products"
 import { ElementsContext } from '@/context/elements/elements';
@@ -7,6 +8,7 @@ import { ElementsContext } from '@/context/elements/elements';
 import { Input, Textarea } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Button } from '@nextui-org/button';
+import { Toaster, toast } from "sonner";
 
 import ElementDropdown from '../components/ElementDropdown/ElementDropdown';
 import ElementTable from '../components/ElementTable/ElementTable';
@@ -35,6 +37,7 @@ const productStatus = [
 ]
 
 export default function ProductCreateAdminPage() {
+    const router = useRouter()
     const { postProduct } = useContext(ProductContext);
     const { ingredients, extras } = useContext(ElementsContext);
 
@@ -75,14 +78,16 @@ export default function ProductCreateAdminPage() {
             elements: elements,
         }
 
-        console.log()
-        const response = await postProduct(info);
-        if (response.status === "success") {
-            console.log("El producto ha sido creado")
-            //mandar a pagina de details con id incluido "productId"
-        } else {
-            console.log("El producto no ha sido creado")
-            //error
+        try {
+            const response = await postProduct(info);
+            if (response.status === "success") {
+                toast.success(response.message);
+                router.push(`/admin/products/details?id=${response.payload._id}`);
+            } else {
+                toast.error(response.message);
+            }
+        } catch (error) {
+            toast.error("Hubo un error con el servidor. Intente mas tarde.")
         }
     }
 
@@ -166,8 +171,9 @@ export default function ProductCreateAdminPage() {
     }
 
     return (
-        <div className={`container mx-auto my-4 p-4 ${styles.conteiner}`}>
-            <h1 className={`p-5 ${styles.text}`}>Nuevo Producto</h1>
+        <div className={`container mx-auto my-4 p-4`}>
+            <Toaster position="top-right" richColors />
+            <h1 className={`p-5 ${styles.title}`}>Nuevo Producto</h1>
             <div className={`flex flex-col md:flex-row justify-around gap-4 p-5`}>
                 <div className={`flex flex-col gap-8 ${styles.containerInputs}`}>
                     <Input

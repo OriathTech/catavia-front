@@ -14,7 +14,6 @@ const SessionProvider = ({ children }) => {
 
   const loginJWT = async (info) => {
     try {
-      console.log(info)
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/session/login/jwt`, info, {
         withCredentials: true,
         headers: {
@@ -23,9 +22,7 @@ const SessionProvider = ({ children }) => {
       });
 
       if (response.status === 200) {
-        console.log(response.data)
         setSession(response.data.payload);
-        console.log(session)
         return response.data;
       } else {
         response.data;

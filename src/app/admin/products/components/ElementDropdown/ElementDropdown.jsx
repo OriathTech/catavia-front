@@ -6,7 +6,7 @@ export default function ElementDropdown({ items, addElement }) {
     return (
         <Dropdown>
             <DropdownTrigger>
-                <Button variant="bordered">
+                <Button color="primary" variant="solid">
                     Agregar
                 </Button>
             </DropdownTrigger>
