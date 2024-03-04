@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 import { errorHandler } from '@/utils/errorHandler';
 import axios from 'axios';
 
@@ -7,12 +7,6 @@ const UsersContext = createContext();
 
 const UsersProvider = ({ children }) => {
     const [users, setUsers] = useState([]);
-
-    useEffect(()=>{
-        console.log("CONTEXT -----> " ,users)
-
-
-    },[users])
 
     const getUsers = async () => {
         try {

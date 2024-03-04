@@ -7,6 +7,7 @@ import styles from "./page.module.css"
 
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input, Button, DropdownTrigger, Dropdown, DropdownMenu, DropdownItem, Chip, Pagination, } from "@nextui-org/react";
 import { capitalize } from "../../../utils/utils";
+import { Toaster, toast } from "sonner";
 
 //Icons
 import { PlusIcon } from "../components/icons/PlusIcon/PlusIcon";
@@ -38,7 +39,7 @@ const statusOptions = [
 const INITIAL_VISIBLE_COLUMNS = ["name", "price", "status", "actions"];
 
 export default function IngredientsTablePage() {
-    const { ingredients } = useContext(ElementsContext);
+    const { ingredients, deleteElement } = useContext(ElementsContext);
 
     const [filterValue, setFilterValue] = useState("");
     const [visibleColumns, setVisibleColumns] = useState(new Set(INITIAL_VISIBLE_COLUMNS));
@@ -57,6 +58,20 @@ export default function IngredientsTablePage() {
 
         return columns.filter((column) => Array.from(visibleColumns).includes(column.uid));
     }, [visibleColumns]);
+
+        //DeleteElement
+        const handleDeleteElement = async (id) => {
+            try {
+                const response = await deleteElement(id)
+                if(response.status === "success") {
+                    toast.success(response.message);
+                } else {
+                    toast.error(response.message);
+                }
+            } catch (error){
+                toast.error("Error en el servidor. Intente mas tarde")
+            }
+        }
 
 
     //filtro por nombre
@@ -154,11 +169,23 @@ export default function IngredientsTablePage() {
             case "actions":
                 return (
                     <div className="flex gap-3">
-                        <Button as={Link} href={`/admin/ingredients/details?id=${ingredient._id}`} size="sm" color="primary" variant="flat">
+                        <Button as={Link} href={`/admin/ingredients/details?id=${ingredient._id}`} size="sm" color="primary" variant="solid">
                             <ModifyIcon size={18} />
                         </Button>
 
-                        <Button size="sm" color="danger" variant="flat">
+                        <Button onClick={() => {
+                            toast.warning(`Estas seguro? Se eliminara el ingrediente: ${ingredient.name}`, {
+                                action: {
+                                    label: 'Eliminar',
+                                    onClick: () => handleDeleteElement(ingredient._id)
+                                },
+                                cancel: {
+                                    label: 'Cancelar',
+                                    onClick: () => console.log('Cancel!')
+                                },
+                                duration: 10000
+                            })
+                        }} size="sm" color="danger" variant="solid">
                             <DeleteIcon size={20} />
                         </Button>
                     </div>
@@ -286,42 +313,46 @@ export default function IngredientsTablePage() {
     }, [items.length, page, pages, hasSearchFilter]);
 
     return (
-        <Table
-            aria-label="Tabla de ingredientes con paginación y busqueda."
-            isHeaderSticky
-            bottomContent={bottomContent}
-            bottomContentPlacement="outside"
-            classNames={{
-                wrapper: `${styles.wrapper}`,
-                th: `${styles.tableHeader}`,
-                tbody: `${styles.tableBody}`,
-                td: `${styles.tableCell}`,
-                tr: `${styles.tableRow}`,
-                emptyWrapper: `${styles.emptyWrapper}`
-            }}
-            sortDescriptor={sortDescriptor}
-            topContent={topContent}
-            topContentPlacement="outside"
-            onSortChange={setSortDescriptor}
-        >
-            <TableHeader columns={headerColumns}>
-                {(column) => (
-                    <TableColumn
-                        key={column.uid}
-                        align={column.uid === "actions" ? "center" : "start"}
-                        allowsSorting={column.sortable}
-                    >
-                        {column.name}
-                    </TableColumn>
-                )}
-            </TableHeader>
-            <TableBody emptyContent={"No se han encontrado ingredientes"} items={sortedItems}>
-                {(item) => (
-                    <TableRow key={item._id}>
-                        {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-                    </TableRow>
-                )}
-            </TableBody>
-        </Table>
+        <>
+            <Toaster position="top-right" richColors />
+            <Table
+                aria-label="Tabla de ingredientes con paginación y busqueda."
+                isHeaderSticky
+                bottomContent={bottomContent}
+                bottomContentPlacement="outside"
+                classNames={{
+                    wrapper: `${styles.wrapper}`,
+                    th: `${styles.tableHeader}`,
+                    tbody: `${styles.tableBody}`,
+                    td: `${styles.tableCell}`,
+                    tr: `${styles.tableRow}`,
+                    emptyWrapper: `${styles.emptyWrapper}`
+                }}
+                sortDescriptor={sortDescriptor}
+                topContent={topContent}
+                topContentPlacement="outside"
+                onSortChange={setSortDescriptor}
+            >
+                <TableHeader columns={headerColumns}>
+                    {(column) => (
+                        <TableColumn
+                            key={column.uid}
+                            align={column.uid === "actions" ? "center" : "start"}
+                            allowsSorting={column.sortable}
+                        >
+                            {column.name}
+                        </TableColumn>
+                    )}
+                </TableHeader>
+                <TableBody emptyContent={"No se han encontrado ingredientes"} items={sortedItems}>
+                    {(item) => (
+                        <TableRow key={item._id}>
+                            {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+                        </TableRow>
+                    )}
+                </TableBody>
+            </Table>
+
+        </>
     );
 }

@@ -1,6 +1,7 @@
 "use client"
 import { useSearchParams } from 'next/navigation';
 import { useContext, useState, useEffect } from "react"
+import { useRouter } from 'next/navigation';
 
 import { ElementsContext } from '@/context/elements/elements';
 import { ProductContext } from '@/context/products/products';
@@ -9,6 +10,7 @@ import { Input } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Button } from '@nextui-org/button';
 import { CircularProgress } from "@nextui-org/progress";
+import { Toaster, toast } from 'sonner';
 
 import styles from "./page.module.css"
 
@@ -36,41 +38,65 @@ export default function ExtraDetailsAdminPage() {
             if (extra) {
                 setExtra(extra);
                 setInputName(extra.name);
+                setInputPrice(extra.price)
                 setInputStatus([extra.status]);
             }
         }
     }, [extras]);
 
     const handleSubmit = async () => {
+        if (!inputName || !inputPrice || !Array.from(inputStatus)[0] ) {
+            return toast.error("Hay campos incompletos.")
+        }
+
         const info = {
             name: inputName,
             category: "extra",
             price: inputPrice,
-            status: Array.from(inputStatus)[0]
+            status: Array.from(inputStatus)[0],
         }
 
-        const response = await updateElement(extraId, info);
-        if (response.status === "success") {
-            console.log("El extra ha sido actualizado")
-            if (response.reload) {
-                fetchProducts()
+        try {
+            const response = await updateElement(extraId, info);
+            if (response.status === "success") {
+                if (response.reload === true) {
+                    const res = await fetchProducts();
+                }
+                toast.success(response.message);
+            } else {
+                toast.error(response.message);
             }
+
+        } catch (error) {
+            toast.error("Error en el servidor. Intente más tarde.")
         }
     }
 
     const handleDeleteExtra = async () => {
+        try {
+            const response = await deleteElement(extraId);
+            if (response.status === "success") {
+                toast.success(response.message);
+                router.push("/admin/extras")
+            } else {
+                toast.error(response.message);
+            }
 
+        } catch (error) {
+            toast.error("Error en el servidor. Intente más tarde.")
+        }
     }
 
     return (
         <>
+            <Toaster position='top-right' richColors/>
             {!extra ? (
                 <div className={`grid place-items-center ${styles.containerLoading}`}>
-                    <CircularProgress color="primary" size="lg" aria-label="Buscando Producto..." label="Buscando Producto..." />
+                    <CircularProgress color="primary" size="lg" aria-label="Buscando Extra..." label="Buscando Extra..." />
                 </div>
             ) : (
-                <div className={`container mx-auto my-4 p-4 ${styles.conteiner}`} >
-                    <h1 className={`p-5 ${styles.text}`}>Modificar Ingrediente</h1>
+                <div className={`container mx-auto my-4 p-4`} >
+                    <h1 className={`p-5 ${styles.title}`}>Modificar Extra</h1>
 
                     <div className={`flex flex-col md:flex-row justify-around gap-4 p-5`}>
                         <div className={`flex flex-col gap-8 ${styles.containerInputs}`}>
@@ -88,7 +114,7 @@ export default function ExtraDetailsAdminPage() {
                             />
 
                             <Input
-                                label="Precio por Gramo"
+                                label="Precio por gramo"
                                 type="number"
                                 isRequired={true}
                                 labelPlacement="outside"
@@ -97,7 +123,7 @@ export default function ExtraDetailsAdminPage() {
                                 classNames={{
                                     base: `${styles.input}`,
                                 }}
-                                onValueChange={(value) => setInputPrice(value)}
+                                onValueChange={(value) => setInputPrice(parseInt(value))}
                             />
 
                         </div>
@@ -138,11 +164,11 @@ export default function ExtraDetailsAdminPage() {
 
                     <div className='flex justify-around flex-col md:flex-row gap-6 md:items-end p-5'>
 
-                        <Button className={styles.input} variant="bordered" onClick={() => handleDeleteIngredient()}>
-                            Borrar Ingrediente
+                        <Button className={styles.input} color="danger" variant="solid" onClick={() => handleDeleteExtra()}>
+                            Borrar Extra
                         </Button>
 
-                        <Button className={styles.input} variant="bordered" onClick={() => handleSubmit()}>
+                        <Button className={styles.input} color="primary" variant="solid" onClick={() => handleSubmit()}>
                             Guardar Cambios
                         </Button>
 

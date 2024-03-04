@@ -21,7 +21,6 @@ const CartProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        console.log(cart)
         setQuantityTotalProducts(cart.products.reduce((total, p) => total + p.quantity, 0));
     }, [cart]);
 
@@ -101,7 +100,6 @@ const CartProvider = ({ children }) => {
 
     const checkout = async (cart) => {
         try {
-            console.log(JSON.stringify(cart))
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/products/checkout`, cart, {
                 withCredentials: true,
                 headers: {

@@ -9,7 +9,7 @@ import { UserIcon } from "./components/icons/UserIcon/UserIcon";
 
 export default function AdminPanel() {
     return (
-        <div className={styles.container}>
+        <>
             <h1 className={styles.title}>Bienvenido al panel de control de Catavia</h1>
 
             <div className={`${styles.textContainerIntro}`}>
@@ -86,6 +86,6 @@ export default function AdminPanel() {
                     </p>
                 </div>
             </div>
-        </div>
+        </>
     )
 }

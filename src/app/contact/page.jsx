@@ -30,11 +30,13 @@ export default function ContactPage() {
                 </p>
 
                 <p className={styles.text}>
-                Estoy aquí para ayudarte en lo que necesites. Si tienes consultas sobre nuestros productos, el estado de tus pedidos o cualquier otra consulta, no dudes en ponerte en contacto conmigo. Estaré encantada de resolver cualquier duda que tengas. 
+                Estoy aquí para ayudarte en lo que necesites. Si tienes consultas sobre nuestros productos, 
+                el estado de tus pedidos o cualquier otra consulta, no dudes en ponerte en contacto conmigo. 
+                Estaré encantada de resolver cualquier duda que tengas. 
                 </p>
 
                 <p className={styles.text}>
-                    ¡contactame a través de los enlaces que encontrarás aqui abajo!
+                    ¡Contáctame a través de los enlaces que encontrarás aqui abajo!
                 </p>
             </div>
 

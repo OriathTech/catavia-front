@@ -48,12 +48,12 @@ export default function UsersDetailsPage() {
             {!user ? (
                 <div className={`grid place-items-center ${styles.containerLoading}`}>
                     <Toaster position="top-right" richColors />
-                    <CircularProgress color="primary" size="lg" aria-label="Buscando Usuario..." label="Buscando Producto..." />
+                    <CircularProgress color="primary" size="lg" aria-label="Buscando Usuario..." label="Buscando Usuario..." />
                 </div>
             ) : (
-                <div className={`container mx-auto my-4 p-4 ${styles.conteiner}`} >
+                <div className={`container mx-auto my-4 p-4`} >
                     <Toaster position="top-right" richColors />
-                    <h1 className={`p-5 ${styles.text}`}>Usuario</h1>
+                    <h1 className={`p-5 ${styles.title}`}>Usuario</h1>
 
                     <div className={`flex flex-col md:flex-row justify-around gap-4 p-5`}>
                         <div className={`flex flex-col gap-8 ${styles.containerInputs}`}>
@@ -108,11 +108,11 @@ export default function UsersDetailsPage() {
 
                     <div className='flex justify-around flex-col md:flex-row gap-6 md:items-end p-5'>
 
-                        <Button className={styles.input} variant="bordered" onClick={() => handleDeleteUser()}>
+                        <Button className={styles.input} color="danger" variant="solid" onClick={() => handleDeleteUser()}>
                             Borrar user
                         </Button>
 
-                        <Button className={styles.input} variant="bordered" onClick={() => loadTickets()}>
+                        <Button className={styles.input} color="primary" variant="solid" onClick={() => loadTickets()}>
                             Cargar Tickets
                         </Button>
 

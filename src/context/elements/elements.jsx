@@ -68,7 +68,7 @@ const ElementsProvider = ({ children }) => {
 
     const updateElement = async (elementId, info) => {
         try {
-            const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/elements/${elementId}`, { info }, {
+            const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/elements/${elementId}`,  info, {
                 withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ const ElementsProvider = ({ children }) => {
 
     const postElement = async (info) => {
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/elements`, { info }, {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/elements`, info, {
                 withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',

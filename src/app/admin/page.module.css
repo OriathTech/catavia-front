@@ -1,22 +1,15 @@
-.container {
-    background-color: rgba(0, 0, 0, .4);
-    border-radius: 15px;
-    padding: 1rem;
-}
-
-
 .title {
     text-align: center;
-    color: azure;
-    font-size: var(--textSizeTitle);
-    font-family: 'Times New Roman', Times, serif;
+    color: var(--textTitle);
+    font-size: var(--sizeTitleSM);
+    font-family: var(--familyTitle);
 }
 
 .subTitle{
     text-align: center;
-    color: azure;
-    font-size: var(--textSizeSubTitle);
-    font-family: 'Times New Roman', Times, serif;
+    color: var(--textSub);
+    font-size: var(--sizeSubSM);
+    font-family: var(--familySub);
 }
 
 .textContainerIntro{
@@ -37,10 +30,10 @@
 }
 
 .text {
-    color: azure;
-    font-family: 'Times New Roman', Times, serif;
+    color: var(--text);
+    font-family: var(--familyText);
     font-weight: 400;
-    font-size: var(--textSize);
+    font-size: var(--sizeTextSM);
 }
 
 @media only screen and (min-width:1440px) {
@@ -57,7 +50,15 @@
     }
 
     .text {
-        font-size: 1.5rem;
+        font-size: var(--sizeTextMD);
+    }
+
+    .title {
+        font-size: var(--sizeTitleMD);
+    }
+
+    .sub {
+        font-size: var(--sizeSubSM);
     }
 
     .textContainer div{
@@ -65,17 +66,21 @@
     }
 }
 
-@media only screen and (min-width:2560px) {
-    .title {
-        font-size: 4rem;
-    }
-
-    .text {
-        font-size: 2.5rem;
-    }
-
+@media only screen and (min-width:2500px) {
     .textContainer div{
         width: 45%;
         margin-top: 3rem;
+    }
+
+    .text {
+        font-size: var(--sizeTextLG);
+    }
+
+    .title {
+        font-size: var(--sizeTitleLG);
+    }
+
+    .sub {
+        font-size: var(--sizeSubLG);
     }
 }

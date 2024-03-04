@@ -1,12 +1,13 @@
 "use client"
-import { useSearchParams } from 'next/navigation';
 import { useContext, useState } from "react"
+import { useRouter } from "next/navigation";
 
 import { ElementsContext } from '@/context/elements/elements';
 
 import { Input } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Button } from '@nextui-org/button';
+import { Toaster, toast } from "sonner";
 
 import styles from "./page.module.css"
 
@@ -16,6 +17,7 @@ const extraStatus = [
 ]
 
 export default function ExtraCreateAdminPage() {
+    const router = useRouter()
     const { postElement } = useContext(ElementsContext);
 
     // Form Inputs
@@ -31,15 +33,24 @@ export default function ExtraCreateAdminPage() {
             status: Array.from(inputStatus)[0]
         }
 
-        const response = await postElement(extraId, info);
-        if (response.status === "success") {
-            console.log("El extra ha sido creado")
+        try {
+            const response = await postElement(info);
+            if (response.status === "success") {
+                toast.success(response.message);
+                router.push(`/admin/extras/details?id=${response.payload._id}`)
+            } else {
+                toast.error(response.message);
+            }
+
+        } catch (error) {
+            toast.error("Error en el servidor. Intente mas tarde")
         }
     }
 
     return (
-        <div className={`container mx-auto my-4 p-4 ${styles.conteiner}`} >
-            <h1 className={`p-5 ${styles.text}`}>Crear Extra</h1>
+        <div className={`container mx-auto my-4 p-4`} >
+            <Toaster position="top-right" richColors/>
+            <h1 className={`p-5 ${styles.title}`}>Crear Extra</h1>
 
             <div className={`flex flex-col md:flex-row justify-around gap-4 p-5`}>
                 <div className={`flex flex-col gap-8 ${styles.containerInputs}`}>
@@ -57,7 +68,7 @@ export default function ExtraCreateAdminPage() {
                     />
 
                     <Input
-                        label="Precio por Gramo"
+                        label="Precio por Unidad"
                         type="number"
                         isRequired={true}
                         labelPlacement="outside"
@@ -66,7 +77,7 @@ export default function ExtraCreateAdminPage() {
                         classNames={{
                             base: `${styles.input}`,
                         }}
-                        onValueChange={(value) => setInputPrice(value)}
+                        onValueChange={(value) => setInputPrice(parseInt(value))}
                     />
 
                 </div>
@@ -107,7 +118,7 @@ export default function ExtraCreateAdminPage() {
 
             <div className='flex justify-around flex-col md:flex-row gap-6 md:items-end p-5'>
 
-                <Button className={styles.input} variant="bordered" onClick={() => handleSubmit()}>
+                <Button className={styles.input} color="primary" variant="solid" onClick={() => handleSubmit()}>
                     Crear Extra
                 </Button>
 
