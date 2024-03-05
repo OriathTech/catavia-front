@@ -18,5 +18,5 @@ export const generateLinkWathsapp = (ticket) => {
     const mensajewaths = mensaje.replace(/ /g, "+");
     console.log(mensajewaths);
 
-    return `https://wa.me/1155666771/?text=${(mensajewaths)}`;
+    return `https://wa.me/+5401155666771/?text=${(mensajewaths)}`;
 };
