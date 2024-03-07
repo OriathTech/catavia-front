@@ -40,7 +40,7 @@ const CartProvider = ({ children }) => {
             updatedCart.products[indexProductCart].quantity = quantity;
             setCart(updatedCart);
             return {
-                status:"success",
+                status: "success",
                 message: "Cantidad del producto actualizada."
             }
         } else {
@@ -60,21 +60,22 @@ const CartProvider = ({ children }) => {
                 products: [...prevCart.products, productToAdd]
             }));
             return {
-                status:"success",
+                status: "success",
                 message: "Producto agregado al carrito."
             }
         }
     };
 
     const deleteProductCart = (productId) => {
-        const updatedCart = {
-            ...cart,
-            products: cart.products.filter((product) => product._id !== productId),
-        };
+        const updatedProducts = cart.products.filter((product) => product.productId !== productId);
 
-        setCart(updatedCart);
+        setCart((prevCart) => ({
+            ...prevCart,
+            products: updatedProducts
+        }));
+
         return {
-            status:"success",
+            status: "success",
             message: "Producto eliminado del carrito."
         }
     };

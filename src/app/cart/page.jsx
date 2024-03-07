@@ -45,6 +45,17 @@ export default function Cart() {
     }
   };
 
+ const handleDeleteProductCart = (id)=>{
+    const response = deleteProductCart(id)
+    if (response.status==="success"){
+      toast.success(response.message)
+      console.log(cart);
+    }
+
+ }
+
+  
+
   const handleCheckout = async () => {
 
     if (deliveryDate > cart.deliveryDate) {
@@ -93,10 +104,10 @@ export default function Cart() {
               <tbody>
                 {cart.products.map(item => (
                   <tr key={item.productId} className={`${styles.text} ${styles.tr} border-b text-center`}>
-                    <td className="py-2 px-4"><img src={item.thumbnail ? item.thumbnail : "/defaultProduct.png"} alt="Producto" className={`${styles.img} h-20 w-20 rounded-lg object-cover mx-auto`} /></td>
+                    <td className="py-2 px-4"><img src={item.thumnail ? item.thumnail : "/defaultProduct.png"} alt="Producto" className={`${styles.img} h-20 w-20 rounded-lg object-cover mx-auto`} /></td>
                     <td className="py-2 px-4">{item.name}</td>
                     <td className="py-2 px-4">${item.price}</td>
-                    <td className="py-2 px-4 flex">
+                    <td className="py-7 px-4 flex justify-center">
                       <Button className={styles.arrowBtn} isIconOnly startContent={<ArrowRightIcon />} onClick={() => handleUpdateQuantity(item.productId, item.quantity - 1)} />
                       <input
                         type="number"
@@ -110,7 +121,7 @@ export default function Cart() {
                       <Button className={styles.arrowBtn} isIconOnly startContent={<ArrowLeftIcon />} onClick={() => handleUpdateQuantity(item.productId, item.quantity + 1)} />
                     </td>
                     <td className="py-2 px-4">${calculateTotalPrice(item)}</td>
-                    <td className="py-2 px-4"><Button className={`${styles.text} ${styles.btn} p-2 bg-red-500 text-white`} onClick={() => deleteProductCart(item.productId)} radius="full" isIconOnly> <DeleteIcon />  </Button></td>
+                    <td className="py-2 px-4"><Button className={`${styles.text} ${styles.btn} p-2 bg-red-500 text-white`} onClick={() => handleDeleteProductCart(item.productId)} radius="full" isIconOnly> <DeleteIcon />  </Button></td>
                   </tr>
                 ))}
               </tbody>
