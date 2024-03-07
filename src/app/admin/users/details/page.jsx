@@ -2,8 +2,9 @@
 import { useContext, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { UsersContext } from "@/context/users/users";
-import { Button } from "@nextui-org/button";
+import { useRouter } from "next/navigation";
 
+import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { CircularProgress } from "@nextui-org/progress";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
@@ -14,9 +15,10 @@ import { Toaster, toast } from 'sonner'
 
 
 export default function UsersDetailsPage() {
+    const router = useRouter()
     const searchParams = useSearchParams();
     const userId = searchParams.get('id');
-    const { getTickets, getUserById } = useContext(UsersContext);
+    const { getTickets, getUserById, deleteUser } = useContext(UsersContext);
 
     const [user, setUser] = useState(null);
     const [tickets, setTickets] = useState([])
@@ -24,7 +26,7 @@ export default function UsersDetailsPage() {
     useEffect(() => {
         const user = getUserById(userId);
         setUser(user);
-    }, [userId ])
+    }, [userId])
 
     const loadTickets = async () => {
         const user = getUserById(userId);
@@ -38,21 +40,29 @@ export default function UsersDetailsPage() {
         }
     }
 
-    useEffect(() => {
-        console.log("user ------------", user);
-        console.log("tickets----------", tickets);    
-    }, [user, tickets])
+    const handleDeleteUser = async () => {
+        try {
+            const response = await deleteUser(userId)
+            if (response.status === "success") {
+                toast.success(response.message);
+                router.push("/admin/users")
+            } else {
+                toast.error(response.message);
+            }
+        } catch (error) {
+            toast.error("Error en el servidor. Intente mas tarde")
+        }
+    }
 
     return (
         <>
+            <Toaster position="top-right" richColors />
             {!user ? (
                 <div className={`grid place-items-center ${styles.containerLoading}`}>
-                    <Toaster position="top-right" richColors />
                     <CircularProgress color="primary" size="lg" aria-label="Buscando Usuario..." label="Buscando Usuario..." />
                 </div>
             ) : (
                 <div className={`container mx-auto my-4 p-4`} >
-                    <Toaster position="top-right" richColors />
                     <h1 className={`p-5 ${styles.title}`}>Usuario</h1>
 
                     <div className={`flex flex-col md:flex-row justify-around gap-4 p-5`}>
@@ -108,8 +118,21 @@ export default function UsersDetailsPage() {
 
                     <div className='flex justify-around flex-col md:flex-row gap-6 md:items-end p-5'>
 
-                        <Button className={styles.input} color="danger" variant="solid" onClick={() => handleDeleteUser()}>
-                            Borrar user
+                        <Button
+                            onClick={() => {
+                                toast.warning(`Estas seguro? Se eliminara el usuario: ${user.name}`, {
+                                    action: {
+                                        label: 'Eliminar',
+                                        onClick: () => handleDeleteUser()
+                                    },
+                                    cancel: {
+                                        label: 'Cancelar',
+                                        onClick: () => console.log('Cancel!')
+                                    },
+                                    duration: 10000
+                                })
+                            }} color="danger" variant="solid" className={styles.input}>
+                            Eliminar Usuario
                         </Button>
 
                         <Button className={styles.input} color="primary" variant="solid" onClick={() => loadTickets()}>
@@ -155,9 +178,9 @@ export default function UsersDetailsPage() {
                                             <table className={`${styles.tabla}`}>
                                                 <thead className={`${styles.tableHead}`}>
                                                     <tr>
-                                                        <th className={`${styles.tableHeadStart} py-2 px-4`}>Name</th>
-                                                        <th className={`${styles.tableHeadEnd} py-2 px-4`}>Quantity</th>
-                                                        <th className={`py-2 px-4 md-px-4`}>Price</th>
+                                                        <th className={`${styles.tableHeadStart} py-2 px-4`}>Nombre</th>
+                                                        <th className={`${styles.tableHeadEnd} py-2 px-4`}>Cantidad</th>
+                                                        <th className={`py-2 px-4 md-px-4`}>Precio</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
