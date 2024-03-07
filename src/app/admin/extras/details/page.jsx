@@ -123,7 +123,7 @@ export default function ExtraDetailsAdminPage() {
                                 classNames={{
                                     base: `${styles.input}`,
                                 }}
-                                onValueChange={(value) => setInputPrice(parseInt(value))}
+                                onValueChange={(value) => setInputPrice(parseFloat(value))}
                             />
 
                         </div>

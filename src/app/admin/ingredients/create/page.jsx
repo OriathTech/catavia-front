@@ -81,7 +81,7 @@ export default function IngredientCreateAdminPage() {
                         classNames={{
                             base: `${styles.input}`,
                         }}
-                        onValueChange={(value) => setInputPrice(parseInt(value))}
+                        onValueChange={(value) => setInputPrice(parseFloat(value))}
                     />
                 </div>
                 <div className={`flex flex-col gap-8 ${styles.containerInputs}`}>

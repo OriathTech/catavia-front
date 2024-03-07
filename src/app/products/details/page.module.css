@@ -1,9 +1,10 @@
-.conteiner{
-    background-color: var(--primaryTransparency);
-    border-radius: 15px;
+.container{
+    background-color: var(--secondaryTransparency);
+    border-radius: 25px;
+    box-shadow: 1 5px 10px var(--blackTransparency)
 }
 
-.conteinerImg{
+.containerImg{
     border-radius: 15px;
 
 }
@@ -38,13 +39,6 @@
     top:45%;
   }
   
-  .button {
-    background: pink;
-    color: black;
-    font-weight: 600;
-    font-size: 1rem;
-  }
-  
   /* fin de carrisel*/
 
 .li {
@@ -60,16 +54,17 @@
     object-fit: cover; 
 }
 
-.name{
+.title{
     font-size: var(--sizeTitleMD);
     font-family: var(--familyTitle);
+    font-weight: var(--weightSemi);
+    color: var(--bannerSub);
     
 }
 
 .text{
     font-size: var(--sizeTextMD);
     font-family: var(--font-merri);
-    text-align: left;
 }
 
 .num{
@@ -78,75 +73,21 @@
 
 .sub{
     font-size: var(--sizeTextMD);
-    font-family: var(--font-heebo);
+    font-family: var(--familySub);
+    font-weight: var(--weightSemi);
+    color: var(--bannerSub);
 }
 
 .containerImput{
     width: auto;
 }
 
-@media only screen and (min-width:2560px){
-
-    .conteinerImg{
-        height: auto;
-    }
-
-    .name{
-        font-size: var(--sizeTitleLG);
-    }
-    
-    .text{
-        font-size: var(--sizeTextLG);
-        padding: 0rem 1rem;
-    }
-    
-    .num{
-        font-size: var(--sizeTextLG);
-    }
-}
-
-@media only screen and (min-width:1024px){
-
-    .conteinerImg{
-        height: auto;
-    }
-    
-    .name{
-        font-size: var(--sizeTitleMD);
-    }
-    
-    .conteinerDescripcion{
-        border-radius: 10px;
-    }
-    
-    .text{
-        font-size: var(--sizeTextMD);
-        padding: 0rem 0.5rem;
-    }
-    
-    .num{
-        font-size: var(--sizeTextMD);
-        margin: .5rem 0rem;
-        width: 2.5rem;
-    }
-    
-    .conteinerIngredientes{
-        border-radius: 10px;
-    }
-
-    .btn{
-        width:auto;
-        height: 3rem;
-        margin-right: 0.5rem;
-    }
-}
-
 @media only screen and (min-width:1px) {
-    .conteiner{
-        width: 70%;
+    .container{
+        width: 100%;
     }
     
-    .conteinerImg{
+    .containerImg{
         height: auto;
         display: block;
     }
@@ -157,7 +98,7 @@
         
     .text{
         font-size: var(--sizeTextSM);
-        padding: 0rem 0.5rem;
+
     }
 
     .containerImput{
@@ -173,6 +114,95 @@
         width:11rem;
         padding: .5rem;
         margin: .5rem;
+        background-color: brown;
 
+    }
+}
+
+@media only screen and (min-width:400px){
+    .container{
+        width:90%;
+    }
+
+
+}
+
+@media only screen and (min-width:700px){
+
+    .container{
+        width:60%;
+    }
+
+    .containerImg{
+        height: auto;
+    }
+    
+    .name{
+        font-size: var(--sizeTitleSM);
+    }
+    
+    .containerDescripcion{
+        border-radius: 10px;
+    }
+    
+    .text{
+        font-size: var(--sizeTextSM);
+    }
+    
+    .num{
+        font-size: var(--sizeTextSM);
+        margin: .5rem 0rem;
+        width: 2.5rem;
+    }
+    
+    .containerIngredientes{
+        border-radius: 10px;
+    }
+
+    .btn{
+        width:auto;
+        height: 3rem;
+        margin-right: 0.5rem;
+    }
+}
+
+@media only screen and (min-width:900px){
+    .container{
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width:1000px){
+    .container{
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width:1600px){
+    .container{
+        width: 70%;
+    }
+}
+
+@media only screen and (min-width:2000px){
+
+    .container{
+        width: 60%;
+    }
+
+    .containerImg{
+        height: auto;
+    }
+
+    .name{
+        font-size: var(--sizeTitleMD);
+    }
+    
+    .text{
+        font-size: var(--sizeTextMD);
+    }
+    
+    .num{
+        font-size: var(--sizeTextMD);
     }
 }

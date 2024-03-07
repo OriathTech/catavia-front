@@ -124,7 +124,7 @@ export default function IngredientDetailsAdminPage() {
                                 classNames={{
                                     base: `${styles.input}`,
                                 }}
-                                onValueChange={(value) => setInputPrice(parseInt(value))}
+                                onValueChange={(value) => setInputPrice(parseFloat(value))}
                             />
                         </div>
 

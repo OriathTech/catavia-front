@@ -98,7 +98,7 @@ export default function ProductCreateAdminPage() {
         }
         const updatedArray = inputIngredients.map((ingredient) => {
             if (ingredient._id === item._id) {
-                const newTotal = quantity * ingredient.price;
+                const newTotal = parseFloat((quantity * ingredient.price).toFixed(2))
                 return { ...ingredient, quantity: quantity, total: newTotal };
             } else {
                 return ingredient;
@@ -115,7 +115,7 @@ export default function ProductCreateAdminPage() {
         }
         const updatedArray = inputExtras.map((extra) => {
             if (extra._id === item._id) {
-                const newTotal = quantity * extra.price;
+                const newTotal = parseFloat((quantity * extra.price).toFixed(2))
                 return { ...extra, quantity: quantity, total: newTotal };
             } else {
                 return extra;
