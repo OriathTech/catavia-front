@@ -1,28 +1,22 @@
 export default function sitemap() {
     return [
       {
-        url: 'https://oriathtech.com.ar',
+        url: 'https://catavia.vercel.app',
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 1,
       },
       {
-        url: 'https://www.oriathtech.com.ar/about',
+        url: 'https://catavia.vercel.app/products',
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 0.8,
       },
       {
-        url: 'https://www.oriathtech.com.ar/services',
+        url: 'https://catavia.vercel.app/contact',
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 0.5,
-      },
-      {
-        url: 'https://www.oriathtech.com.ar/contact',
-        lastModified: new Date(),
-        changeFrequency: 'monthly',
-        priority: 0.5,
-      },
+      }
     ]
   }
