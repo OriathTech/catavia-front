@@ -12,10 +12,11 @@ import { ArrowRightIcon } from "../icons/ArrowRightIcon/ArrowRightIcon";
 import { Label } from "../Label/Label";
 
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/navigation';
+import 'swiper/css/autoplay';
 
 import styles from "./Carousel.module.css"
 
@@ -65,7 +66,10 @@ export default function Carousel() {
                                 }
                             }}
                             loop={true}
-                            autoplay={true}
+                            autoplay={{
+                                delay: 2000,
+                                disableOnInteraction: false,
+                            }}
                             pagination={{
                                 clickable: true,
                             }}
@@ -74,7 +78,7 @@ export default function Carousel() {
                                 prevEl: `.prev`,
                                 clickable: true,
                             }}
-                            modules={[Pagination, Navigation]}
+                            modules={[Pagination, Navigation, Autoplay]}
                             className={styles.swiper}
                         >
                             {featuredProducts.map((item, index) => (
