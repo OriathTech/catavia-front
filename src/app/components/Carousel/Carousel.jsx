@@ -65,10 +65,10 @@ export default function Carousel() {
                                 }
                             }}
                             loop={true}
+                            autoplay={true}
                             pagination={{
                                 clickable: true,
                             }}
-
                             navigation={{
                                 nextEl: `.next`,
                                 prevEl: `.prev`,
